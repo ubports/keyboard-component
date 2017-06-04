@@ -34,6 +34,7 @@ Item {
     property string activeKeypadState: "NORMAL"
     property alias popoverEnabled: extendedKeysSelector.enabled
     property bool switchBack: false // Switch back to the previous layout when changing fields
+    property bool hideKeyLabels: false // Hide key labels when in cursor movement mode
 
     property Item lastKeyPressed // Used for determining double click validity in PressArea
 
@@ -127,6 +128,7 @@ Item {
 
             if (!maliit_input_method.languageIsSupported(language)) {
                 console.log("Language '" + language + "' not supported - using 'en' instead");
+                maliit_input_method.activeLanguage = "en";
                 language = "en";
             }
 
