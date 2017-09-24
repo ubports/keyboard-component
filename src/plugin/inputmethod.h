@@ -61,6 +61,7 @@ class InputMethod
     Q_PROPERTY(QString currentPluginPath READ currentPluginPath NOTIFY currentPluginPathChanged)
     Q_PROPERTY(QString preedit READ preedit WRITE replacePreedit NOTIFY preeditChanged)
     Q_PROPERTY(int cursorPosition READ cursorPosition WRITE setCursorPosition NOTIFY cursorPositionChanged)
+
     Q_PROPERTY(double opacity READ opacity NOTIFY opacityChanged)
     Q_PROPERTY(QString surroundingLeft READ surroundingLeft)
     Q_PROPERTY(QString surroundingRight READ surroundingRight)

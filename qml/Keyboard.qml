@@ -47,7 +47,7 @@ Item {
     property int prevSwipePositionY
     property int cursorSwipeDuration: 400
     property var timerSwipe: swipeTimer
-    
+
     property variant input_method: maliit_input_method
     property variant event_handler: maliit_event_handler
 
