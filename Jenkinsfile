@@ -13,18 +13,16 @@ pipeline {
         node(label: 'xenial-arm64') {
           unstash 'source'
           sh '''export architecture="armhf"
-export BUILD_ONLY=true
-/usr/bin/build-and-provide-package'''
-          stash(includes: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo,lintian.txt', name: 'build')
+build-binary.sh'''
+          stash(includes: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo,lintian.txt,*.ddeb', name: 'build')
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
         }
-        
       }
     }
     stage('Results') {
       steps {
         unstash 'build'
-        archiveArtifacts(artifacts: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo', fingerprint: true, onlyIfSuccessful: true)
+        archiveArtifacts(artifacts: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo,*.ddeb', fingerprint: true, onlyIfSuccessful: true)
         sh '''export architecture="armhf"
 /usr/bin/build-repo.sh'''
       }
