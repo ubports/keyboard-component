@@ -47,7 +47,7 @@ Item {
     property int prevSwipePositionY
     property int cursorSwipeDuration: 400
     property var timerSwipe: swipeTimer
-    
+
     property variant input_method: maliit_input_method
     property variant event_handler: maliit_event_handler
 
@@ -89,8 +89,6 @@ Item {
         onYChanged: fullScreenItem.reportKeyboardVisibleRect();
         onWidthChanged: fullScreenItem.reportKeyboardVisibleRect();
         onHeightChanged: fullScreenItem.reportKeyboardVisibleRect();
-
-        opacity: maliit_input_method.opacity
 
         MouseArea {
             id: swipeArea
@@ -176,8 +174,9 @@ Item {
                         color: UI.backgroundColor
                     }
                 
-                    Item {
+                    Rectangle {
                         id: borderTop
+                        color: UI.backgroundColor
                         width: parent.width
                         anchors.top: parent.top.bottom
                         height: wordRibbon.visible ? 0 : units.gu(UI.top_margin)
