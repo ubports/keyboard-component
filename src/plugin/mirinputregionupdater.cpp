@@ -71,7 +71,10 @@ void MirInputRegionUpdater::update()
 
     if (!m_surface) {
         QPlatformNativeInterface *platform = QGuiApplication::platformNativeInterface();
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
         m_surface = reinterpret_cast<MirSurface*>(platform->nativeResourceForWindow("MirSurface", m_window));
+#pragma GCC diagnostic pop
     }
 
     if (!m_surface) {
@@ -87,10 +90,13 @@ void MirInputRegionUpdater::update()
         return;
     }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     MirSurfaceSpec* spec = mir_connection_create_spec_for_changes(m_mirConnection);
     mir_surface_spec_set_input_shape(spec, &rect, 1 /* n_rects */);
     mir_surface_apply_spec(m_surface, spec);
     mir_surface_spec_release(spec);
+#pragma GCC diagnostic pop
 
     if (!m_lastRectangle) {
         m_lastRectangle = new MirRectangle;

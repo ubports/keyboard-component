@@ -191,7 +191,10 @@ bool SpellChecker::spell(const QString &word)
         return true;
     }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     return d->hunspell->spell(d->codec->fromUnicode(word).constData());
+#pragma GCC diagnostic pop
 }
 
 
@@ -209,7 +212,10 @@ QStringList SpellChecker::suggest(const QString &word,
     }
 
     char** suggestions = NULL;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     const int suggestions_count = d->hunspell->suggest(&suggestions, d->codec->fromUnicode(word));
+#pragma GCC diagnostic pop
 
     // Less than zero means some error.
     if (suggestions_count < 0) {
@@ -223,7 +229,10 @@ QStringList SpellChecker::suggest(const QString &word,
     for (int index(0); index < final_limit; ++index) {
         result << d->codec->toUnicode(suggestions[index]);
     }
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     d->hunspell->free_list(&suggestions, suggestions_count);
+#pragma GCC diagnostic pop
     return result;
 }
 
