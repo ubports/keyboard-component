@@ -58,7 +58,7 @@ void PinyinAdapter::parse(const QString& string)
     std::cout << std::endl;
 #endif
 
-    pinyin_guess_candidates(m_instance, 0);
+    pinyin_guess_candidates(m_instance, 0, SORT_BY_PHRASE_LENGTH_AND_FREQUENCY);
 
     candidates.clear();
     guint len = 0;
@@ -95,4 +95,3 @@ void PinyinAdapter::reset()
 {
     pinyin_reset(m_instance);
 }
-

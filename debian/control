@@ -13,7 +13,7 @@ Build-Depends: debhelper (>= 9),
                libgsettings-qt-dev,
                libmirclient-dev (>= 0.22.0),
                libhunspell-dev,
-               libpinyin7-dev,
+               libpinyin13-dev,
                libpresage-dev,
                libxml2-utils,
                maliit-framework-dev (>= 0.99.0+git20130615+97e8335-0ubuntu3),
@@ -321,7 +321,7 @@ Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
          myspell-lv,
          ${misc:Depends},
-         ${shlibs:Depends},	 
+         ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Latvian
  Data files for the Ubuntu virtual keyboard - Latvian
 
