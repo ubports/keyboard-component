@@ -86,6 +86,7 @@ MultiPointTouchArea {
                 } else {
                     lastY = point.y;
                 }
+                console.log(point.y)
             }
         }
     ]
