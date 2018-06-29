@@ -177,7 +177,7 @@ Item {
                 anchors.topMargin: units.gu(UI.annotationTopMargin)
                 anchors.rightMargin: units.gu(UI.annotationRightMargin)
                 font.family: UI.annotationFont
-                font.pixelSize: fontSize / 3
+                font.pixelSize: fontSize / 2.5
                 font.weight: Font.Light
                 color: UI.annotationFontColor
                 visible: !panel.hideKeyLabels
