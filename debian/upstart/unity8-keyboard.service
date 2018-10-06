@@ -1,0 +1,11 @@
+[Unit]
+Description=Unity8 OSK Server
+PartOf=graphical-session.target
+After=unity8.service
+Requisite=unity8.service
+
+[Service]
+Environment="QML_BAD_GUI_RENDER_LOOP="
+Environment="PULSE_PROP='media.role=feedbacksound'"
+ExecStart=/usr/bin/maliit-server
+Restart=on-failure
