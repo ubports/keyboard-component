@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Michael Hasselmann <michaelh@openismus.com>
 Build-Depends: debhelper (>= 9),
+               dh-python,
                doxygen,
                libanthy-dev,
                libchewing3-dev,
@@ -92,7 +93,7 @@ Package: ubuntu-keyboard-autopilot
 Architecture: all
 Depends: libautopilot-qt (>= 1.4),
          ${misc:Depends},
-         ${python:Depends},
+         ${python3:Depends},
          python3-evdev,
          ubuntu-keyboard (>= ${source:Version}),
          ubuntu-keyboard-arabic (>= ${source:Version}),
@@ -187,7 +188,7 @@ Description: Ubuntu on-screen keyboard data files - Chinese Pinyin
 Package: ubuntu-keyboard-croatian
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
-	 myspell-hr
+         myspell-hr,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Croatian
@@ -196,7 +197,7 @@ Description: Ubuntu on-screen keyboard data files - Croatian
 Package: ubuntu-keyboard-czech
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
-         myspell-cs
+         myspell-cs,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Czech
@@ -275,7 +276,7 @@ Description: Ubuntu on-screen keyboard data files - Greek
 Package: ubuntu-keyboard-hebrew
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
-         myspell-he
+         myspell-he,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Hebrew
@@ -301,7 +302,7 @@ Description: Ubuntu on-screen keyboard data files - Icelandic
 Package: ubuntu-keyboard-italian
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
-         myspell-it
+         myspell-it,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Italian
@@ -337,7 +338,7 @@ Description: Ubuntu on-screen keyboard data files - Korean
 Package: ubuntu-keyboard-norwegian-bokmal
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
-         myspell-nb
+         myspell-nb,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Norwegian Bokmål
@@ -355,7 +356,7 @@ Description: Ubuntu on-screen keyboard data files - Polish
 Package: ubuntu-keyboard-portuguese
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
-         myspell-pt
+         myspell-pt,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Portuguese
@@ -409,7 +410,7 @@ Description: Ubuntu on-screen keyboard data files - Scottish Gaelic
 Package: ubuntu-keyboard-spanish
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
-         myspell-es
+         myspell-es,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Spanish
