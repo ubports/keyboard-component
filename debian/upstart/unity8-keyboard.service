@@ -5,7 +5,7 @@ After=unity8.service
 Requisite=unity8.service
 
 [Service]
-Environment="QML_BAD_GUI_RENDER_LOOP="
+Environment="QML_BAD_GUI_RENDER_LOOP=1"
 Environment="PULSE_PROP='media.role=feedbacksound'"
 ExecStart=@/usr/bin/maliit-server maliit-server
 Restart=on-failure
