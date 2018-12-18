@@ -30,5 +30,5 @@ Useful Links
 Here are some useful links with regards to the keyboard plugin development.
 
 * [UBports](https://ubports.com/)
-* [building with crossbuilder](http://docs.ubports.com/en/latest/appdev/system-software.html?highlight=crossbuilder#cross-building-with-crossbuilder)
+* [building with crossbuilder](http://docs.ubports.com/en/latest/systemdev/testing-locally.html#cross-building-with-crossbuilder)
 * [crossbuilder on github](https://github.com/ubports/crossbuilder)
