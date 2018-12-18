@@ -408,8 +408,8 @@ void AbstractTextEditor::onKeyReleased(const Key &key)
                 }
                 alreadyAppended = true;
             }
-            else if (d->auto_correct_enabled && (isSeparator || isSymbol)) {
-                if(isSeparator && d->keyboardState == "CHARACTERS" && !email_detected) {
+            else if (isSeparator || isSymbol) {
+                if(d->auto_correct_enabled && isSeparator && d->keyboardState == "CHARACTERS" && !email_detected) {
                     // remove all whitespaces before the separator, then add a whitespace after it
                     removeTrailingWhitespaces();
                 }
@@ -454,9 +454,10 @@ void AbstractTextEditor::onKeyReleased(const Key &key)
 
     case Key::ActionBackspace: {
         if (not d->backspace_sent) {
+            bool uncommittedDelete = d->text->preedit().isEmpty();
             singleBackspace();
             if (!email_detected) {
-                checkPreeditReentry(true);
+                checkPreeditReentry(uncommittedDelete);
             }
         } else if (!email_detected) {
             checkPreeditReentry(false);
