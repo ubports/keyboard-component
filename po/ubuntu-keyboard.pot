@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-keyboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-29 20:51-0600\n"
+"POT-Creation-Date: 2018-12-10 17:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,35 +86,35 @@ msgid "French"
 msgstr ""
 
 #: ../qml/keys/languages.js:35
-msgid "French (Swiss)"
-msgstr ""
-
-#: ../qml/keys/languages.js:36
 msgid "Scottish Gaelic"
 msgstr ""
 
-#: ../qml/keys/languages.js:37
+#: ../qml/keys/languages.js:36
 msgid "Hebrew"
 msgstr ""
 
-#: ../qml/keys/languages.js:38
+#: ../qml/keys/languages.js:37
 msgid "Croatian"
 msgstr ""
 
-#: ../qml/keys/languages.js:39
+#: ../qml/keys/languages.js:38
 msgid "Hungarian"
 msgstr ""
 
-#: ../qml/keys/languages.js:40
+#: ../qml/keys/languages.js:39
 msgid "Icelandic"
 msgstr ""
 
-#: ../qml/keys/languages.js:41
+#: ../qml/keys/languages.js:40
 msgid "Italian"
 msgstr ""
 
-#: ../qml/keys/languages.js:42
+#: ../qml/keys/languages.js:41
 msgid "Japanese"
+msgstr ""
+
+#: ../qml/keys/languages.js:42
+msgid "Lithuanian"
 msgstr ""
 
 #: ../qml/keys/languages.js:43
