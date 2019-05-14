@@ -56,6 +56,9 @@ ActionKey {
         }
 
         onPressed: {
+            if (maliit_input_method.useHapticFeedback) {
+                pressEffect.start();
+            }
             spaceKey.currentlyPressed = true
             fullScreenItem.timerSwipe.stop()
         }
