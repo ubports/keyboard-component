@@ -56,6 +56,9 @@ ActionKey {
         }
 
         onPressed: {
+            if (maliit_input_method.useAudioFeedback) {
+                audioFeedback.play();
+            }
             spaceKey.currentlyPressed = true
             fullScreenItem.timerSwipe.stop()
         }
