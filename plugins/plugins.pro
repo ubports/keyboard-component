@@ -18,7 +18,7 @@ SUBDIRS = \
     fa \
     fi \
     fr \
-    fr_ch \
+    fr-ch \
     gd \
     he \
     hr \
@@ -26,6 +26,7 @@ SUBDIRS = \
     is \
     it \
     ja \
+    lt \
     lv \
     ko \
     nb \
