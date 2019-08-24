@@ -32,7 +32,7 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CharKey { label: "@"; shifted: "@""; extended: ["1"]; extendedShifted: ["1"]; leftSide: true; }
+            CharKey { label: "@"; shifted: "@"; extended: ["1"]; extendedShifted: ["1"]; leftSide: true; }
             CharKey { label: ","; shifted: ","; extended: ["2", "\"", ";", ":", "@", "&", "(", ")"]; extendedShifted: ["2", "\"", ";", ":", "@", "&", "(", ")"]; }
             CharKey { label: "."; shifted: "."; extended: ["3", "?", "-", "_", "!", "+", "%","#","/"];  extendedShifted: ["3", "?", "-", "_", "!", "+", "%","#","/"]; }
             CharKey { label: "p"; shifted: "P"; extended: ["4"]; extendedShifted: ["4"] }
@@ -84,7 +84,8 @@ KeyPad {
             SymbolShiftKey { id: symShiftKey;                            anchors.left: parent.left; height: parent.height; }
             LanguageKey    { id: languageMenuButton;                     anchors.left: symShiftKey.right; height: parent.height; }
             CharKey        { id: qKey; label: "q"; shifted: "Q";         anchors.left: languageMenuButton.right; height: parent.height; }
-            SpaceKey       { id: spaceKey;                               anchors.left: qKey.right; anchors.right: zKey.left; noMagnifier: true; height: parent.height; }
+            SpaceKey       { id: spaceKey;                               anchors.left: qKey.right; anchors.right: urlKey.left; noMagnifier: true; height: parent.height; }
+            UrlKey         { id: urlKey; label: ".com"; extended: [".co.uk", ".net", ".org", ".edu", ".gov", ".ac.uk"]; anchors.right: zKey.left; height: parent.height; }
             CharKey        { id: zKey; label: "z"; shifted: "Z";         anchors.right: enterKey.left; height: parent.height; }
             ReturnKey      { id: enterKey;                               anchors.right: parent.right; height: parent.height; }
         }
