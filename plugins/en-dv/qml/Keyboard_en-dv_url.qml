@@ -32,7 +32,7 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CharKey { label: "/"; shifted: "/""; extended: ["1"]; extendedShifted: ["1"]; leftSide: true; }
+            CharKey { label: "/"; shifted: "/"; extended: ["1"]; extendedShifted: ["1"]; leftSide: true; }
             CharKey { id: commaKey;    label: ","; shifted: ","; extended: ["2", "\"", ";", ":", "@", "&", "(", ")"]; extendedShifted: ["2", "\"", ";", ":", "@", "&", "(", ")"]; anchors.left: languageMenuButton.right; height: parent.height; }
             CharKey { id: dotKey;      label: "."; shifted: "."; extended: ["3", "?", "-", "_", "!", "+", "%","#","/"];  extendedShifted: ["3", "?", "-", "_", "!", "+", "%","#","/"]; anchors.right: enterKey.left; height: parent.height; }
             CharKey { label: "p"; shifted: "P"; extended: ["4"]; extendedShifted: ["4"] }
