@@ -117,6 +117,7 @@ InputMethod::InputMethod(MAbstractInputMethodHost *host)
     d->registerAudioFeedbackSoundSetting();
     d->registerAudioFeedbackSetting();
     d->registerHapticFeedbackSetting();
+    d->registerEnableMagnifier();
     d->registerAutoCorrectSetting();
     d->registerAutoCapsSetting();
     d->registerWordEngineSetting();
@@ -127,6 +128,7 @@ InputMethod::InputMethod(MAbstractInputMethodHost *host)
     d->registerStayHidden();
     d->registerPluginPaths();
     d->registerOpacity();
+    d->registerTheme();
 
     //fire signal so all listeners know what active language is
     Q_EMIT activeLanguageChanged(d->activeLanguage);
@@ -526,6 +528,15 @@ bool InputMethod::useHapticFeedback() const
     return d->m_settings.keyPressHapticFeedback();
 }
 
+//! \brief InputMethod::enableMagnifier is true, when keys should display magnifier
+//!  when pressed
+//! \return
+bool InputMethod::enableMagnifier() const
+{
+    Q_D(const InputMethod);
+    return d->m_settings.enableMagnifier();
+}
+
 //! \brief InputMethod::actionKeyOverride returns any override information about
 //! the action key
 //! \return
@@ -663,6 +674,12 @@ double InputMethod::opacity() const
 {
     Q_D(const InputMethod);
     return d->m_settings.opacity();
+}
+
+const QString InputMethod::theme() const
+{
+    Q_D(const InputMethod);
+    return d->m_settings.theme();
 }
 
 void InputMethod::replacePreedit(const QString &preedit)

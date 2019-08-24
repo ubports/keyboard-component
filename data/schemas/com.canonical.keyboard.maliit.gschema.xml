@@ -82,5 +82,15 @@
       <range min="0.5" max="1.0"/>
       <default>1.0</default>
     </key>
+    <key name="theme" type="s">
+      <summary>OSK Theme</summary>
+      <description>Specifies the theme of the on-screen keyboard</description>
+      <default>'Ambiance'</default>
+    </key>
+    <key name="enable-magnifier" type="b">
+      <summary>Enable key magnifier</summary>
+      <description>Shows the magnifier when a key is pressed.</description>
+      <default>true</default>
+    </key>
   </schema>
 </schemalist>
