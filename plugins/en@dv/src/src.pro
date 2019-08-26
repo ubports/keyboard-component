@@ -20,25 +20,25 @@ TARGET          = $$qtLibraryTarget(enplugin)
 EXAMPLE_FILES = englishdvorakplugin.json
 
 # generate database for presage:
-PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/en-dv/
+PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/en@dv/
 
-lang_db_en-dv.commands += \
+lang_db_en@dv.commands += \
   rm -f $$PWD/database_en.db && \
   text2ngram -n 1 -l -f sqlite -o $$PWD/database_en.db $$PWD/the_picture_of_dorian_gray.txt && \
   text2ngram -n 2 -l -f sqlite -o $$PWD/database_en.db $$PWD/the_picture_of_dorian_gray.txt && \
   text2ngram -n 3 -l -f sqlite -o $$PWD/database_en.db $$PWD/the_picture_of_dorian_gray.txt
-lang_db_en-dv.files += $$PWD/database_en.db
+lang_db_en@dv.files += $$PWD/database_en.db
 
-lang_db_en-dv_install.files += $$PWD/database_en.db
-lang_db_en-dv_install.path = $$PLUGIN_INSTALL_PATH
+lang_db_en@dv_install.files += $$PWD/database_en.db
+lang_db_en@dv_install.path = $$PLUGIN_INSTALL_PATH
 
-QMAKE_EXTRA_TARGETS += lang_db_en-dv lang_db_en-dv_install
+QMAKE_EXTRA_TARGETS += lang_db_en@dv lang_db_en@dv_install
 
 overrides.files += $$PWD/overrides.csv
 overrides.path += $$PLUGIN_INSTALL_PATH
 
 target.path = $$PLUGIN_INSTALL_PATH
-INSTALLS += target lang_db_en-dv_install overrides
+INSTALLS += target lang_db_en@dv_install overrides
 
 OTHER_FILES += \
     englishdvorakplugin.json \
