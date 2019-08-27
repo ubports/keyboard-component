@@ -15,7 +15,7 @@ INCLUDEPATH    += \
 HEADERS         = \
     englishdvorakplugin.h
 
-TARGET          = $$qtLibraryTarget(enplugin)
+TARGET          = $$qtLibraryTarget(en@dvplugin)
 
 EXAMPLE_FILES = englishdvorakplugin.json
 
