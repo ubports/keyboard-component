@@ -22,3 +22,13 @@ To test a pull request on your device, type
 
 where `X` is the code of the request.
 
+Options
+=======
+
+To list available options (in UBports), type
+
+    dconf dump /com/canonical/keyboard/maliit/
+
+and to set them
+
+    gsettings set com.canonical.keyboard.maliit option value 
