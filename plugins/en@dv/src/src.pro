@@ -23,13 +23,13 @@ EXAMPLE_FILES = englishdvorakplugin.json
 PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/en@dv/
 
 lang_db_en@dv.commands += \
-  rm -f $$PWD/database_en.db && \
-  text2ngram -n 1 -l -f sqlite -o $$PWD/database_en.db $$PWD/the_picture_of_dorian_gray.txt && \
-  text2ngram -n 2 -l -f sqlite -o $$PWD/database_en.db $$PWD/the_picture_of_dorian_gray.txt && \
-  text2ngram -n 3 -l -f sqlite -o $$PWD/database_en.db $$PWD/the_picture_of_dorian_gray.txt
-lang_db_en@dv.files += $$PWD/database_en.db
+  rm -f $$PWD/database_en@dv.db && \
+  text2ngram -n 1 -l -f sqlite -o $$PWD/database_en@dv.db $$PWD/the_picture_of_dorian_gray.txt && \
+  text2ngram -n 2 -l -f sqlite -o $$PWD/database_en@dv.db $$PWD/the_picture_of_dorian_gray.txt && \
+  text2ngram -n 3 -l -f sqlite -o $$PWD/database_en@dv.db $$PWD/the_picture_of_dorian_gray.txt
+lang_db_en@dv.files += $$PWD/database_en@dv.db
 
-lang_db_en@dv_install.files += $$PWD/database_en.db
+lang_db_en@dv_install.files += $$PWD/database_en@dv.db
 lang_db_en@dv_install.path = $$PLUGIN_INSTALL_PATH
 
 QMAKE_EXTRA_TARGETS += lang_db_en@dv lang_db_en@dv_install
