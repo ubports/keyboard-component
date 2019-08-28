@@ -22,6 +22,8 @@ To test a pull request on your device, type
 
 where `X` is the code of the request.
 
+Logs are saved in `~/.cache/upstart/maalit-server.log`.
+
 Options
 =======
 
