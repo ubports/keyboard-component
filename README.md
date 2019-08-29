@@ -14,9 +14,9 @@ After building the keyboard (such as with `dpkg-buildpackage -us -uc`), run `mak
 
 To test a pull request on your device, type
 
-    sudo ubports-qa install PR-X
+    sudo ubports-qa install keyboard-component X
 
-where `X` is the code of the request.
+where `X` is the code of a merge request to this repository.
 
 Logs are saved in `~/.cache/upstart/maalit-server.log`. They can be viewed directly on-device with a [log viewer](https://open-store.io/app/logviewer.neothethird).
 
