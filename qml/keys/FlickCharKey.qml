@@ -25,10 +25,10 @@ Item {
     id: key
 
     property int padding: 0
-
+ 
     width: leftSide || rightSide ? panel.keyWidth * 2 : panel.keyWidth
-    height: panel.keyHeight
-
+    height: c1.keyHeight
+    
     /* to be set in keyboard layouts */
     property string label: "";
     property var leaves: ["", "", "", "", ""];
@@ -36,7 +36,7 @@ Item {
     property bool highlight: false;
 
     property string action
-    property bool noMagnifier: !maliit_input_method.enableMagnifier
+    property bool noMagnifier: true
     property bool skipAutoCaps: false
     property bool switchBackFromSymbols: false
 
@@ -83,7 +83,7 @@ Item {
     // maintaining the same visual appearance.
     Item {
         anchors.top: parent.top
-        height: panel.keyHeight
+        height: parent.height
         width: parent.width
 
         Rectangle {
@@ -141,7 +141,7 @@ Item {
             height: units.gu((UI.fontSize + UI.flickMargin) * 3)
             chars: leaves
             index: keyFlickArea.index
-            visible: key.currentlyPressed && chars.length > 1 && !noMagnifier
+            visible:(maliit_input_method.enableMagnifier)? key.currentlyPressed && chars.length > 1:false
         }
     }
 
@@ -154,9 +154,12 @@ Item {
                 key.released();
                 return;
             }
-
-            event_handler.onKeyReleased(leaves[index], action);
-        }
+	   event_handler.onKeyReleased(leaves[index], action);
+       if(panel.autoCapsTriggered){
+	    		panel.autoCapsTriggered=false;
+		}
+ 
+ }
 
         onPressed: {
             if (overridePressArea) {

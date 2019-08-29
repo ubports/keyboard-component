@@ -19,10 +19,10 @@ import "key_constants.js" as UI
 import keys 1.0
 
 ActionKey {
-    label: action == "left" ? "⬅" : "➡";
-    leftSide: action == "left";
-    rightSide: action == "right";
-
+    label: leftSide ? "⬅" : "➡";
+    shifted:label;
+    action: leftSide ? "left" : "right";  
+    height:layout.height;
     property string preedit: maliit_input_method.preedit
     property int cursorPosition: maliit_input_method.cursorPosition
     property bool isPreedit: preedit != ""
@@ -53,6 +53,6 @@ ActionKey {
     }
 
     onPressAndHold: {
-        return;
+        fullScreenItem.cursorSwipe=true
     }
 }

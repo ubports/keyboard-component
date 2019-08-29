@@ -18,10 +18,8 @@ import QtQuick 2.4
 import QtMultimedia 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
-
 import "modifier.js" as Modifier
-import "key_constants.js" as UI
-
+import keys 1.0
 FlickCharKey {
     label: (isPreedit && layoutState == "kana") ? " ゛ ゜" : "␣"
     leaves: isPreedit ? preeditLeaves : ["␣", "□"]

@@ -134,7 +134,7 @@ Item {
     // maintaining the same visual appearance.
     Item {
         anchors.top: parent.top
-        height: panel.keyHeight
+        height: parent.height
         width: parent.width
 
         Rectangle {

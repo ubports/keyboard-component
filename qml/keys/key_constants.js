@@ -87,3 +87,15 @@ var tabletKeyboardHeightLandscape = 0.34; // percent of screen
 
 /* for UITK Components */
 var toolkitTheme = "Ubuntu.Components.Themes.Ambiance" 
+
+/* ActionKey layout */
+var undoFontSize = 2;
+
+/* FlickCharKey layout */
+var annotationFontSize = 1.5; // gu
+var annotationMargins = 0.3; // gu
+
+/* FlickPop layout */
+var flickMargin = 1.5 // gu
+var flickBorderWidth = 0.1 // gu
+var flickBorderColor = "#999999"
