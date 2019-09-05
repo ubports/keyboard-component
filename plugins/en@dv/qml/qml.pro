@@ -9,7 +9,7 @@ TEMPLATE = lib
 lang_en@dv.path = "$$UBUNTU_KEYBOARD_LIB_DIR/en@dv/"
 lang_en@dv.files = *.qml *.js
 
-INSTALLS += lang_en-dv
+INSTALLS += lang_en@dv
 
 # for QtCreator
 OTHER_FILES += \

@@ -255,6 +255,7 @@ Description: Ubuntu on-screen keyboard data files - English
 Package: ubuntu-keyboard-english-dvorak
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
+         ubuntu-keyboard-english,
          hunspell-en-us,
          ${misc:Depends},
          ${shlibs:Depends},
