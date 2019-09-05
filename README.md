@@ -24,7 +24,7 @@ Logs are saved in `~/.cache/upstart/maalit-server.log`. They can be viewed direc
 
 To list available options (in UBports), type
 
-    dconf dump /com/canonical/keyboard/maliit/
+    gsettigs list-recursively com.canonical.keyboard.maliit
 
 and to set them
 
