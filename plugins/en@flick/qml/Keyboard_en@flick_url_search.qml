@@ -19,58 +19,58 @@ import "keys/"
 import keys 1.0
 
 KeyPad {
-    anchors.fill: parent
-
+ 
+    anchors.fill:parent;
     content: c1
 
     Column {
         id: c1
-        anchors.fill: parent
-        spacing: 0
+	anchors.fill:parent;
+	spacing: 0
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-	    CaseSwitchKey { id: layout; default_state: "qertyu" } 
+	    CaseSwitchKey { id: layout; } 
             FlickCharKey {
-                label: layout.state == "kana" ? "QER" : "qer";
-                leaves: layout.state == "kana" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
-                annotation: layout.state == "kana" ? "1:" : "1:";
+                label: layout.state == "caps" ? "QER" : "qer";
+                leaves: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
+                annotation: layout.state == "caps" ? "1:" : "1:";
             }
             FlickCharKey {
-                label: layout.state == "kana" ? "TYU" : "tyu";
-                leaves: layout.state == "kana" ? ["2", "T", "Y", "U", "$"] : ["2", "t", "y", "u", "$"];
-                annotation: layout.state == "kana" ? "2$" : "2$";
+                label: layout.state == "caps" ? "TYU" : "tyu";
+                leaves: layout.state == "caps" ? ["2", "T", "Y", "U", "$"] : ["2", "t", "y", "u", "$"];
+                annotation: layout.state == "caps" ? "2$" : "2$";
             }
             FlickCharKey {
-                label: layout.state == "kana" ? "IOP" : "iop";
-                leaves: layout.state == "kana" ? ["3", "I", "O", "P", "#"] : ["3", "i", "o", "p", "#"];
-                annotation: layout.state == "kana" ? "3#" : "3#";
+                label: layout.state == "caps" ? "IOP" : "iop";
+                leaves: layout.state == "caps" ? ["3", "I", "O", "P", "#"] : ["3", "i", "o", "p", "#"];
+                annotation: layout.state == "caps" ? "3#" : "3#";
             }
-            BackspaceKey { rightSide: true; width: panel.keyWidth; }
+            BackspaceKey { rightSide: true; width: panel.keyWidth; height:layout.height;}
         }
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CursorKey { action: "left"; }
+            CursorKey { leftSide:true; }
             FlickCharKey {
-                label: layout.state == "kana" ? "AWD" : "awd";
-                leaves: layout.state == "kana" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
-                annotation: layout.state == "kana" ? "4S" : "4s";
+                label: layout.state == "caps" ? "AWD" : "awd";
+                leaves: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
+                annotation: layout.state == "caps" ? "4S" : "4s";
             }
             FlickCharKey {
-                label: layout.state == "kana" ? "(F)" : "(f)";
-                leaves: layout.state == "kana" ? ["5", "(", "F", ")", "G"] : ["5", "(", "f", ")", "g"];
-                annotation: layout.state == "kana" ? "5G" : "5g";
+                label: layout.state == "caps" ? "(F)" : "(f)";
+                leaves: layout.state == "caps" ? ["5", "(", "F", ")", "G"] : ["5", "(", "f", ")", "g"];
+                annotation: layout.state == "caps" ? "5G" : "5g";
             }
             FlickCharKey {
-                label: layout.state == "kana" ? "HKL" : "hkl";
-                leaves: layout.state == "kana" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
-                annotation: layout.state == "kana" ? "6J" : "6j";
+                label: layout.state == "caps" ? "HKL" : "hkl";
+                leaves: layout.state == "caps" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
+                annotation: layout.state == "caps" ? "6J" : "6j";
             }
-            CursorKey { action: "right"; }
+            CursorKey { rightSide:true; }
         }
 
         Row {
@@ -78,29 +78,29 @@ KeyPad {
             spacing: 0
            
             FlickCharKey {
-                label: layout.state == "kana" ? "`_" : "`_"
-                leaves: layout.state == "kana" ? [";", "", "`", "_", "|"] : [";", "", "`", "_", "|"]
-                annotation: layout.state == "kana" ? ";|" : ";|"
+                label: layout.state == "caps" ? "`_" : "`_"
+                leaves: layout.state == "caps" ? ["=", "", "`", "_", "|"] : ["=", "", "`", "_", "|"]
+                annotation: layout.state == "caps" ? "=|" : "=|"
             }
 	     FlickCharKey {
-                label: layout.state == "kana" ? "ZXC" : "zxc"
-                leaves: layout.state == "kana" ? ["7", "Z", "X", "C", "\\"] : ["7", "z", "x", "c", "\\"]
-                annotation: layout.state == "kana" ? "7\\" : "7\\"
+                label: layout.state == "caps" ? "ZXC" : "zxc"
+                leaves: layout.state == "caps" ? ["7", "Z", "X", "C", "\\"] : ["7", "z", "x", "c", "\\"]
+                annotation: layout.state == "caps" ? "7\\" : "7\\"
             }
             FlickCharKey {
-                label: layout.state == "kana" ? "- % +" : "[*]"
-                leaves: layout.state == "kana" ? ["8", "-", "%", "+", "V"] : ["8", "[", "*", "]", "v"]
-                annotation: layout.state == "kana" ? "8V" : "8v"
+                label: layout.state == "caps" ? "[*]" : "[*]"
+                leaves: layout.state == "caps" ? ["8", "[", "*", "]", "V"] : ["8", "[", "*", "]", "v"]
+                annotation: layout.state == "caps" ? "8V" : "8v"
             }
             FlickCharKey {
-                label: layout.state == "kana" ? "BNM" : "bnm"
-                leaves: layout.state == "kana" ? ["9", "B", "N", "M", "/"] : ["9", "b", "n", "m", "/"]
-                annotation: layout.state == "kana" ? "9/" : "9/"
+                label: layout.state == "caps" ? "BNM" : "bnm"
+                leaves: layout.state == "caps" ? ["9", "B", "N", "M", "/"] : ["9", "b", "n", "m", "/"]
+                annotation: layout.state == "caps" ? "9/" : "9/"
             }
            FlickCharKey {
-                label: layout.state == "kana" ? "&amp;~" : "&amp;~"
-                leaves: layout.state == "kana" ? ["@", "&", "~", "", "="] : ["@", "&", "~", "", "="]
-                annotation: layout.state == "kana" ? "@=" : "@="
+                label: layout.state == "caps" ? "&amp;!" : "&amp;!"
+                leaves: layout.state == "caps" ? ["@", "&", "!", "", "~"] : ["@", "&", "!", "", "~"]
+                annotation: layout.state == "caps" ? "@~" : "@~"
             }
 	 }
 
@@ -108,16 +108,20 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            LanguageKey    { id: languageMenuButton; height: panel.keyHeight; }
-            ModifierKey { layoutState: layout.state; }
+            LanguageKey    { id: languageMenuButton; height:layout.height;}
+            FlickCharKey {
+   		 label: layout.state == "caps" ? "&lt; - >" : "&lt; - >"
+   		 leaves: layout.state == "caps" ?  [",", "<", "-", ">", "+"]: [",", "<", "-", ">", "+"];
+		 annotation: layout.state == "caps" ?  ",+" : ",+"
+	    }
 	    FlickCharKey {
-                label: layout.state == "kana" ? "' ^ \"" : "' ^ \""
-                leaves: layout.state == "kana" ? ["0", "'", "^", "\""] : ["0", "'", "^", "\""];
-                annotation: layout.state == "kana" ? "0" : "0";
+                label: layout.state == "caps" ? "' ^ \"" : "' ^ \""
+                leaves: layout.state == "caps" ? ["0", "'", "^", "\"", "%"] : ["0", "'", "^", "\"", "%"];
+                annotation: layout.state == "caps" ? "0%" : "0%";
             }
-            TLDKey { rightSide: true; width: panel.keyWidth; }
-            CommitKey    { id: enterKey; width: panel.keyWidth; }
+            DomainKey { rightSide: true; width: panel.keyWidth; }
+            CommitKey    { id: enterKey; width: panel.keyWidth; height:layout.height;}
         }
-	KeyGap {  width: panel.keyWidth; }
+	
     } // column
 }
