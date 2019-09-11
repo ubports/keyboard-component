@@ -55,7 +55,7 @@ KeyPad {
             CharKey { label: "i"; shifted: "I"; extended: ["î","ï","ì","í"]; extendedShifted: ["Î","Ï","Ì","Í"] }
             CharKey { label: "d"; shifted: "D"; extended: ["ð"]; extendedShifted: ["Ð"] }
             CharKey { label: "h"; shifted: "H"; }
-            CharKey { label: "t"; shifted: "T"; }
+            CharKey { label: "t"; shifted: "T"; extended: ["þ"]; extendedShifted: ["Þ"] }
             CharKey { label: "n"; shifted: "N"; extended: ["ñ"]; extendedShifted: ["Ñ"] }
             CharKey { label: "s"; shifted: "S"; extended: ["ß","$"]; extendedShifted: ["$"]; rightSide: true; }
         }
