@@ -15,7 +15,6 @@
  */
 
 import QtQuick 2.4
-import "keys/"
 import keys 1.0
 
 KeyPad {
@@ -25,6 +24,7 @@ KeyPad {
     Column {
         id: c1 
     	anchors.fill:parent;
+	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1;
 	spacing: 0
     Row {
             anchors.horizontalCenter: parent.horizontalCenter;
@@ -117,7 +117,13 @@ KeyPad {
                 leaves: layout.state == "caps" ? ["0", "'", "^", "\"","%"] : ["0", "'", "^", "\"","%"];
                 annotation: layout.state == "caps" ? "0%" : "0%";
             }
-	     DomainKey { rightSide: true; width: panel.keyWidth; }
+	     StringKey {
+                label: layout.state == "caps" ? "{ ? }" : "<font size=\"5\">.io .com .org</font>";
+                leaves: layout.state == "caps" ? [".", "{", "?", "}", ";"] :
+                    [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
+                unstyledLeaves: layout.state == "caps" ? [".", "{", "?", "}",";"] : [".", ".io", ".com", ".org",".net"];
+                annotation: layout.state == "caps" ? "." : ".net"
+        }
                          CommitKey    { id: enterKey; width: panel.keyWidth; height:layout.height;}
         }
 

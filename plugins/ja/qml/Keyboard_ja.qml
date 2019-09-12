@@ -25,6 +25,7 @@ KeyPad {
 
     Column {
         id: c1
+	property int keyHeight: panel.keyHeight;
         anchors.fill: parent
         spacing: 0
 
@@ -55,7 +56,7 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CursorKey { action: "left"; }
+            CursorKey { leftSide:true; }
             FlickCharKey {
                 label: layout.state == "kana" ? "た" : "GHI";
                 leaves: layout.state == "kana" ? ["た", "ち", "つ", "て", "と"] : ["g", "h", "i", "(", "4"];
@@ -71,7 +72,7 @@ KeyPad {
                 leaves: layout.state == "kana" ? ["は", "ひ", "ふ", "へ", "ほ"] : ["m", "n", "o", ")", "6"];
                 annotation: layout.state == "kana" ? "" : "6)";
             }
-            CursorKey { action: "right"; }
+            CursorKey { rightSide:true; }
         }
 
         Row {

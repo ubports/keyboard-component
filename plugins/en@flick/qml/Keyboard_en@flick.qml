@@ -15,16 +15,15 @@
  */
 
 import QtQuick 2.4
-import "keys/"
 import keys 1.0
 
 KeyPad {
 
     anchors.fill: parent;
     content: c1 
-
     Column {
         id: c1
+	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1;
         anchors.fill: parent;
 	spacing: 0
 

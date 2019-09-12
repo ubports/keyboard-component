@@ -26,6 +26,7 @@ KeyPad {
     Column {
         id: c1
         anchors.fill: parent
+	property int keyHeight: panel.keyHeight;
         spacing: 0
 
         Row {
@@ -55,7 +56,7 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CursorKey { action: "left"; }
+            CursorKey { leftSide:true; }
             FlickCharKey {
                 label: layout.state == "kana" ? "た" : "GHI";
                 leaves: layout.state == "kana" ? ["た", "ち", "つ", "て", "と"] : ["g", "h", "i", "(", "4"];
@@ -71,7 +72,7 @@ KeyPad {
                 leaves: layout.state == "kana" ? ["は", "ひ", "ふ", "へ", "ほ"] : ["m", "n", "o", ")", "6"];
                 annotation: layout.state == "kana" ? "" : "6)";
             }
-            CursorKey { action: "right"; }
+            CursorKey { rightSide:true; }
         }
 
         Row {
@@ -108,7 +109,7 @@ KeyPad {
                 leaves: layout.state == "kana" ? ["わ", "を", "ん", "ー"] : ["-", "+", "0", "*"];
                 annotation: layout.state == "kana" ? "" : "0";
             }
-            DomainKey {
+            StringKey {
                 label: layout.state == "kana" ? "、。" : ". ,";
                 leaves: layout.state == "kana" ? ["、", "。", "！", "？"] :
                     [".", ",", "<font size=\"1\">.com</font>", "<font size=\"1\">.jp</font>"];
