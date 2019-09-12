@@ -18,3 +18,11 @@ PressArea 1.0 PressArea.qml
 SpaceKey 1.0 SpaceKey.qml
 UrlKey 1.0 UrlKey.qml
 UI 1.0 key_constants.js
+CommitKey 1.0 CommitKey.qml
+CaseSwitchKey 1.0 CaseSwitchKey.qml
+FlickCharKey 1.0 FlickCharKey.qml
+FlickArea 1.0 FlickArea.qml
+FlickPop 1.0 FlickPop.qml
+FlickPopKey 1.0 FlickPopKey.qml
+CursorKey 1.0 CursorKey.qml
+StringKey 1.0 StringKey.qml
