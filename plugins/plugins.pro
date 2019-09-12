@@ -14,6 +14,7 @@ SUBDIRS = \
     el \
     en \
     en@flick \
+    en@dv \
     eo \
     es \
     fa \
