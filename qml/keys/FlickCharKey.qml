@@ -108,7 +108,7 @@ Item {
 
                 Text {
                     id: keyLabel
-                    text: label
+                    text:(panel.hideKeyLabels)?"":label
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.family: UI.fontFamily
                     font.pixelSize: fontSize
@@ -119,7 +119,7 @@ Item {
 
                 Text {
                     id: annotationLabel
-                    text: annotation
+                    text: (panel.hideKeyLabels)?"":annotation
 
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottomMargin: units.gu( UI.annotationMargins )
