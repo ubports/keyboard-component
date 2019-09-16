@@ -19,7 +19,7 @@ import "key_constants.js" as UI
 import keys 1.0
 
 ActionKey {
-    label: leftSide ? "⬅" : "➡";
+    label: leftSide ? "←" : "→";
     shifted:label;
     action: leftSide ? "left" : "right";  
     height:layout.height;
