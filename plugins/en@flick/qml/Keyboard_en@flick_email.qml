@@ -52,7 +52,11 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CursorKey { leftSide:true; }
+            FlickCharKey {
+                label: layout.state == "caps" ? "!_" : "!_"
+                leaves: layout.state == "caps" ? ["=", "", "!", "_", "|"] : ["=", "", "!", "_", "|"]
+                annotation: layout.state == "caps" ? "=|" : "=|"
+            }
             FlickCharKey {
                 label: layout.state == "caps" ? "AWD" : "awd";
                 leaves: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
@@ -68,18 +72,18 @@ KeyPad {
                 leaves: layout.state == "caps" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
                 annotation: layout.state == "caps" ? "6J" : "6j";
             }
-            CursorKey { rightSide:true; }
+            FlickCharKey {
+                label: layout.state == "caps" ? "&amp;`" : "&amp;`"
+                leaves: layout.state == "caps" ? ["@", "&", "`", "", "~"] : ["@", "&", "`", "", "~"]
+                annotation: layout.state == "caps" ? "@~" : "@~"
+            }
         }
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
            
-            FlickCharKey {
-                label: layout.state == "caps" ? "`_" : "`_"
-                leaves: layout.state == "caps" ? ["=", "", "`", "_", "|"] : ["=", "", "`", "_", "|"]
-                annotation: layout.state == "caps" ? "=|" : "=|"
-            }
+            CursorKey { leftSide:true; }
 	     FlickCharKey {
                 label: layout.state == "caps" ? "ZXC" : "zxc"
                 leaves: layout.state == "caps" ? ["7", "Z", "X", "C", "\\"] : ["7", "z", "x", "c", "\\"]
@@ -95,11 +99,7 @@ KeyPad {
                 leaves: layout.state == "caps" ? ["9", "B", "N", "M", "/"] : ["9", "b", "n", "m", "/"]
                 annotation: layout.state == "caps" ? "9/" : "9/"
             }
-           FlickCharKey {
-                label: layout.state == "caps" ? "&amp;!" : "&amp;!"
-                leaves: layout.state == "caps" ? ["@", "&", "!", "", "~"] : ["@", "&", "!", "", "~"]
-                annotation: layout.state == "caps" ? "@~" : "@~"
-            }
+           CursorKey { rightSide:true; }
 	 }
 
         Row {
