@@ -22,19 +22,17 @@ import Ubuntu.Components.Popups 1.3
 import "key_constants.js" as UI
 
 FlickCharKey {
-    padding: UI.actionKeyPadding
-    label: isPreedit ? "A⇔a" : kana.label
-    leaves: isPreedit ? ["<font size=\"7\">A⇔a</font>", "", "🖱", "␣","↵"]:["↻", "", "A", "␣", "a"]
-    annotation: "␣"
-    normalColor: fullScreenItem.theme.actionKeyColor
-    pressedColor: fullScreenItem.theme.actionKeyPressedColor
     borderColor: fullScreenItem.theme.actionKeyBorderColor
+    padding: UI.actionKeyPadding
+    label: isPreedit ? "<font color=\"" + fullScreenItem.theme.selectionColor + "\">Aa</font>" : kana.label
+    leaves: ["A/a", "", "A", "␣", "a"]
+    annotation: "␣"
 
     overridePressArea: true
 
     property string preedit: maliit_input_method.preedit
     property bool isPreedit: maliit_input_method.preedit.length > 0
-    property string default_state: "qertyu"
+    property string default_state:"qertyu"
     property int cursorPosition: maliit_input_method.cursorPosition 
     property string lastChar: ""
     property var preeditLeaves: [lastChar]
@@ -42,9 +40,9 @@ FlickCharKey {
  
     Item {
         id: kana
-        property string label: "A/a"
 
         state: parent.default_state;
+	property string label: "C"
    	states: [
             State {
                 name: "caps"
@@ -58,7 +56,7 @@ FlickCharKey {
                 name: "qertyu"
                 PropertyChanges {
                     target: kana;
-                    label: "a/A";
+                    label: (panel.autoCapsTriggered)?"A/a": "a/A";
                     state: "qertyu";
                 }
             }
@@ -67,29 +65,28 @@ FlickCharKey {
 
     onReleased: {
         if (isPreedit) {
-            if (index != 0) {
-	           if (index == 2) fullScreenItem.cursorSwipe=true	
+            if (index != 2&& index !=4) {
                    if (index == 3) event_handler.onKeyReleased("", "space");
-		   if (index == 4) event_handler.onKeyReleased("", "return"); 
                 } else {
                     var pos = cursorPosition
-                    var newChar = lastChar.charCodeAt(0) < 91 ? lastChar.toLowerCase() : lastChar.toUpperCase()
-                    maliit_input_method.preedit = preedit.substr(0, cursorPosition-1) + newChar + preedit.substr(cursorPosition)
-                    maliit_input_method.cursorPosition = pos
-                }
-        }else{
+		    var newChar = (lastChar.charCodeAt(0) >= 91 && index == 2) ? lastChar.toUpperCase() : lastChar
+		    newChar = (lastChar.charCodeAt(0) < 91 && index == 4) ? lastChar.toLowerCase() : newChar
+		    maliit_input_method.preedit = preedit.substr(0, cursorPosition-1) + newChar + preedit.substr(cursorPosition)
+		    maliit_input_method.cursorPosition = pos
+		}
+	}else{
 	    if (index == 0) {
-        	    kana.state = kana.state == "caps" ? "qertyu" : "caps"
-    	    } else if (index == 2) {
-        	    kana.state = "caps"
-    	    } else if (index == 3) {
-        	    event_handler.onKeyReleased("", "space");
+		    //kana.state = kana.state == "caps" ? "qertyu" : "caps"
+	    } else if (index == 2) {
+		    kana.state = "caps"
+	    } else if (index == 3) {
+			    event_handler.onKeyReleased("", "space");
   	      }
 	 	  else if (index == 4) {
 	            kana.state = "qertyu"
         	}
 	}
-	if(panel.autoCapsTriggered){
+	if(panel.autoCapsTriggered && index != 0){
 	    		panel.autoCapsTriggered=false;
 			kana.state = "qertyu"
 	}
