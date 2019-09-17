@@ -24,8 +24,8 @@ import "key_constants.js" as UI
 FlickCharKey {
     borderColor: fullScreenItem.theme.actionKeyBorderColor
     padding: UI.actionKeyPadding
-    label: isPreedit ? "<font color=\"" + fullScreenItem.theme.selectionColor + "\">Aa</font>" : kana.label
-    leaves: ["A/a", "", "A", "␣", "a"]
+    label: isPreedit ? "<font color=\"" + fullScreenItem.theme.selectionColor + "\">"+kana.label+"</font>" : kana.label
+    leaves: ["⎄", "", "A", "␣", "a"]
     annotation: "␣"
 
     overridePressArea: true
