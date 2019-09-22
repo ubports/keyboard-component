@@ -314,7 +314,7 @@ Item {
             objectName: "floatingActions"
             
             z: 1
-            visible: fullScreenItem.cursorSwipe && !cursorSwipeArea.pressed
+            visible: fullScreenItem.cursorSwipe && !cursorSwipeArea.pressed && !bottomSwipe.pressed
         }
 
         MouseArea {
@@ -337,7 +337,7 @@ Item {
                 color: cursorSwipeArea.selectionMode ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.charKeyPressedColor
                 
                 Label {
-                    visible: !cursorSwipeArea.pressed
+                    visible: !cursorSwipeArea.pressed && !bottomSwipe.pressed
                     horizontalAlignment: Text.AlignHCenter
                     color: cursorSwipeArea.selectionMode ? UbuntuColors.porcelain : fullScreenItem.theme.fontColor
                     wrapMode: Text.WordWrap
@@ -412,6 +412,54 @@ Item {
                 }
                 
                 firstPress = Qt.point(0,0)
+            }
+        }
+        
+        SwipeArea{
+            id: bottomSwipe
+            
+            property bool draggingCustom: distance >= units.gu(4)
+
+            height: units.gu(1.5)
+            anchors{
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
+            }
+            direction: SwipeArea.Upwards
+            immediateRecognition: true
+
+            onDraggingCustomChanged:{
+                if (dragging) {
+                    fullScreenItem.prevSwipePositionX = touchPosition.x
+                    fullScreenItem.prevSwipePositionY = 0
+                    fullScreenItem.cursorSwipe = true
+                }
+            }
+
+            onTouchPositionChanged: {
+                if (fullScreenItem.cursorSwipe) {
+                    fullScreenItem.processSwipe(touchPosition.x, 0)
+                }
+            }
+
+            onPressedChanged: {
+                if (!pressed) {
+                    fullScreenItem.timerSwipe.restart()
+                }else{
+                    fullScreenItem.timerSwipe.stop()
+                }
+            }
+        }
+
+        Icon {
+            id: bottomHint
+            name: "toolkit_bottom-edge-hint"
+            visible: !fullScreenItem.cursorSwipe
+            width: units.gu(3)
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                bottom: parent.bottom
             }
         }
 
