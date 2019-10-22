@@ -19,6 +19,7 @@ SUBDIRS = \
     fa \
     fi \
     fr \
+    fr@bep \
     fr-ch \
     gd \
     he \
