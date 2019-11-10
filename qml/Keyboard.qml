@@ -419,6 +419,7 @@ Item {
             id: bottomSwipe
             
             property bool draggingCustom: distance >= units.gu(4)
+            property bool readyToSwipe: false
 
             height: units.gu(1.5)
             anchors{
@@ -430,16 +431,16 @@ Item {
             immediateRecognition: true
 
             onDraggingCustomChanged:{
-                if (dragging) {
-                    fullScreenItem.prevSwipePositionX = touchPosition.x
-                    fullScreenItem.prevSwipePositionY = 0
+                if (dragging && !fullScreenItem.cursorSwipe) {
+                    readyToSwipe = false
+                    swipeDelay.restart()
                     fullScreenItem.cursorSwipe = true
                 }
             }
 
             onTouchPositionChanged: {
-                if (fullScreenItem.cursorSwipe) {
-                    fullScreenItem.processSwipe(touchPosition.x, 0)
+                if (fullScreenItem.cursorSwipe && readyToSwipe) {
+                    fullScreenItem.processSwipe(touchPosition.x, touchPosition.y)
                 }
             }
 
@@ -448,6 +449,17 @@ Item {
                     fullScreenItem.timerSwipe.restart()
                 }else{
                     fullScreenItem.timerSwipe.stop()
+                }
+            }
+            
+            Timer {
+                id: swipeDelay
+                interval: 100
+                running: false
+                onTriggered: {
+                    fullScreenItem.prevSwipePositionX = bottomSwipe.touchPosition.x
+                    fullScreenItem.prevSwipePositionY = bottomSwipe.touchPosition.y
+                    bottomSwipe.readyToSwipe = true
                 }
             }
         }
