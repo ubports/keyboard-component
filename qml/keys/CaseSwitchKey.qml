@@ -22,11 +22,11 @@ import Ubuntu.Components.Popups 1.3
 import "key_constants.js" as UI
 
 FlickCharKey {
-    borderColor: fullScreenItem.theme.actionKeyBorderColor
     padding: UI.actionKeyPadding
-    label: isPreedit ? "<font color=\"" + fullScreenItem.theme.selectionColor + "\">"+kana.label+"</font>" : kana.label
-    leaves: ["⎄", "", "A", "␣", "a"]
-    annotation: "␣"
+    toplabel:kana.label
+    botlabel:kana.annotation
+    charlabel: ["↵", "␣", "", "", ""]
+    leaves: kana.state=="caps"?["↵", "␣", "", ""/*"⎄"*/, "ⓐ"]:["↵", "␣", "Ⓐ", "", ""]
 
     overridePressArea: true
 
@@ -42,13 +42,15 @@ FlickCharKey {
         id: kana
 
         state: parent.default_state;
-	property string label: "C"
+	property string label: "";
+	property string annotation:"";
    	states: [
             State {
                 name: "caps"
                 PropertyChanges {
                     target: kana;
-                    label: "A/a";
+                    label: "<font color=\"transparent\">Ⓐ</font>";
+		    annotation:"ⓐ";
                     state: "caps";
               }
             },
@@ -56,7 +58,8 @@ FlickCharKey {
                 name: "qertyu"
                 PropertyChanges {
                     target: kana;
-                    label: (panel.autoCapsTriggered)?"A/a": "a/A";
+                    label: (panel.autoCapsTriggered)?"<font color=\"transparent\">Ⓐ</font>": "Ⓐ";
+		    annotation:(panel.autoCapsTriggered)?"ⓐ":"<font color=\"transparent\">ⓐ</font>";
                     state: "qertyu";
                 }
             }
@@ -65,8 +68,9 @@ FlickCharKey {
 
     onReleased: {
         if (isPreedit) {
-            if (index != 2&& index !=4) {
-                   if (index == 3) event_handler.onKeyReleased("", "space");
+            if (index != 2 && index !=4) {
+		   if (index == 0) event_handler.onKeyReleased("", "commit");
+		   if (index == 1) event_handler.onKeyReleased("", "space");
                 } else {
                     var pos = cursorPosition
 		    var newChar = (lastChar.charCodeAt(0) >= 91 && index == 2) ? lastChar.toUpperCase() : lastChar
@@ -76,17 +80,16 @@ FlickCharKey {
 		}
 	}else{
 	    if (index == 0) {
-		    //kana.state = kana.state == "caps" ? "qertyu" : "caps"
+		    event_handler.onKeyReleased("", "return");
+	    } else if (index == 1) {
+		   event_handler.onKeyReleased("", "space");
 	    } else if (index == 2) {
 		    kana.state = "caps"
-	    } else if (index == 3) {
-			    event_handler.onKeyReleased("", "space");
-  	      }
-	 	  else if (index == 4) {
+	    } else if (index == 4) {
 	            kana.state = "qertyu"
-        	}
+	    }
 	}
-	if(panel.autoCapsTriggered && index != 0){
+	if(panel.autoCapsTriggered && index ==4){
 	    		panel.autoCapsTriggered=false;
 			kana.state = "qertyu"
 	}

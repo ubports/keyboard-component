@@ -18,36 +18,33 @@ import QtQuick 2.4
 import keys 1.0
 
 KeyPad {
- 
-    anchors.fill:parent;
-    content: c1
 
+    anchors.fill: parent;
+    content: c1
     Column {
         id: c1
-	anchors.fill:parent;
-	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1;
+	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
+        anchors.fill: parent;
 	spacing: 0
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-	    CaseSwitchKey { id: layout; } 
-            FlickCharKey {
-                label: layout.state == "caps" ? "QER" : "qer";
+	    ActionKey    { id: enterKey; width: panel.keyWidth; visHeight:layout.height;height:layout.height;}
+
+     FlickCharKey {
+                charlabel: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
                 leaves: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
-                annotation: layout.state == "caps" ? "1:" : "1:";
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "TYU" : "tyu";
-                leaves: layout.state == "caps" ? ["2", "T", "Y", "U", "$"] : ["2", "t", "y", "u", "$"];
-                annotation: layout.state == "caps" ? "2$" : "2$";
+                charlabel: layout.state == "caps" ? ["2", "T", "Y", "U", "G"] : ["2", "t", "y", "u", "g"];
+		leaves: layout.state == "caps" ? ["2", "T", "Y", "U", "G"] : ["2", "t", "y", "u", "g"];
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "IOP" : "iop";
-                leaves: layout.state == "caps" ? ["3", "I", "O", "P", "#"] : ["3", "i", "o", "p", "#"];
-                annotation: layout.state == "caps" ? "3#" : "3#";
+                charlabel: layout.state == "caps" ? ["3", "I", "O", "M", ";"] : ["3", "i", "o", "m", ";"];
+		leaves: layout.state == "caps" ? ["3", "I", "O", "M", ";"] : ["3", "i", "o", "m", ";"];
             }
-            BackspaceKey { rightSide: true; width: panel.keyWidth; height:layout.height;}
+            CaseSwitchKey { id: layout; labelright:true}
         }
 
         Row {
@@ -55,51 +52,46 @@ KeyPad {
             spacing: 0
 
             FlickCharKey {
-                label: layout.state == "caps" ? "!_" : "!_"
-                leaves: layout.state == "caps" ? ["=", "", "!", "_", "|"] : ["=", "", "!", "_", "|"]
-                annotation: layout.state == "caps" ? "=|" : "=|"
+                charlabel:  ["=", "", "!", "&amp;", "|"]
+		labelleft:true
+                leaves: layout.state == "caps" ? ["=", "", "!", "&", "|"] : ["=", "", "!", "&", "|"]
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "AWD" : "awd";
+                charlabel: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
                 leaves: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
-                annotation: layout.state == "caps" ? "4S" : "4s";
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "(F)" : "(f)";
-                leaves: layout.state == "caps" ? ["5", "(", "F", ")", "G"] : ["5", "(", "f", ")", "g"];
-                annotation: layout.state == "caps" ? "5G" : "5g";
+                charlabel: layout.state == "caps" ? ["5", "B", "P", "F", "N"] : ["5", "b", "p", "f", "n"];
+                leaves: layout.state == "caps" ? ["5", "B", "P", "F", "N"] : ["5", "b", "p", "f", "n"];
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "HKL" : "hkl";
+                charlabel: layout.state == "caps" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
                 leaves: layout.state == "caps" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
-                annotation: layout.state == "caps" ? "6J" : "6j";
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "&amp;`" : "&amp;`"
-                leaves: layout.state == "caps" ? ["@", "&", "`", "", "~"] : ["@", "&", "`", "", "~"]
-                annotation: layout.state == "caps" ? "@~" : "@~"
+                charlabel: ["~", "_", "^", "", "$"]
+		labelright:true
+                leaves: ["~", "_", "^", "", "$"]
+
             }
         }
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-           
-            CursorKey { leftSide:true; }
-	     FlickCharKey {
-                label: layout.state == "caps" ? "ZXC" : "zxc"
-                leaves: layout.state == "caps" ? ["7", "Z", "X", "C", "\\"] : ["7", "z", "x", "c", "\\"]
-                annotation: layout.state == "caps" ? "7\\" : "7\\"
+
+            CursorKey { leftSide:true}
+	    FlickCharKey {
+                charlabel: layout.state == "caps" ? ["7", "}", "*", "{", "\\"] : ["7", "]", "*", "[", "\\"]
+		leaves: ["7", "]", "*", "[", "\\"]
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "[*]" : "[*]"
-                leaves: layout.state == "caps" ? ["8", "[", "*", "]", "V"] : ["8", "[", "*", "]", "v"]
-                annotation: layout.state == "caps" ? "8V" : "8v"
+                charlabel: layout.state == "caps" ? ["8", "Z", "X", "C", "V"] : ["8", "z", "x", "c", "v"]
+		leaves: layout.state == "caps" ? ["8", "Z", "X", "C", "V"] : ["8", "z", "x", "c", "v"]
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "BNM" : "bnm"
-                leaves: layout.state == "caps" ? ["9", "B", "N", "M", "/"] : ["9", "b", "n", "m", "/"]
-                annotation: layout.state == "caps" ? "9/" : "9/"
+                charlabel: layout.state=="caps"?["9", ")", "?", "(", "/"]:["9", "#", "?", "@", "/"]
+                leaves: layout.state=="caps"?["9", "#", "?", "@", "/"]:["9", "#", "?", "@", "/"]
             }
            CursorKey { rightSide:true; }
 	 }
@@ -108,26 +100,36 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            LanguageKey    { id: languageMenuButton; height:layout.height;}
+	LanguageKey {  width: panel.keyWidth; visHeight:layout.height;}
             FlickCharKey {
-   		 label: layout.state == "caps" ? "&lt; - >" : "&lt; - >"
-   		 leaves: layout.state == "caps" ?  [",", "<", "-", ">", "+"]: [",", "<", "-", ">", "+"];
-		 annotation: layout.state == "caps" ?  ",+" : ",+"
+		 charlabel: [",", ">", "+", "&lt;", "-"]
+		 leaves: [",", ">", "+", "<", "-"]
 	    }
 	    FlickCharKey {
-                label: layout.state == "caps" ? "' ^ \"" : "' ^ \""
-                leaves: layout.state == "caps" ? ["0", "'", "^", "\"", "%"] : ["0", "'", "^", "\"", "%"];
-                annotation: layout.state == "caps" ? "0%" : "0%";
+                charlabel: ["0", "'", "`", "\"", "%"]
+                leaves: ["0", "'", "`", "\"", "%"]
             }
             StringKey {
-                label: layout.state == "caps" ? "{ ? }" : "<font size=\"5\">.io .com .org</font>";
-                leaves: layout.state == "caps" ? [".", "{", "?", "}", ";"] :
-                    [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
-                unstyledLeaves: layout.state == "caps" ? [".", "{", "?", "}",";"] : [".", ".io", ".com", ".org",".net"];
-                annotation: layout.state == "caps" ? "." : ".net"
+                charlabel: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
+                leaves: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
+                unstyledLeaves: [".", ".io", ".com", ".org",".net"];
         }
-	CommitKey    { id: enterKey; width: panel.keyWidth; height:layout.height;}
-        }
-	
-    } // column
+            BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
+	}
+
+   } // column
+     Row{
+	 anchors.horizontalCenter: parent.horizontalCenter;
+	 anchors.left:parent.left
+	 anchors.bottom:parent.bottom
+	 spacing: 0
+	SpaceKey{
+		id: spaceKey
+		width:parent.width
+		height:layout.height-layout.height*0.5
+		visHeight:spaceKey.height
+		fontSize:spaceKey.height
+
+	}
+     }
 }

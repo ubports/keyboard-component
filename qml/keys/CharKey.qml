@@ -25,6 +25,7 @@ Item {
     id: key
 
     property int padding: 0
+    property int visHeight: panel.keyHeight
 
     width: leftSide || rightSide ? panel.keyWidth * 2 : panel.keyWidth
     height: panel.keyHeight
@@ -133,8 +134,9 @@ Item {
     // row of keys all the way to the bottom of the keyboard, whilst 
     // maintaining the same visual appearance.
     Item {
+	id:button
         anchors.top: parent.top
-        height: parent.height
+        height: visHeight
         width: parent.width
 
         Rectangle {

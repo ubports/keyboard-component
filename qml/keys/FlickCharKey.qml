@@ -25,18 +25,22 @@ Item {
     id: key
 
     property int padding: 0
- 
     width: leftSide || rightSide ? panel.keyWidth * 2 : panel.keyWidth
     height: c1.keyHeight
     
     /* to be set in keyboard layouts */
     property string label: "";
+    property string toplabel: "";
+    property string botlabel: "";
     property var leaves: ["", "", "", "", ""];
+    property var charlabel: ["", "", "", "", ""];
     property int index: keyFlickArea.index;
     property bool highlight: false;
 
     property string action
     property bool noMagnifier: true
+    property bool labelright:false
+    property bool labelleft:false
     property bool skipAutoCaps: false
     property bool switchBackFromSymbols: false
 
@@ -105,14 +109,25 @@ Item {
             Column {
                 spacing: units.gu( UI.annotationMargins )
                 anchors.centerIn: parent
-
+		Text {
+                    id: topLabel
+                    text: (panel.hideKeyLabels)?"":(toplabel!=""?toplabel:charlabel[2])
+                    anchors.right: (labelright)?parent.right:"";
+                    anchors.left: (labelleft)?parent.left:"";
+                    anchors.horizontalCenter: (labelleft||labelright)?"":parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize:fontSize
+                    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+                }
                 Text {
                     id: keyLabel
-                    text:(panel.hideKeyLabels)?"":label
+                    text: (panel.hideKeyLabels)?"":(label!=""?label:charlabel[1]+charlabel[4]+botlabel+charlabel[3])
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.family: UI.fontFamily
                     font.pixelSize: fontSize
-                    font.weight: Font.Light
+		    font.weight: Font.Light
                     color: fullScreenItem.theme.fontColor
                     textFormat: Text.StyledText
                 }
@@ -120,17 +135,32 @@ Item {
                 Text {
                     id: annotationLabel
                     text: (panel.hideKeyLabels)?"":annotation
-
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottomMargin: units.gu( UI.annotationMargins )
-
-                    font.family: UI.annotationFont
-                    font.pixelSize: fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
-                    font.weight: Font.Light
-                    color: fullScreenItem.theme.annotationFontColor
-                    visible: annotation != ""
+                    font.family: UI.fontFamily
+                    font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
+		    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+		    visible: annotation != ""
                 }
             }
+	    Column {
+                spacing: units.gu( UI.annotationMargins )
+                anchors.left: parent.left
+		 Text {
+                    id: tapLabel
+                    text: (panel.hideKeyLabels)?"":charlabel[0]
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize: fontSize
+		    font.weight: Font.Light
+                    color: fullScreenItem.theme.selectionColor
+                    textFormat: Text.StyledText
+                }
+
+		}
+
         }
 
         FlickPop {
