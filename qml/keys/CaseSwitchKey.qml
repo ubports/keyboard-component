@@ -22,7 +22,6 @@ import Ubuntu.Components.Popups 1.3
 import "key_constants.js" as UI
 
 FlickCharKey {
-    borderColor: fullScreenItem.theme.actionKeyBorderColor
     padding: UI.actionKeyPadding
     label: isPreedit ? "<font color=\"" + fullScreenItem.theme.selectionColor + "\">"+kana.label+"</font>" : kana.label
     leaves: ["⎄", "", "A", "␣", "a"]
@@ -42,13 +41,15 @@ FlickCharKey {
         id: kana
 
         state: parent.default_state;
-	property string label: "C"
+	property string label: "";
+	property string annotation:"";
    	states: [
             State {
                 name: "caps"
                 PropertyChanges {
                     target: kana;
-                    label: "A/a";
+                    label: "<font color=\"transparent\">Ⓐ</font>";
+		    annotation:"ⓐ";
                     state: "caps";
               }
             },
@@ -56,7 +57,8 @@ FlickCharKey {
                 name: "qertyu"
                 PropertyChanges {
                     target: kana;
-                    label: (panel.autoCapsTriggered)?"A/a": "a/A";
+                    label: (panel.autoCapsTriggered)?"<font color=\"transparent\">Ⓐ</font>": "Ⓐ";
+		    annotation:(panel.autoCapsTriggered)?"ⓐ":"<font color=\"transparent\">ⓐ</font>";
                     state: "qertyu";
                 }
             }

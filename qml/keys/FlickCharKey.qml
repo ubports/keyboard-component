@@ -105,32 +105,72 @@ Item {
             Column {
                 spacing: units.gu( UI.annotationMargins )
                 anchors.centerIn: parent
-
-                Text {
-                    id: keyLabel
-                    text:(panel.hideKeyLabels)?"":label
-                    anchors.horizontalCenter: parent.horizontalCenter
+		Text {
+                    id: topLabel
+                    text: (panel.hideKeyLabels)?"":(toplabel!=""?toplabel:charlabel[2])
+                    anchors.right: (labelright)?parent.right:"";
+                    anchors.left: (labelleft)?parent.left:"";
+                    anchors.horizontalCenter: (labelleft||labelright)?"":parent.horizontalCenter
                     font.family: UI.fontFamily
-                    font.pixelSize: fontSize
+                    font.pixelSize:fontSize
                     font.weight: Font.Light
                     color: fullScreenItem.theme.fontColor
                     textFormat: Text.StyledText
                 }
+                Text {
+                    id: keyLabel
+                    text: (panel.hideKeyLabels)?"":(label!=""?label:charlabel[1]+charlabel[4]+botlabel+charlabel[3])
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize: fontSize
+		    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+                    visible: label!=""
+                }
+                Text{
+                     id: annotationLabel
+                     text: (panel.hideKeyLabels)?"":annotation
+                     anchors.horizontalCenter: parent.horizontalCenter
+                     anchors.bottomMargin: units.gu( UI.annotationMargins )
+                     font.family: UI.fontFamily
+                     font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
+                     font.weight: Font.Light
+                     color: fullScreenItem.theme.fontColor
+                     textFormat: Text.StyledText
+                     visible: annotation != ""
+                }
+            }
 
                 Text {
                     id: annotationLabel
                     text: (panel.hideKeyLabels)?"":annotation
-
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottomMargin: units.gu( UI.annotationMargins )
-
-                    font.family: UI.annotationFont
-                    font.pixelSize: fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
-                    font.weight: Font.Light
-                    color: fullScreenItem.theme.annotationFontColor
-                    visible: annotation != ""
+                    font.family: UI.fontFamily
+                    font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
+		    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+		    visible: annotation != ""
                 }
             }
+	    Column {
+                spacing: units.gu( UI.annotationMargins )
+                anchors.left: parent.left
+		 Text {
+                    id: tapLabel
+                    text: (panel.hideKeyLabels)?"":charlabel[0]
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize: fontSize
+		    font.weight: Font.Light
+                    color: fullScreenItem.theme.selectionColor
+                    textFormat: Text.StyledText
+                }
+
+		}
+
         }
 
         FlickPop {
