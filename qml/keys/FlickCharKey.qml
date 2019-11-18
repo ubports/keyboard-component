@@ -18,6 +18,7 @@ import QtQuick 2.4
 import QtMultimedia 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
+import QtQuick.Layouts 1.1
 
 import "key_constants.js" as UI
 
@@ -27,7 +28,7 @@ Item {
     property int padding: 0
     width: leftSide || rightSide ? panel.keyWidth * 2 : panel.keyWidth
     height: c1.keyHeight
-    
+
     /* to be set in keyboard layouts */
     property string label: "";
     property string toplabel: "";
@@ -64,6 +65,7 @@ Item {
     property bool borderEnabled: fullScreenItem.theme.keyBorderEnabled
     property string borderColor: borderEnabled ? fullScreenItem.theme.charKeyBorderColor : "transparent"
     property int fontSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8));
+    property bool isPortrait: buttonRect.width/buttonRect.height > 2 ? false : true
 
     /// annotation shows a small label in the upper right corner
     // if the annotiation property is set, it will be used. If not, the first position in extended[] list or extendedShifted[] list will
@@ -106,61 +108,116 @@ Item {
             /// label of the key
             //  the label is also the value subitted to the app
 
-            Column {
-                spacing: units.gu( UI.annotationMargins )
-                anchors.centerIn: parent
-		Text {
-                    id: topLabel
-                    text: (panel.hideKeyLabels)?"":(toplabel!=""?toplabel:charlabel[2])
-                    anchors.right: (labelright)?parent.right:"";
-                    anchors.left: (labelleft)?parent.left:"";
-                    anchors.horizontalCenter: (labelleft||labelright)?"":parent.horizontalCenter
-                    font.family: UI.fontFamily
-                    font.pixelSize:fontSize
-                    font.weight: Font.Light
-                    color: fullScreenItem.theme.fontColor
-                    textFormat: Text.StyledText
-                }
-                Text {
-                    id: keyLabel
-                    text: (panel.hideKeyLabels)?"":(label!=""?label:charlabel[1]+charlabel[4]+botlabel+charlabel[3])
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    font.family: UI.fontFamily
-                    font.pixelSize: fontSize
-		    font.weight: Font.Light
-                    color: fullScreenItem.theme.fontColor
-                    textFormat: Text.StyledText
+            RowLayout {
+                id: tapLeftTopCol
+                anchors.left: parent.left
+                spacing: 0
+
+                ColumnLayout {
+                    id: tapColumn
+                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/3
+                    Layout.alignment : Qt.AlignTop
+                    spacing: 0
+
+                    Text {
+                        id: tapLabel
+                        text: (panel.hideKeyLabels)?"":charlabel[0]
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        font.family: UI.fontFamily
+                        font.pixelSize: fontSize
+                        font.weight: Font.Light
+                        color: fullScreenItem.theme.selectionColor
+                        textFormat: Text.StyledText
+                    }
                 }
 
-                Text {
-                    id: annotationLabel
-                    text: (panel.hideKeyLabels)?"":annotation
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.bottomMargin: units.gu( UI.annotationMargins )
-                    font.family: UI.fontFamily
-                    font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
-		    font.weight: Font.Light
-                    color: fullScreenItem.theme.fontColor
-                    textFormat: Text.StyledText
-		    visible: annotation != ""
+                ColumnLayout {
+                    id: leftColumn
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+                    Layout.preferredHeight: buttonRect.height
+                    spacing: 0
+
+                    Text {
+                        id: middleLeftLabel
+                        text: (panel.hideKeyLabels)?"":charlabel[1]
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        font.family: UI.fontFamily
+                        font.pixelSize:fontSize
+                        font.weight: Font.Light
+                        color: fullScreenItem.theme.fontColor
+                        textFormat: Text.StyledText
+                    }
+                }
+
+                ColumnLayout {
+                  id: topColumn
+                  Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+                  Layout.alignment : Qt.AlignTop
+                  spacing: 0
+
+                  Text {
+                      id: topCenterLabel
+                      text: (panel.hideKeyLabels)?"":(toplabel!=""?toplabel:charlabel[2])
+                      anchors.horizontalCenter: parent.horizontalCenter
+                      horizontalAlignment: Text.AlignHCenter
+                      font.family: UI.fontFamily
+                      font.pixelSize:fontSize
+                      font.weight: Font.Light
+                      color: fullScreenItem.theme.fontColor
+                      textFormat: Text.StyledText
+                  }
                 }
             }
-	    Column {
-                spacing: units.gu( UI.annotationMargins )
-                anchors.left: parent.left
-		 Text {
-                    id: tapLabel
-                    text: (panel.hideKeyLabels)?"":charlabel[0]
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    font.family: UI.fontFamily
-                    font.pixelSize: fontSize
-		    font.weight: Font.Light
-                    color: fullScreenItem.theme.selectionColor
-                    textFormat: Text.StyledText
+
+            RowLayout {
+                id: bottomRightCol
+                anchors.right: parent.right
+                spacing: 0
+
+                ColumnLayout {
+                    id: bottomColumn
+                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+                    Layout.alignment : Qt.AlignBottom
+                    spacing: 0
+
+                    Text {
+                        id: bottomCenterLabel
+                        text: (panel.hideKeyLabels)?"":charlabel[4]+botlabel
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: units.gu(0.25)
+                        font.family: UI.fontFamily
+                        font.pixelSize:fontSize
+                        font.weight: Font.Light
+                        color: fullScreenItem.theme.fontColor
+                        textFormat: Text.StyledText
+                    }
                 }
 
-		}
+                ColumnLayout {
+                    id: rightColumn
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+                    Layout.preferredHeight: buttonRect.height
+                    spacing: 0
 
+                    Text {
+                        id: middleRightLabel
+                        text: (panel.hideKeyLabels)?"":charlabel[3]
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        font.family: UI.fontFamily
+                        font.pixelSize:fontSize
+                        font.weight: Font.Light
+                        color: fullScreenItem.theme.fontColor
+                        textFormat: Text.StyledText
+                    }
+                }
+            }
         }
 
         FlickPop {
@@ -188,7 +245,7 @@ Item {
        if(panel.autoCapsTriggered){
 	    		panel.autoCapsTriggered=false;
 		}
- 
+
  }
 
         onPressed: {
