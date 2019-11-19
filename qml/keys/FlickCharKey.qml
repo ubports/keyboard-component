@@ -107,6 +107,33 @@ Item {
 
             /// label of the key
             //  the label is also the value subitted to the app
+            Column {
+                spacing: units.gu( UI.annotationsMargins )
+                anchors.centerIn: parent
+                Text {
+                    id: keyLabel
+                    text: (panel.hideKeyLabels)?"":label
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize: fontSize
+                    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+                    visible: label!=""
+                }
+                Text{
+                     id: annotationLabel
+                     text: (panel.hideKeyLabels)?"":annotation
+                     anchors.horizontalCenter: parent.horizontalCenter
+                     anchors.bottomMargin: units.gu( UI.annotationMargins )
+                     font.family: UI.fontFamily
+                     font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
+                     font.weight: Font.Light
+                     color: fullScreenItem.theme.fontColor
+                     textFormat: Text.StyledText
+                     visible: annotation != ""
+                }
+            }
 
             RowLayout {
                 id: tapLeftTopCol
