@@ -198,7 +198,7 @@ Item {
                       anchors.horizontalCenter: parent.horizontalCenter
                       font.family: UI.fontFamily
                       font.pixelSize: fontSize
-		                  font.weight: Font.Light
+		      font.weight: Font.Light
                       color: fullScreenItem.theme.fontColor
                       textFormat: Text.StyledText
                       visible: label!=""
@@ -257,10 +257,10 @@ Item {
                         anchors.bottomMargin: units.gu( UI.annotationMargins )
                         font.family: UI.fontFamily
                         font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
-		                    font.weight: Font.Light
+		        font.weight: Font.Light
                         color: fullScreenItem.theme.fontColor
                         textFormat: Text.StyledText
-		                    visible: annotation != ""
+		        visible: annotation != ""
                     }
                 }
             }
