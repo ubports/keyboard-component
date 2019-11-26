@@ -22,12 +22,15 @@ import Ubuntu.Components.Popups 1.3
 import "key_constants.js" as UI
 
 FlickActionKey {
-    iconSourceNormal:kana.icon
+    iconSourceUp:kana.iconUp
+    iconSourceDown:kana.iconDown
+    iconSourceLeft:kana.iconLeft
+    iconSourceRight:kana.iconRight
+    iconSource:kana.icon
     iconSourceShifted:kana.icon 
     padding: UI.actionKeyPadding
-    label: isPreedit ? "<font color=\"" + fullScreenItem.theme.selectionColor + "\">"+kana.label+"</font>" : kana.label
-    leaves: ["⎄", "", "A", "␣", "a"]
-    annotation: "␣"
+    charlabel: ["↵", "␣", "", "", ""]
+    leaves: kana.state=="caps"?["↵", "␣", "", ""/*"⎄"*/, "ⓐ"]:["↵", "␣", "Ⓐ", "", ""]
 
     overridePressArea: true
 
@@ -46,13 +49,21 @@ FlickActionKey {
 	property string label: "";
 	property string annotation:"";
 	property string icon:"";
+	property string iconUp:"";
+	property string iconDown:"";
+	property string iconLeft:"";
+	property string iconRight:"";
    	states: [
             State {
                 name: "caps"
                 PropertyChanges {
                     target: kana;
                     label: "<font color=\"transparent\">Ⓐ</font>";
-		    icon:"../images/keyboard-caps-locked.svg"
+		    iconUp:"../images/keyboard-caps-locked.svg"
+		    iconDown:"../images/keyboard-caps-disabled.svg"
+		    iconLeft:"../images/keyboard-caps-disabled.svg"
+		    iconRight:"../images/keyboard-caps-disabled.svg"
+		    icon:"../images/keyboard-caps-disabled.svg"
 		    annotation:"ⓐ";
                     state: "caps";
               }
@@ -62,7 +73,11 @@ FlickActionKey {
                 PropertyChanges {
                     target: kana;
                     label: (panel.autoCapsTriggered)?"<font color=\"transparent\">Ⓐ</font>": "Ⓐ";
+		    iconUp:"../images/keyboard-caps-disabled.svg"
+		    iconDown:"../images/keyboard-caps-locked.svg"
 		    icon:"../images/keyboard-caps-disabled.svg"
+		    iconLeft:"../images/keyboard-caps-disabled.svg"
+		    iconRight:"../images/keyboard-caps-disabled.svg"
 		    annotation:(panel.autoCapsTriggered)?"ⓐ":"<font color=\"transparent\">ⓐ</font>";
                     state: "qertyu";
                 }
