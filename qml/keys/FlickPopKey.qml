@@ -22,9 +22,11 @@ Rectangle {
     height: units.gu(UI.fontSize + UI.flickMargin)
 
     property string labelChar
+    property string labelIcon
+    property string labelIconSource
     property color labelColor: fullScreenItem.theme.fontColor
     property real labelOpacity: 1.0
-    visible: labelChar ? true : false
+    visible: labelChar || labelIcon? true : false
 
     color: fullScreenItem.theme.charKeyColor
     border.width: units.gu(UI.flickBorderWidth)
@@ -40,4 +42,9 @@ Rectangle {
         color: parent.labelColor
         opacity: parent.labelOpacity
     }
+    /*Icon {
+        anchors.centerIn: parent
+	source: "image://theme/%1".arg(parent.labelIcon)
+        color: parent.labelColor
+    }*/
 }
