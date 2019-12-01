@@ -30,7 +30,6 @@ FlickCharKey {
     property string iconCapsLock: ["", "", "", "", ""];
 
     property var iconSource: ["", "", "", "", ""];
-    property var iconleaves: ["", "", "", "", ""];
     property var iconsleaves: ["", "", "", "", ""];
     property string iconSourceCapsLock: ""
 
@@ -49,7 +48,7 @@ FlickCharKey {
     property color colorNormal: fullScreenItem.theme.fontColor
     property color colorShifted: fullScreenItem.theme.fontColor
     property color colorCapsLock: fullScreenItem.theme.fontColor
-    property int fontSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8));
+    property int fontSize: isPortrait ? buttonRect.width/4 : buttonRect.width/6
 
     // Make it possible for the visible area of the key to differ from the
     // actual key size. This allows us to extend the touch area of the bottom
@@ -199,8 +198,7 @@ FlickCharKey {
 			    anchors.bottomMargin: actionKeyRoot.height * 0.5
 			    width: units.gu((UI.fontSize + UI.flickMargin) * 3)
 			    height: units.gu((UI.fontSize + UI.flickMargin) * 3)
-			    chars: leaves
-			    icons:iconleaves
+			    icons:iconNormal
 			    iconSources:iconsleaves
 			    index: keyFlickArea.index
 			    visible:(maliit_input_method.enableMagnifier)? actionKeyRoot.currentlyPressed && chars.length > 1:false
@@ -227,13 +225,27 @@ FlickCharKey {
                                                                : ""
                 color: actionKeyRoot.colorShifted
             }
+	    PropertyChanges {
+                target: iconImageLeft
+                source: iconSource[1] !== "" ? iconSource[1] 
+                                                 : iconShifted[1] ? "image://theme/%1".arg(iconShifted[1])
+                                                               : ""
+                color: actionKeyRoot.colorShifted
+            }
+	    PropertyChanges {
+                target: iconImageRight
+                source: iconSource[3] !== "" ? iconSource[3] 
+                                                 : iconShifted[3] ? "image://theme/%1".arg(iconShifted[3])
+                                                               : ""
+                color: actionKeyRoot.colorShifted
+            }
         },
         State {
             name: "CAPSLOCK"
             PropertyChanges {
                 target: iconImageUp
                 source: iconSourceCapsLock !== "" ? iconSourceCapsLock
-                                                  : iconCapsLock ? "image://theme/%1".arg(iconCapsLock)
+                                                  : iconCapsLock[2] ? "image://theme/%1".arg(iconCapsLock[2])
                                                                 : ""
                 color: actionKeyRoot.colorCapsLock
             }
