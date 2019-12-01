@@ -22,15 +22,8 @@ import Ubuntu.Components.Popups 1.3
 import "key_constants.js" as UI
 
 FlickActionKey {
-    iconSourceUp:kana.iconUp
-    iconSourceDown:kana.iconDown
-    iconSourceLeft:kana.iconLeft
-    iconSourceRight:kana.iconRight
-    iconSource:kana.icon
-    iconSourceShifted:kana.icon 
-    padding: UI.actionKeyPadding
-    charlabel: ["↵", "␣", "", "", ""]
-    leaves: kana.state=="caps"?["↵", "␣", "", ""/*"⎄"*/, "ⓐ"]:["↵", "␣", "Ⓐ", "", ""]
+    iconNormal:["keyboard-enter", "keyboard-caps-disabled", "keyboard-caps-disabled", "keyboard-caps-disabled", "keyboard-caps-locked"]
+    iconShifted:["keyboard-enter", "keyboard-caps-disabled", "keyboard-caps-locked", "keyboard-caps-disabled", "keyboard-caps-disabled"]
 
     overridePressArea: true
 
@@ -46,25 +39,11 @@ FlickActionKey {
         id: kana
 
         state: parent.default_state;
-	property string label: "";
-	property string annotation:"";
-	property string icon:"";
-	property string iconUp:"";
-	property string iconDown:"";
-	property string iconLeft:"";
-	property string iconRight:"";
    	states: [
             State {
                 name: "caps"
                 PropertyChanges {
                     target: kana;
-                    label: "<font color=\"transparent\">Ⓐ</font>";
-		    iconUp:"../images/keyboard-caps-locked.svg"
-		    iconDown:"../images/keyboard-caps-disabled.svg"
-		    iconLeft:"../images/keyboard-caps-disabled.svg"
-		    iconRight:"../images/keyboard-caps-disabled.svg"
-		    icon:"../images/keyboard-caps-disabled.svg"
-		    annotation:"ⓐ";
                     state: "caps";
               }
             },
@@ -72,13 +51,6 @@ FlickActionKey {
                 name: "qertyu"
                 PropertyChanges {
                     target: kana;
-                    label: (panel.autoCapsTriggered)?"<font color=\"transparent\">Ⓐ</font>": "Ⓐ";
-		    iconUp:"../images/keyboard-caps-disabled.svg"
-		    iconDown:"../images/keyboard-caps-locked.svg"
-		    icon:"../images/keyboard-caps-disabled.svg"
-		    iconLeft:"../images/keyboard-caps-disabled.svg"
-		    iconRight:"../images/keyboard-caps-disabled.svg"
-		    annotation:(panel.autoCapsTriggered)?"ⓐ":"<font color=\"transparent\">ⓐ</font>";
                     state: "qertyu";
                 }
             }
