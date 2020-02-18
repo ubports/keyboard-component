@@ -38,7 +38,7 @@ FlickCharKey {
     skipAutoCaps: true
 
     height: c1.keyHeight;
-    width: panel.keyWidth 
+    width: panel.keyWidth
 
     normalColor: fullScreenItem.theme.charKeyColor
     pressedColor: fullScreenItem.theme.actionKeyPressedColor
@@ -92,7 +92,6 @@ FlickCharKey {
 											 : ""
 					    color: fullScreenItem.theme.selectionColor
 					    anchors.horizontalCenter: parent.horizontalCenter
-					    //horizontalAlignment: Text.AlignHCenter
 					    visible: (charlabel[0] == "" && !panel.hideKeyLabels)
 					    height: fontSize
 					    width: height
@@ -113,7 +112,6 @@ FlickCharKey {
 											 : ""
 					    color: actionKeyRoot.colorNormal
 					anchors.horizontalCenter: parent.horizontalCenter
-					//horizontalAlignment: Text.AlignHCenter
 					    visible: (charlabel[1] == "" && !panel.hideKeyLabels)
 					    height: fontSize
 					    width: height
@@ -133,7 +131,6 @@ FlickCharKey {
 											 : ""
 					    color: actionKeyRoot.colorNormal
 					    anchors.horizontalCenter: parent.horizontalCenter
-					    //horizontalAlignment: Text.AlignHCenter
 
 					    visible: (charlabel[2] == "" && !panel.hideKeyLabels)
 					    height: fontSize
@@ -160,7 +157,6 @@ FlickCharKey {
 											 : ""
 					    color: actionKeyRoot.colorNormal
 					    anchors.horizontalCenter: parent.horizontalCenter
-					    //horizontalAlignment: Text.AlignHCenter
 					    anchors.bottom: parent.bottom
 					    anchors.bottomMargin: units.gu(0.25)
 					    visible: (charlabel[4] == "" && !panel.hideKeyLabels)
@@ -183,7 +179,6 @@ FlickCharKey {
 											 : ""
 					    color: actionKeyRoot.colorNormal
 					    anchors.horizontalCenter: parent.horizontalCenter
-					    //horizontalAlignment: Icon.AlignHCenter
 					    visible: (charlabel[3] == "" && !panel.hideKeyLabels)
 					    height: fontSize
 					    width: height
@@ -199,12 +194,12 @@ FlickCharKey {
 			    width: units.gu((UI.fontSize + UI.flickMargin) * 3)
 			    height: units.gu((UI.fontSize + UI.flickMargin) * 3)
 			    icons:iconNormal
-			    iconSources:iconsleaves
+			    //iconSources:iconsleaves
 			    index: keyFlickArea.index
 			    visible:(maliit_input_method.enableMagnifier)? actionKeyRoot.currentlyPressed && chars.length > 1:false
 			}
 		    }
-	    
+
 
     // make sure the icon changes even if the property icon* change on runtime
     state: panel.activeKeypadState
@@ -213,28 +208,28 @@ FlickCharKey {
             name: "caps"
             PropertyChanges {
                 target: iconImageUp
-                source: iconSource[2] !== "" ? iconSource[2] 
+                source: iconSource[2] !== "" ? iconSource[2]
                                                  : iconShifted[2] ? "image://theme/%1".arg(iconShifted[2])
                                                                : ""
                 color: actionKeyRoot.colorShifted
             }
 	    PropertyChanges {
                 target: iconImageDown
-                source: iconSource[4] !== "" ? iconSource[4] 
+                source: iconSource[4] !== "" ? iconSource[4]
                                                  : iconShifted[4] ? "image://theme/%1".arg(iconShifted[4])
                                                                : ""
                 color: actionKeyRoot.colorShifted
             }
 	    PropertyChanges {
                 target: iconImageLeft
-                source: iconSource[1] !== "" ? iconSource[1] 
+                source: iconSource[1] !== "" ? iconSource[1]
                                                  : iconShifted[1] ? "image://theme/%1".arg(iconShifted[1])
                                                                : ""
                 color: actionKeyRoot.colorShifted
             }
 	    PropertyChanges {
                 target: iconImageRight
-                source: iconSource[3] !== "" ? iconSource[3] 
+                source: iconSource[3] !== "" ? iconSource[3]
                                                  : iconShifted[3] ? "image://theme/%1".arg(iconShifted[3])
                                                                : ""
                 color: actionKeyRoot.colorShifted

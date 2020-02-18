@@ -22,8 +22,8 @@ import Ubuntu.Components.Popups 1.3
 import "key_constants.js" as UI
 
 FlickActionKey {
-    iconNormal:["keyboard-enter", "keyboard-caps-disabled", "keyboard-caps-disabled", "keyboard-caps-disabled", "keyboard-caps-locked"]
-    iconShifted:["keyboard-enter", "keyboard-caps-disabled", "keyboard-caps-locked", "keyboard-caps-disabled", "keyboard-caps-disabled"]
+    iconNormal:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-disabled", "", "keyboard-caps-locked"]
+    iconShifted:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-locked", "", "keyboard-caps-disabled"]
 
     overridePressArea: true
 

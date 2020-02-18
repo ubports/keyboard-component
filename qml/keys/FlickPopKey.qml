@@ -15,6 +15,8 @@
  */
 
 import QtQuick 2.4
+import QtMultimedia 5.0
+import Ubuntu.Components 1.3
 import "key_constants.js" as UI
 
 Rectangle {
@@ -42,9 +44,10 @@ Rectangle {
         color: parent.labelColor
         opacity: parent.labelOpacity
     }
-    /*Icon {
+    Icon {
         anchors.centerIn: parent
 	source: "image://theme/%1".arg(parent.labelIcon)
         color: parent.labelColor
-    }*/
+        opacity: parent.labelOpacity
+    }
 }
