@@ -120,13 +120,9 @@ KeyPad {
                 annotation: layout.state == "caps" ? "0%" : "0%";
             }
             StringKey {
-                label: layout.state == "caps" ? "{ ? }" : "<font size=\"5\">.io .com .org</font>";
-                leaves: layout.state == "caps" ? [".", "{", "?", "}", ";"] :
-                    [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
-                unstyledLeaves: layout.state == "caps" ? [".", "{", "?", "}",";"] : [".", ".io", ".com", ".org",".net"];
-                annotation: layout.state == "caps" ? "." : ".net"
-        }
-	CommitKey    { id: enterKey; width: panel.keyWidth; height:layout.height;}
+                charlabel: [".", ".io", ".com", ".org",".net"];
+                leaves: [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"];
+                unstyledLeaves: [".", ".io", ".com", ".org",".net"];
         }
 
     } // column

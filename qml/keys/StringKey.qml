@@ -26,6 +26,7 @@ FlickCharKey {
 
     overridePressArea: true
 
+    fontSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
     onReleased: {
         event_handler.onKeyReleased(unstyledLeaves[index], action);
     }
