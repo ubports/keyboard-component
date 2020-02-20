@@ -27,9 +27,9 @@ import "key_constants.js" as UI
 Item {
     id: root
 
-    property var chars
-    property var icons
-    property var iconSources
+    property var chars: ["", "", "", "", ""];
+    property var icons: ["", "", "", "", ""];
+    property var iconSources: ["", "", "", "", ""];
     property int index: 0
 
     visible: false
