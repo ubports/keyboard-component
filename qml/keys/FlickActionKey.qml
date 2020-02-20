@@ -15,13 +15,13 @@
  */
 
 import QtQuick 2.4
-
 import QtMultimedia 5.0
 import Ubuntu.Components 1.3
-
 import Ubuntu.Components.Popups 1.3
-import "key_constants.js" as UI
 import QtQuick.Layouts 1.1
+
+import "key_constants.js" as UI
+
 
 FlickCharKey {
     id: actionKeyRoot
@@ -54,68 +54,68 @@ FlickCharKey {
     // actual key size. This allows us to extend the touch area of the bottom
     // row of keys all the way to the bottom of the keyboard, whilst
     // maintaining the same visual appearance.
-		Item {
-			anchors.top: parent.top
-			height: parent.height
-			width: parent.width
+	Item {
+		anchors.top: parent.top
+		height: parent.height
+		width: parent.width
 
-			Rectangle {
-			    id: buttonRect
-			    color: actionKeyRoot.currentlyPressed || actionKeyRoot.highlight ? pressedColor : normalColor
-			    anchors.fill: parent
-			    anchors.leftMargin: actionKeyRoot.leftSide ? (parent.width - panel.keyWidth) + actionKeyRoot.keyMargin : actionKeyRoot.keyMargin
-			    anchors.rightMargin: actionKeyRoot.rightSide ? (parent.width - panel.keyWidth) + actionKeyRoot.keyMargin : actionKeyRoot.keyMargin
-			    anchors.bottomMargin: actionKeyRoot.rowMargin
-			    radius: units.dp(4)
-			    border{
-				width: borderEnabled ? units.gu(0.1) : 0
-				color: borderColor
-			    }
+		Rectangle {
+		    id: buttonRect
+		    color: actionKeyRoot.currentlyPressed || actionKeyRoot.highlight ? pressedColor : normalColor
+		    anchors.fill: parent
+		    anchors.leftMargin: actionKeyRoot.leftSide ? (parent.width - panel.keyWidth) + actionKeyRoot.keyMargin : actionKeyRoot.keyMargin
+		    anchors.rightMargin: actionKeyRoot.rightSide ? (parent.width - panel.keyWidth) + actionKeyRoot.keyMargin : actionKeyRoot.keyMargin
+		    anchors.bottomMargin: actionKeyRoot.rowMargin
+		    radius: units.dp(4)
+		    border{
+			width: borderEnabled ? units.gu(0.1) : 0
+			color: borderColor
+		    }
 
-			    /// label of the key
-			    //  the label is also the value subitted to the app
-			    RowLayout {
-				id: tapLeftTopCol
-				anchors.left: parent.left
-				spacing: 0
+		    /// label of the key
+		    //  the label is also the value subitted to the app
+		    RowLayout {
+			id: tapLeftTopCol
+			anchors.left: parent.left
+			spacing: 0
 
-				ColumnLayout {
-				    id: tapColumn
-				    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/3
-				    Layout.alignment : Qt.AlignTop
-				    spacing: 0
+			ColumnLayout {
+			    id: tapColumn
+			    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/3
+			    Layout.alignment : Qt.AlignTop
+			    spacing: 0
 
-				    Icon {
-					    id: iconImage
-					    source: iconSource[0] !== "" ? iconSource[0]
-									    : iconNormal[0] ? "image://theme/%1".arg(iconNormal[0])
-											 : ""
-					    color: fullScreenItem.theme.selectionColor
-					    anchors.horizontalCenter: parent.horizontalCenter
-					    visible: (charlabel[0] == "" && !panel.hideKeyLabels)
-					    height: fontSize
-					    width: height
-					}
+			    Icon {
+				    id: iconImage
+				    source: iconSource[0] !== "" ? iconSource[0]
+								    : iconNormal[0] ? "image://theme/%1".arg(iconNormal[0])
+										 : ""
+				    color: fullScreenItem.theme.selectionColor
+				    anchors.horizontalCenter: parent.horizontalCenter
+				    visible: (charlabel[0] == "" && !panel.hideKeyLabels)
+				    height: fontSize
+				    width: height
 				}
-
-				ColumnLayout {
-				    id: leftColumn
-				    Layout.alignment: Qt.AlignVCenter
-				    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
-				    Layout.preferredHeight: buttonRect.height
-				    spacing: 0
-
-				    Icon {
-					    id: iconImageLeft
-					    source: iconSource[1] !== "" ? iconSource[1]
-									    : iconNormal[1] ? "image://theme/%1".arg(iconNormal[1])
-											 : ""
-					    color: actionKeyRoot.colorNormal
-					anchors.horizontalCenter: parent.horizontalCenter
-					    visible: (charlabel[1] == "" && !panel.hideKeyLabels)
-					    height: fontSize
-					    width: height
 			}
+
+			ColumnLayout {
+			    id: leftColumn
+			    Layout.alignment: Qt.AlignVCenter
+			    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+			    Layout.preferredHeight: buttonRect.height
+			    spacing: 0
+
+			    Icon {
+				    id: iconImageLeft
+				    source: iconSource[1] !== "" ? iconSource[1]
+								    : iconNormal[1] ? "image://theme/%1".arg(iconNormal[1])
+										 : ""
+				    color: actionKeyRoot.colorNormal
+				anchors.horizontalCenter: parent.horizontalCenter
+				    visible: (charlabel[1] == "" && !panel.hideKeyLabels)
+				    height: fontSize
+				    width: height
+		}
 				}
 
 				ColumnLayout {
@@ -188,6 +188,7 @@ FlickCharKey {
 			}
 
 			FlickPop {
+			    id : flickPop
 			    anchors.horizontalCenter: buttonRect.horizontalCenter
 			    anchors.bottom: buttonRect.top
 			    anchors.bottomMargin: actionKeyRoot.height * 0.5
@@ -206,7 +207,12 @@ FlickCharKey {
     states: [
         State {
             name: "caps"
-            PropertyChanges {
+
+	    PropertyChanges {
+                target: flickPop
+		icons:iconShifted
+            }
+	    PropertyChanges {
                 target: iconImageUp
                 source: iconSource[2] !== "" ? iconSource[2]
                                                  : iconShifted[2] ? "image://theme/%1".arg(iconShifted[2])

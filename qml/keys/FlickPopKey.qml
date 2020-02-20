@@ -28,6 +28,7 @@ Rectangle {
     property string labelIconSource
     property color labelColor: fullScreenItem.theme.fontColor
     property real labelOpacity: 1.0
+    property int labelAngle: 0
     visible: labelChar || labelIcon? true : false
 
     color: fullScreenItem.theme.charKeyColor
@@ -49,5 +50,8 @@ Rectangle {
 	source: parent.labelIcon ? "image://theme/%1".arg(parent.labelIcon):""
         color: parent.labelColor
         opacity: parent.labelOpacity
+	transform: Rotation { origin.x:fontSize/2; origin.y:fontSize/2; angle:labelAngle}
+        height: fontSize
+        width: height
     }
 }

@@ -30,11 +30,11 @@ FlickActionKey {
     property string preedit: maliit_input_method.preedit
     property bool isPreedit: maliit_input_method.preedit.length > 0
     property string default_state:"qertyu"
-    property int cursorPosition: maliit_input_method.cursorPosition 
+    property int cursorPosition: maliit_input_method.cursorPosition
     property string lastChar: ""
     property var preeditLeaves: [lastChar]
     state:(panel.autoCapsTriggered)?"caps": kana.state
- 
+
     Item {
         id: kana
 

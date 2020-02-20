@@ -43,6 +43,7 @@ Item {
         labelOpacity: index == 0 ? 1.0 : 0.6
         labelColor: index == 0 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
+
     FlickPopKey {
         labelChar: chars[1] ? chars[1] : ""
 	labelIcon:icons[1] ? icons[1] : ""
@@ -53,6 +54,7 @@ Item {
         labelOpacity: index == 1 ? 1.0 : 0.6
         labelColor: index == 1 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
+
     FlickPopKey {
         labelChar: chars[2] ? chars[2] : ""
 	labelIcon:icons[2] ? icons[2] : ""
@@ -62,6 +64,7 @@ Item {
         labelOpacity: index == 2 ? 1.0 : 0.6
         labelColor: index == 2 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
+
     FlickPopKey {
         labelChar: chars[3] ? chars[3] : ""
 	labelIcon:icons[3] ? icons[3] : ""
@@ -71,6 +74,7 @@ Item {
         labelOpacity: index == 3 ? 1.0 : 0.6
         labelColor: index == 3 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
+
     FlickPopKey {
         labelChar: chars[4] ? chars[4] : ""
 	labelIcon:icons[4] ? icons[4] : ""
@@ -78,6 +82,7 @@ Item {
         anchors.horizontalCenter: center.horizontalCenter
         anchors.top: center.bottom
         labelOpacity: index == 4 ? 1.0 : 0.6
+	labelAngle: 180
         labelColor: index == 4 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
 }
