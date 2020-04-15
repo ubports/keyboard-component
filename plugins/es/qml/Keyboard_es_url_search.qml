@@ -34,13 +34,13 @@ KeyPad {
 
       CharKey { label: "q"; shifted: "Q"; extended: ["1"]; extendedShifted: ["1"]; leftSide: true; }
       CharKey { label: "w"; shifted: "W"; extended: ["2"]; extendedShifted: ["2"] }
-      CharKey { label: "e"; shifted: "E"; extended: ["é", "3"]; extendedShifted: ["É", "3"], annotation: "3" }
+      CharKey { label: "e"; shifted: "E"; extended: ["é", "3"]; extendedShifted: ["É", "3"]; annotation: "3" }
       CharKey { label: "r"; shifted: "R"; extended: ["4"]; extendedShifted: ["4"] }
       CharKey { label: "t"; shifted: "T"; extended: ["5"]; extendedShifted: ["5"] }
       CharKey { label: "y"; shifted: "Y"; extended: ["6"]; extendedShifted: ["6"] }
-      CharKey { label: "u"; shifted: "U"; extended: ["ú", "7","ü"]; extendedShifted: ["Ú","7","Ü"], annotation: "7" }
-      CharKey { label: "i"; shifted: "I"; extended: ["í", "8"]; extendedShifted: ["Í","8"], annotation: "8" }
-      CharKey { label: "o"; shifted: "O"; extended: ["ó", "9","º"]; extendedShifted: ["Ó","9","º"], annotation: "9" }
+      CharKey { label: "u"; shifted: "U"; extended: ["ú", "7","ü"]; extendedShifted: ["Ú","7","Ü"]; annotation: "7" }
+      CharKey { label: "i"; shifted: "I"; extended: ["í", "8"]; extendedShifted: ["Í","8"]; annotation: "8" }
+      CharKey { label: "o"; shifted: "O"; extended: ["ó", "9","º"]; extendedShifted: ["Ó","9","º"]; annotation: "9" }
       CharKey { label: "p"; shifted: "P"; extended: ["0"]; extendedShifted: ["0"]; rightSide: true; }
     }
 
@@ -66,7 +66,7 @@ KeyPad {
 
       ShiftKey {}
       CharKey { label: "z"; shifted: "Z"; extended: ["_"]; extendedShifted: ["_"] }
-      CharKey { label: "x"; shifted: "X"; extended: ["£","¢","$","¥","€"]; extendedShifted: ["£","¢","$","¥","€"], annotation: "$" }
+      CharKey { label: "x"; shifted: "X"; extended: ["£","¢","$","¥","€"]; extendedShifted: ["£","¢","$","¥","€"]; annotation: "$" }
       CharKey { label: "c"; shifted: "C"; extended: ["\""]; extendedShifted: ["\""] }
       CharKey { label: "v"; shifted: "V"; extended: ["'"]; extendedShifted: ["'"] }
       CharKey { label: "b"; shifted: "B"; extended: [":"]; extendedShifted: [":"] }
