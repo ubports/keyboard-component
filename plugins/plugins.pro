@@ -37,6 +37,7 @@ SUBDIRS = \
     ro \
     ru \
     tr \
+    sc \
     sl \
     sr \
     sv \
