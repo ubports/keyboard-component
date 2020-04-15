@@ -119,7 +119,8 @@ Depends: autopilot-qt5 (>= 1.4),
          ubuntu-keyboard-portuguese (>= ${source:Version}),
          ubuntu-keyboard-romanian (>= ${source:Version}),
          ubuntu-keyboard-russian (>= ${source:Version}),
-         ubuntu-keyboard-scottish-gaelic (>= ${source:Version}),
+         ubuntu-keyboard-sardinian (>= ${source:Version}),
+	 ubuntu-keyboard-scottish-gaelic (>= ${source:Version}),
          ubuntu-keyboard-serbian (>= ${source:Version}),
          ubuntu-keyboard-slovenian (>= ${source:Version}),
          ubuntu-keyboard-spanish (>= ${source:Version}),
@@ -421,6 +422,16 @@ Depends: ubuntu-keyboard (= ${binary:Version}),
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Russian
  Data files for the Ubuntu virtual keyboard - Russian
+ 
+Package: ubuntu-keyboard-sardinian
+Architecture: any
+Depends: ubuntu-keyboard (= ${binary:Version}),
+         hunspell-sc,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Description: Ubuntu on-screen keyboard data files - Sardinian
+ Data files for the Ubuntu virtual keyboard - Sardinian
+ 
 
 Package: ubuntu-keyboard-slovenian
 Architecture: any
