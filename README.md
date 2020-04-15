@@ -12,13 +12,20 @@ After building the keyboard (such as with `dpkg-buildpackage -us -uc`), run `mak
 
 ## On-device testing
 
-To test a pull request on your device, type
+To test a pull request on your device, type:
 
-    sudo ubports-qa install keyboard-component X
+    sudo mount -t tmpfs tmpfs /var/cache/apt
 
-where `X` is the code of a merge request to this repository.
+which will use RAM to give enough space to download the packages.
 
-Logs are saved in `~/.cache/upstart/maalit-server.log`. They can be viewed directly on-device with a [log viewer](https://open-store.io/app/logviewer.neothethird).
+    sudo ubports-qa install ubports/keyboard-component X
+
+where `X` is the code of a pull/merge request to this repository.
+
+Logs are saved in `~/.cache/upstart/maliit-server.log`. They can be viewed directly on-device with a [log viewer](https://open-store.io/app/logviewer.neothethird).
+
+
+It is recomended to be in the `devel` channel instead of `stable`, otherwise there will be way too many packages trying to be upgraded.
 
 ## Options
 
