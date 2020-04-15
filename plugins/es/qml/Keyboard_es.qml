@@ -39,7 +39,7 @@ KeyPad {
 			CharKey { label: "t"; shifted: "T"; extended: ["5"]; extendedShifted: ["5"] }
 			CharKey { label: "y"; shifted: "Y"; extended: ["6"]; extendedShifted: ["6"] }
 			CharKey { label: "u"; shifted: "U"; extended: ["ú", "7","ü"]; extendedShifted: ["Ú","7","Ü"]; annotation: "7" }
-			CharKey { label: "i"; shifted: "I"; extended: ["í", "8"]; extendedShifted: ["Í","8"], annotation: "8" }
+			CharKey { label: "i"; shifted: "I"; extended: ["í", "8"]; extendedShifted: ["Í","8"]; annotation: "8" }
 			CharKey { label: "o"; shifted: "O"; extended: ["ó", "9","º"]; extendedShifted: ["Ó","9","º"]; annotation: "9" }
 			CharKey { label: "p"; shifted: "P"; extended: ["0"]; extendedShifted: ["0"]; rightSide: true; }
 		}
