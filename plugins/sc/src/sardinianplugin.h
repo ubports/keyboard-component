@@ -5,7 +5,7 @@
 #include "languageplugininterface.h"
 #include "westernlanguagesplugin.h"
 
-class CatalanPlugin : public WesternLanguagesPlugin
+class SardinianPlugin : public WesternLanguagesPlugin
 {
     Q_OBJECT
     Q_INTERFACES(LanguagePluginInterface)
