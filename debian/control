@@ -426,7 +426,6 @@ Description: Ubuntu on-screen keyboard data files - Russian
 Package: ubuntu-keyboard-sardinian
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
-         hunspell-sc,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Sardinian
