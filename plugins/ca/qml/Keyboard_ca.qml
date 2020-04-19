@@ -56,7 +56,7 @@ KeyPad {
             CharKey { label: "h"; shifted: "H"; extended: ["-hi","-ho"]; extendedShifted: ["-HI","-HO"] }
             CharKey { label: "j"; shifted: "J"; }
             CharKey { label: "k"; shifted: "K"; }
-            CharKey { label: "l"; shifted: "L"; extended: ["l·l","'l","-la","-lo"]; extendedShifted: ["L·L","'L","-LA","-LO"] }
+            CharKey { label: "l"; shifted: "L"; extended: ["l·l","'l","-li","-la","-lo"]; extendedShifted: ["L·L","'L","-LI","-LA","-LO"] }
             CharKey { label: "ç"; shifted: "Ç"; rightSide: true; }
         }
 
@@ -70,7 +70,7 @@ KeyPad {
             CharKey { label: "c"; shifted: "C"; extended: ["ç"]; extendedShifted: ["Ç"] }
             CharKey { label: "v"; shifted: "V"; }
             CharKey { label: "b"; shifted: "B"; }
-            CharKey { label: "n"; shifted: "N"; extended: ["ny","ñ"]; extendedShifted: ["NY","Ñ"] }
+            CharKey { label: "n"; shifted: "N"; extended: ["ny","'n","-ne","ñ"]; extendedShifted: ["NY","'N","-NE","Ñ"] }
             CharKey { label: "m"; shifted: "M"; extended: ["'m","-me"]; extendedShifted: ["'M","-ME"] }
             BackspaceKey {}
         }
