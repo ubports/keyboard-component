@@ -31,6 +31,8 @@ Item {
     
     /* to be set in keyboard layouts */
     property string label: "";
+    property string toplabel: "";
+    property string botlabel: "";
     property var leaves: ["", "", "", "", ""];
     property int index: keyFlickArea.index;
     property bool highlight: false;
@@ -54,12 +56,39 @@ Item {
     readonly property double leftOffset: buttonRect.anchors.leftMargin
     readonly property double rightOffset: buttonRect.anchors.rightMargin
 
+    /* icons */
+    property var iconNormal: ["", "", "", "", ""];
+    property var iconShifted: ["", "", "", "", ""];
+    property var iconCapsLock: ["", "", "", "", ""];
+    property var iconCaps: [
+			    "",
+			    iconCapsLock[1] ? "image://theme/%1".arg(iconCapsLock[1]) : "",
+			    iconCapsLock[2] ? "image://theme/%1".arg(iconCapsLock[2]) : "",
+			    iconCapsLock[3] ? "image://theme/%1".arg(iconCapsLock[3]) : "",
+			    iconCapsLock[4] ? "image://theme/%1".arg(iconCapsLock[4]) : ""
+		    ];
+    property var iconAutoCaps: [
+			    "",
+			    iconShifted[1] ? "image://theme/%1".arg(iconShifted[1]) : "",
+			    iconShifted[2] ? "image://theme/%1".arg(iconShifted[2]) : "",
+			    iconShifted[3] ? "image://theme/%1".arg(iconShifted[3]) : "",
+			    iconShifted[4] ? "image://theme/%1".arg(iconShifted[4]) : ""
+		    ];
+
+    property color colorNormal: fullScreenItem.theme.fontColor
+    property color colorShifted: fullScreenItem.theme.fontColor
+    property color colorCapsLock: fullScreenItem.theme.fontColor
+
+    property var iconAngles: ["", "", "", "", ""];
+
     /* design */
     property string normalColor: fullScreenItem.theme.charKeyColor
     property string pressedColor: fullScreenItem.theme.charKeyPressedColor
     property bool borderEnabled: fullScreenItem.theme.keyBorderEnabled
     property string borderColor: borderEnabled ? fullScreenItem.theme.charKeyBorderColor : "transparent"
     property int fontSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8));
+    property int iconSize: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+    property bool isPortrait: buttonRect.width/buttonRect.height > 2 ? false : true
 
     /// annotation shows a small label in the upper right corner
     // if the annotiation property is set, it will be used. If not, the first position in extended[] list or extendedShifted[] list will
@@ -104,13 +133,25 @@ Item {
             Column {
                 spacing: units.gu( UI.annotationsMargins )
                 anchors.centerIn: parent
+		Text {
+                    id: topLabel
+                    text: (panel.hideKeyLabels)?"":(toplabel!=""?toplabel:charlabel[2])
+                    anchors.right: (labelright)?parent.right:"";
+                    anchors.left: (labelleft)?parent.left:"";
+                    anchors.horizontalCenter: (labelleft||labelright)?"":parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize:fontSize
+                    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+                }
                 Text {
                     id: keyLabel
-                    text: (panel.hideKeyLabels)?"":label
+                    text: (panel.hideKeyLabels)?"":(label!=""?label:charlabel[1]+charlabel[4]+botlabel+charlabel[3])
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.family: UI.fontFamily
                     font.pixelSize: fontSize
-                    font.weight: Font.Light
+		    font.weight: Font.Light
                     color: fullScreenItem.theme.fontColor
                     textFormat: Text.StyledText
                     visible: label!=""
@@ -129,150 +170,47 @@ Item {
                 }
             }
 
-            RowLayout {
-                id: tapLeftTopCol
+                Text {
+                    id: annotationLabel
+                    text: (panel.hideKeyLabels)?"":annotation
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.bottomMargin: units.gu( UI.annotationMargins )
+                    font.family: UI.fontFamily
+                    font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
+		    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+		    visible: annotation != ""
+                }
+            }
+	    Column {
+                spacing: units.gu( UI.annotationMargins )
                 anchors.left: parent.left
-                spacing: 0
-
-                ColumnLayout {
-                    id: tapColumn
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/3
-                    Layout.alignment : Qt.AlignTop
-                    spacing: 0
-
-                    Text {
-                        id: tapLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[0]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: UI.fontFamily
-                        font.pixelSize: fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.selectionColor
-                        textFormat: Text.StyledText
-                    }
+		 Text {
+                    id: tapLabel
+                    text: (panel.hideKeyLabels)?"":charlabel[0]
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize: fontSize
+		    font.weight: Font.Light
+                    color: fullScreenItem.theme.selectionColor
+                    textFormat: Text.StyledText
                 }
 
-                ColumnLayout {
-                    id: leftColumn
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
-                    Layout.preferredHeight: buttonRect.height
-                    spacing: 0
+		}
 
-                    Text {
-                        id: middleLeftLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[1]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: UI.fontFamily
-                        font.pixelSize:fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
-                    }
-                }
-                Text{
-                     id: annotationLabel
-                     text: (panel.hideKeyLabels)?"":annotation
-                     anchors.horizontalCenter: parent.horizontalCenter
-                     anchors.bottomMargin: units.gu( UI.annotationMargins )
-                     font.family: UI.fontFamily
-                     font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
-                     font.weight: Font.Light
-                     color: fullScreenItem.theme.fontColor
-                     textFormat: Text.StyledText
-                     visible: annotation != ""
-                }
-            }
-
-                ColumnLayout {
-                  id: topColumn
-                  Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
-                  Layout.alignment : Qt.AlignTop
-                  spacing: 0
-
-		    Icon {
-			    id: iconImageUp
-			    source: iconNormal[2] ? "image://theme/%1".arg(iconNormal[2])
-									 : ""
-			    color: key.colorNormal
-			    anchors.horizontalCenter: parent.horizontalCenter
-
-			    visible: (iconNormal[2] != "" && !panel.hideKeyLabels)
-			    width: iconSize
-			    height: iconSize
-		    }
-
-                  Text {
-                      id: topCenterLabel
-                      text: (panel.hideKeyLabels)?"":charlabel[2]
-                      anchors.horizontalCenter: parent.horizontalCenter
-                      horizontalAlignment: Text.AlignHCenter
-                      font.family: UI.fontFamily
-                      font.pixelSize:fontSize
-                      font.weight: Font.Light
-                      color: fullScreenItem.theme.fontColor
-                      textFormat: Text.StyledText
-                  }
-                }
-            }
-
-            RowLayout {
-                id: bottomRightCol
-                anchors.right: parent.right
-                spacing: 0
-
-                ColumnLayout {
-                    id: bottomColumn
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
-                    Layout.alignment : Qt.AlignBottom
-                    spacing: 0
-
-                    Text {
-                        id: bottomCenterLabel
-                        text:  (panel.hideKeyLabels)?"":charlabel[4]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: units.gu(0.25)
-                        font.family: UI.fontFamily
-                        font.pixelSize:fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
-                    }
-                }
-
-                ColumnLayout {
-                    id: rightColumn
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
-                    Layout.preferredHeight: buttonRect.height
-                    spacing: 0
-
-                    Text {
-                        id: middleRightLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[3]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: UI.fontFamily
-                        font.pixelSize:fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
-                    }
-                }
-            }
         }
 
         FlickPop {
+	    id : flickPop
             anchors.horizontalCenter: buttonRect.horizontalCenter
             anchors.bottom: buttonRect.top
             anchors.bottomMargin: key.height * 0.5
             width: units.gu((UI.fontSize + UI.flickMargin) * 3)
             height: units.gu((UI.fontSize + UI.flickMargin) * 3)
             chars: leaves
+	    icons:iconNormal
+	    angles:iconAngles
             index: keyFlickArea.index
             visible:(maliit_input_method.enableMagnifier)? key.currentlyPressed && chars.length > 1:false
         }
@@ -317,4 +255,37 @@ Item {
                 keyFlickArea.cancelPress();
         }
     }
+    // make sure the icon changes even if the property icon* change on runtime
+
+    state: panel.activeKeypadState
+    states: [
+        State {
+            name: "caps"
+
+	    PropertyChanges {
+                target: flickPop
+		icons: panel.autoCapsTriggered ? iconShifted : iconCapsLock
+            }
+	    PropertyChanges {
+                target: iconImageUp
+                source: panel.autoCapsTriggered ? iconAutoCaps[2] : iconCaps[2]
+                color: key.colorShifted
+            }
+	    PropertyChanges {
+                target: iconImageDown
+                source: panel.autoCapsTriggered ? iconAutoCaps[4] : iconCaps[4]
+                color: key.colorShifted
+            }
+	    PropertyChanges {
+                target: iconImageLeft
+                source: panel.autoCapsTriggered ? iconAutoCaps[1] : iconCaps[1]
+                color: key.colorShifted
+            }
+	    PropertyChanges {
+                target: iconImageRight
+                source: panel.autoCapsTriggered ? iconAutoCaps[3] : iconCaps[3]
+                color: key.colorShifted
+            }
+        }
+    ]
 }

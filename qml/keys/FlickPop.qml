@@ -29,60 +29,59 @@ Item {
 
     property var chars: ["", "", "", "", ""];
     property var icons: ["", "", "", "", ""];
-    property var iconSources: ["", "", "", "", ""];
+    property var angles: ["", "", "", "", ""];
     property int index: 0
 
     visible: false
 
     FlickPopKey {
         id: center
-        labelChar: chars[0]
-	labelIcon:icons[0]
-	labelIconSource:iconSources[0]
+        labelChar: chars[0] ? chars[0] : ""
+	labelIcon: icons[0] ? icons[0] : ""
         anchors.centerIn: parent
         labelOpacity: index == 0 ? 1.0 : 0.6
+	labelAngle: angles[0] ? angles[0] : ""
         labelColor: index == 0 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
 
     FlickPopKey {
         labelChar: chars[1] ? chars[1] : ""
 	labelIcon:icons[1] ? icons[1] : ""
-	labelIconSource:iconSources[1] ? iconSources[1] : ""
 
         anchors.verticalCenter: center.verticalCenter
         anchors.right: center.left
         labelOpacity: index == 1 ? 1.0 : 0.6
+	labelAngle: angles[1] ? angles[1] : ""
         labelColor: index == 1 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
 
     FlickPopKey {
         labelChar: chars[2] ? chars[2] : ""
 	labelIcon:icons[2] ? icons[2] : ""
-	labelIconSource:iconSources[2] ? iconSources[2] : ""
         anchors.horizontalCenter: center.horizontalCenter
         anchors.bottom: center.top
         labelOpacity: index == 2 ? 1.0 : 0.6
+	labelAngle: angles[2] ? angles[2] : ""
         labelColor: index == 2 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
 
     FlickPopKey {
         labelChar: chars[3] ? chars[3] : ""
 	labelIcon:icons[3] ? icons[3] : ""
-	labelIconSource:iconSources[3] ? iconSources[3] : ""
         anchors.verticalCenter: center.verticalCenter
         anchors.left: center.right
         labelOpacity: index == 3 ? 1.0 : 0.6
+	labelAngle: angles[3] ? angles[3] : ""
         labelColor: index == 3 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
 
     FlickPopKey {
         labelChar: chars[4] ? chars[4] : ""
 	labelIcon:icons[4] ? icons[4] : ""
-	labelIconSource:iconSources[4] ? iconSources[4] : ""
         anchors.horizontalCenter: center.horizontalCenter
         anchors.top: center.bottom
         labelOpacity: index == 4 ? 1.0 : 0.6
-	labelAngle: 180
+	labelAngle: angles[4] ? angles[4] : ""
         labelColor: index == 4 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
     }
 }

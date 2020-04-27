@@ -120,8 +120,8 @@ KeyPad {
                 annotation: layout.state == "caps" ? "0%" : "0%";
             }
             StringKey {
-                charlabel: [".", ".io", ".com", ".org",".net"];
-                leaves: [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"];
+                charlabel: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
+                leaves: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
                 unstyledLeaves: [".", ".io", ".com", ".org",".net"];
         }
 	CommitKey    { id: enterKey; width: panel.keyWidth; height:layout.height;}

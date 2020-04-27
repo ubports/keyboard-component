@@ -21,9 +21,12 @@ import Ubuntu.Components.Popups 1.3
 
 import "key_constants.js" as UI
 
-FlickActionKey {
-    iconNormal:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-disabled", "", "keyboard-caps-locked"]
-    iconShifted:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-locked", "", "keyboard-caps-disabled"]
+FlickCharKey {
+    padding: UI.actionKeyPadding
+    toplabel:kana.label
+    botlabel:kana.annotation
+    charlabel: ["↵", "␣", "", "", ""]
+    leaves: kana.state=="caps"?["↵", "␣", "", ""/*"⎄"*/, "ⓐ"]:["↵", "␣", "Ⓐ", "", ""]
 
     overridePressArea: true
 
@@ -39,11 +42,15 @@ FlickActionKey {
         id: kana
 
         state: parent.default_state;
+	property string label: "";
+	property string annotation:"";
    	states: [
             State {
                 name: "caps"
                 PropertyChanges {
                     target: kana;
+                    label: "<font color=\"transparent\">Ⓐ</font>";
+		    annotation:"ⓐ";
                     state: "caps";
               }
             },
@@ -51,6 +58,8 @@ FlickActionKey {
                 name: "qertyu"
                 PropertyChanges {
                     target: kana;
+                    label: (panel.autoCapsTriggered)?"<font color=\"transparent\">Ⓐ</font>": "Ⓐ";
+		    annotation:(panel.autoCapsTriggered)?"ⓐ":"<font color=\"transparent\">ⓐ</font>";
                     state: "qertyu";
                 }
             }
@@ -83,6 +92,10 @@ FlickActionKey {
 	if(panel.autoCapsTriggered && index != 0){
 	    		panel.autoCapsTriggered=false;
 			kana.state = "qertyu"
+	}
+	if(panel.autoCapsTriggered && index ==2){
+			panel.autoCapsTriggered=false;
+			kana.state = "caps"
 	}
     }
 
