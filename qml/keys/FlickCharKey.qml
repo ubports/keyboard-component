@@ -192,9 +192,21 @@ Item {
                   Layout.alignment : Qt.AlignTop
                   spacing: 0
 
+		    Icon {
+			    id: iconImageUp
+			    source: iconNormal[2] ? "image://theme/%1".arg(iconNormal[2])
+									 : ""
+			    color: key.colorNormal
+			    anchors.horizontalCenter: parent.horizontalCenter
+
+			    visible: (iconNormal[2] != "" && !panel.hideKeyLabels)
+			    width: iconSize
+			    height: iconSize
+		    }
+
                   Text {
                       id: topCenterLabel
-                      text: (panel.hideKeyLabels)?"":(toplabel!=""?toplabel:charlabel[2])
+                      text: (panel.hideKeyLabels)?"":charlabel[2]
                       anchors.horizontalCenter: parent.horizontalCenter
                       horizontalAlignment: Text.AlignHCenter
                       font.family: UI.fontFamily
@@ -219,7 +231,7 @@ Item {
 
                     Text {
                         id: bottomCenterLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[4]+botlabel
+                        text:  (panel.hideKeyLabels)?"":charlabel[4]
                         anchors.horizontalCenter: parent.horizontalCenter
                         horizontalAlignment: Text.AlignHCenter
                         anchors.bottom: parent.bottom
