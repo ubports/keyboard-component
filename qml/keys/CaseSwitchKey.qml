@@ -21,13 +21,12 @@ import Ubuntu.Components.Popups 1.3
 
 import "key_constants.js" as UI
 
-FlickCharKey {
-    padding: UI.actionKeyPadding
-    toplabel:kana.label
-    botlabel:kana.annotation
-    charlabel: ["↵", "␣", "", "", ""]
-    leaves: kana.state=="caps"?["↵", "␣", "", ""/*"⎄"*/, "ⓐ"]:["↵", "␣", "Ⓐ", "", ""]
-
+FlickActionKey {
+    width: panel.keyWidth
+    iconNormal:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-disabled", "", "keyboard-caps-locked"]
+    iconShifted:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-enabled", "", "keyboard-caps-locked"]
+    iconCapsLock:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-locked", "", "keyboard-caps-disabled"]
+    iconAngles:["","","","","180"]
     overridePressArea: true
 
     property string preedit: maliit_input_method.preedit

@@ -78,6 +78,7 @@ Item {
     property color colorCapsLock: fullScreenItem.theme.fontColor
 
     property var iconAngles: ["", "", "", "", ""];
+    property int leavesFontSize: units.gu(UI.fontSize);
 
     /* design */
     property string normalColor: fullScreenItem.theme.charKeyColor
@@ -373,6 +374,7 @@ Item {
             chars: leaves
             icons:iconNormal
             angles:iconAngles
+	    popFontSize: leavesFontSize
             index: keyFlickArea.index
             visible:(maliit_input_method.enableMagnifier)? key.currentlyPressed && chars.length > 1:false
         }

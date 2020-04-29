@@ -20,7 +20,8 @@ import keys 1.0
 KeyPad {
 
     anchors.fill: parent;
-    content: c1 
+    content: c1
+    symbols: "languages/Keyboard_accents.qml"
     Column {
         id: c1
 	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1;
@@ -30,10 +31,9 @@ KeyPad {
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-	    CaseSwitchKey { id: layout; } 
-
-     FlickCharKey {
-                label: layout.state == "caps" ? "QER" : "qer";
+     ActionKey{width:panel.keyWidth;height:layout.height;visHeight:height}
+	    FlickCharKey {
+                charlabel: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
                 leaves: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
                 annotation: layout.state == "caps" ? "1:" : "1:";
             }
@@ -84,12 +84,11 @@ KeyPad {
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-           
-            CursorKey { leftSide:true}
-	     FlickCharKey {
-                label: layout.state == "caps" ? "ZXC" : "zxc"
-                leaves: layout.state == "caps" ? ["7", "Z", "X", "C", "\\"] : ["7", "z", "x", "c", "\\"]
-                annotation: layout.state == "caps" ? "7\\" : "7\\"
+
+            SymojiKey { id: symojiKey;}
+	    FlickCharKey {
+                charlabel: ["7", "]", "*", "[", "\\"]
+		leaves: ["7", "]", "*", "[", "\\"]
             }
             FlickCharKey {
                 label: layout.state == "caps" ? "[ * ]" : "[ * ]"
@@ -101,7 +100,10 @@ KeyPad {
                 leaves: layout.state == "caps" ? ["9", "B", "N", "M", "/"] : ["9", "b", "n", "m", "/"]
                 annotation: layout.state == "caps" ? "9/" : "9/"
             }
-           CursorKey { rightSide:true; }
+            FlickCharKey {
+                charlabel: ["€", "₹", "£", "", "¥"]
+                leaves: ["€", "₹", "£", "", "¥"]
+            }
 	 }
 
         Row {
@@ -127,4 +129,19 @@ KeyPad {
             CommitKey    { id: enterKey; width: panel.keyWidth; height:layout.height }   
 	} 
    } // column
+	Row{
+	 anchors.horizontalCenter: parent.horizontalCenter;
+	 anchors.left:parent.left
+	 anchors.bottom:parent.bottom
+	 spacing: 0
+
+	    LayoutBar {
+	        id: layoutBar;
+	        width: parent.width;
+	        height:layout.height-layout.height*0.5;
+	        visHeight:height;
+		fontSize:fontSize;
+	    }
+
+     }
 }

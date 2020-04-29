@@ -30,6 +30,7 @@ Item {
     property var chars: ["", "", "", "", ""];
     property var icons: ["", "", "", "", ""];
     property var angles: ["", "", "", "", ""];
+    property int popFontSize: units.gu(UI.fontSize);
     property int index: 0
 
     visible: false
@@ -42,6 +43,7 @@ Item {
         labelOpacity: index == 0 ? 1.0 : 0.6
 	labelAngle: angles[0] ? angles[0] : ""
         labelColor: index == 0 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
+	labelFontSize: popFontSize
     }
 
     FlickPopKey {
@@ -53,6 +55,7 @@ Item {
         labelOpacity: index == 1 ? 1.0 : 0.6
 	labelAngle: angles[1] ? angles[1] : ""
         labelColor: index == 1 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
+	labelFontSize: popFontSize
     }
 
     FlickPopKey {
@@ -63,6 +66,7 @@ Item {
         labelOpacity: index == 2 ? 1.0 : 0.6
 	labelAngle: angles[2] ? angles[2] : ""
         labelColor: index == 2 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
+	labelFontSize: popFontSize
     }
 
     FlickPopKey {
@@ -73,6 +77,7 @@ Item {
         labelOpacity: index == 3 ? 1.0 : 0.6
 	labelAngle: angles[3] ? angles[3] : ""
         labelColor: index == 3 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
+	labelFontSize: popFontSize
     }
 
     FlickPopKey {
@@ -83,5 +88,6 @@ Item {
         labelOpacity: index == 4 ? 1.0 : 0.6
 	labelAngle: angles[4] ? angles[4] : ""
         labelColor: index == 4 ? fullScreenItem.theme.selectionColor : fullScreenItem.theme.fontColor
+	labelFontSize: popFontSize
     }
 }

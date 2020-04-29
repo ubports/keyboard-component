@@ -20,7 +20,7 @@ import keys 1.0
 KeyPad {
     anchors.fill:parent;
     content: c1
-
+    symbols: "languages/Keyboard_accents.qml"
     Column {
         id: c1 
     	anchors.fill:parent;
@@ -29,9 +29,9 @@ KeyPad {
     Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-	    CaseSwitchKey { id: layout; } 
-            FlickCharKey {
-                label: layout.state == "caps" ? "QER" : "qer";
+     ActionKey{width:panel.keyWidth;height:layout.height;visHeight:height}
+	    FlickCharKey {
+                charlabel: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
                 leaves: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
                 annotation: layout.state == "caps" ? "1:" : "1:";
             }
@@ -82,12 +82,11 @@ KeyPad {
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-           
-            CursorKey { leftSide:true; }
-	     FlickCharKey {
-                label: layout.state == "caps" ? "ZXC" : "zxc"
-                leaves: layout.state == "caps" ? ["7", "Z", "X", "C", "\\"] : ["7", "z", "x", "c", "\\"]
-                annotation: layout.state == "caps" ? "7\\" : "7\\"
+
+            SymojiKey { id: symojiKey;}
+	    FlickCharKey {
+                charlabel: ["7", "]", "*", "[", "\\"]
+		leaves: ["7", "]", "*", "[", "\\"]
             }
             FlickCharKey {
                 label: layout.state == "caps" ? "[*]" : "[*]"
@@ -95,11 +94,13 @@ KeyPad {
                 annotation: layout.state == "caps" ? "8V" : "8v"
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "BNM" : "bnm"
-                leaves: layout.state == "caps" ? ["9", "B", "N", "M", "/"] : ["9", "b", "n", "m", "/"]
-                annotation: layout.state == "caps" ? "9/" : "9/"
+                charlabel: ["9", ")", "?", "(", "/"]
+                leaves: ["9", ")", "?", "(", "/"]
             }
-           CursorKey { rightSide:true; }
+            FlickCharKey {
+                charlabel: ["€", "₹", "£", "", "¥"]
+                leaves: ["€", "₹", "£", "", "¥"]
+            }
 	 }
 
         Row {
@@ -118,10 +119,27 @@ KeyPad {
                 annotation: layout.state == "caps" ? "0%" : "0%";
             }
             StringKey {
-                charlabel: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
-                leaves: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
-                unstyledLeaves: [".", ".io", ".com", ".org",".net"];
-        }
+                charlabel: layout.state == "caps" ? [".", ".io", ".com", ".org",".net"] : [".", "}", "#", "{", "@"];
+                leaves: layout.state == "caps" ? [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]:[".", "}", "#", "{", "@"];
+                unstyledLeaves: layout.state == "caps" ? [".", ".io", ".com", ".org",".net"]: [".", "}", "#", "{", "@"];
+            }
+            BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
+	}
 
-    } // column
+   } // column
+	Row{
+	 anchors.horizontalCenter: parent.horizontalCenter;
+	 anchors.left:parent.left
+	 anchors.bottom:parent.bottom
+	 spacing: 0
+
+	    LayoutBar {
+	        id: layoutBar;
+	        width: parent.width;
+	        height:layout.height-layout.height*0.5;
+	        visHeight:height;
+		fontSize:fontSize;
+	    }
+
+     }
 }

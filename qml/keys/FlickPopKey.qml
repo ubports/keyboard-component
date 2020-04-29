@@ -28,6 +28,7 @@ Rectangle {
     property color labelColor: fullScreenItem.theme.fontColor
     property real labelOpacity: 1.0
     property int labelAngle: 0
+    property int labelFontSize: units.gu(UI.fontSize)
     visible: labelChar || labelIcon? true : false
 
     color: fullScreenItem.theme.charKeyColor
@@ -39,7 +40,7 @@ Rectangle {
         anchors.centerIn: parent
         text: parent.labelChar
         font.family: UI.fontFamily
-        font.pixelSize: units.gu(UI.fontSize)
+        font.pixelSize: labelFontSize
         font.bold: UI.fontBold
         color: parent.labelColor
         opacity: parent.labelOpacity
