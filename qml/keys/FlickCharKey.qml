@@ -31,8 +31,6 @@ Item {
     
     /* to be set in keyboard layouts */
     property string label: "";
-    property string toplabel: "";
-    property string botlabel: "";
     property var leaves: ["", "", "", "", ""];
     property int index: keyFlickArea.index;
     property bool highlight: false;
@@ -87,7 +85,7 @@ Item {
     property bool borderEnabled: fullScreenItem.theme.keyBorderEnabled
     property string borderColor: borderEnabled ? fullScreenItem.theme.charKeyBorderColor : "transparent"
     property int fontSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8));
-    property bool isPortrait: buttonRect.width/buttonRect.height > 2 ? false : true
+    property int iconSize: !fullScreenItem.landscape ? buttonRect.width/4 : buttonRect.width/6
 
     /// annotation shows a small label in the upper right corner
     // if the annotiation property is set, it will be used. If not, the first position in extended[] list or extendedShifted[] list will
@@ -129,6 +127,33 @@ Item {
 
             /// label of the key
             //  the label is also the value subitted to the app
+            Column {
+                spacing: units.gu( UI.annotationsMargins )
+                anchors.centerIn: parent
+                Text {
+                    id: keyLabel
+                    text: (panel.hideKeyLabels)?"":label
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize: fontSize
+                    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+                    visible: label!=""
+                }
+                Text{
+                     id: annotationLabel
+                     text: (panel.hideKeyLabels)?"":annotation
+                     anchors.horizontalCenter: parent.horizontalCenter
+                     anchors.bottomMargin: units.gu( UI.annotationMargins )
+                     font.family: UI.fontFamily
+                     font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
+                     font.weight: Font.Light
+                     color: fullScreenItem.theme.fontColor
+                     textFormat: Text.StyledText
+                     visible: annotation != ""
+                }
+            }
 
             RowLayout {
                 id: tapLeftTopCol
@@ -137,9 +162,21 @@ Item {
 
                 ColumnLayout {
                     id: tapColumn
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/3
+                    Layout.minimumWidth: !fullScreenItem.landscape ? buttonRect.width/4 : buttonRect.width/3
                     Layout.alignment : Qt.AlignTop
                     spacing: 0
+
+                     Icon {
+                        id: iconImage
+                        source: iconNormal[0] ? "image://theme/%1".arg(iconNormal[0])
+                                     : ""
+                        color: fullScreenItem.theme.selectionColor
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        visible: (iconNormal[0] != "" && !panel.hideKeyLabels)
+                        width: iconSize
+                        height: iconSize
+                        transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[0]}
+                    }
 
                     Text {
                         id: tapLabel
@@ -151,46 +188,74 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.selectionColor
                         textFormat: Text.StyledText
+                        visible: !iconImage.visible
                     }
                 }
 
                 ColumnLayout {
                     id: leftColumn
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+                    Layout.minimumWidth: !fullScreenItem.landscape ? buttonRect.width/4 : buttonRect.width/6
                     Layout.preferredHeight: buttonRect.height
                     spacing: 0
 
+                    Icon {
+                            id: iconImageLeft
+                            source: iconNormal[1] ? "image://theme/%1".arg(iconNormal[1])
+                                                                         : ""
+                            color: key.colorNormal
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            visible: (iconNormal[1] != "" && !panel.hideKeyLabels)
+                            width: iconSize
+                            height: iconSize
+                            transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[1]}
+                    }
+
                     Text {
-                        id: middleLeftLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[1]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: UI.fontFamily
-                        font.pixelSize:fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
+                            id: middleLeftLabel
+                            text: (panel.hideKeyLabels)?"":charlabel[1]
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: UI.fontFamily
+                            font.pixelSize:fontSize
+                            font.weight: Font.Light
+                            color: fullScreenItem.theme.fontColor
+                            textFormat: Text.StyledText
+                            visible: !iconImageLeft.visible
                     }
                 }
             }
 
                 ColumnLayout {
                   id: topColumn
-                  Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+                  Layout.minimumWidth: !fullScreenItem.landscape ? buttonRect.width/4 : buttonRect.width/6
                   Layout.alignment : Qt.AlignTop
                   spacing: 0
 
+                  Icon {
+                            id: iconImageUp
+                            source: iconNormal[2] ? "image://theme/%1".arg(iconNormal[2])
+									 : ""
+                            color: key.colorNormal
+                            anchors.horizontalCenter: parent.horizontalCenter
+
+                            visible: (iconNormal[2] != "" && !panel.hideKeyLabels)
+                            width: iconSize
+                            height: iconSize
+                            transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[2]}
+                  }
+
                   Text {
-                      id: topCenterLabel
-                      text: (panel.hideKeyLabels)?"":(toplabel!=""?toplabel:charlabel[2])
-                      anchors.horizontalCenter: parent.horizontalCenter
-                      horizontalAlignment: Text.AlignHCenter
-                      font.family: UI.fontFamily
-                      font.pixelSize:fontSize
-                      font.weight: Font.Light
-                      color: fullScreenItem.theme.fontColor
-                      textFormat: Text.StyledText
+                            id: topCenterLabel
+                            text: (panel.hideKeyLabels)?"":charlabel[2]
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: UI.fontFamily
+                            font.pixelSize:fontSize
+                            font.weight: Font.Light
+                            color: fullScreenItem.theme.fontColor
+                            textFormat: Text.StyledText
+                            visible: !iconImageUp.visible
                   }
                   Text {
                       id: keyLabel
@@ -213,54 +278,70 @@ Item {
 
                 ColumnLayout {
                     id: bottomColumn
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+                    Layout.minimumWidth: !fullScreenItem.landscape ? buttonRect.width/4 : buttonRect.width/6
                     Layout.alignment : Qt.AlignBottom
                     spacing: 0
 
+                   Icon {
+                            id: iconImageDown
+                            source: iconNormal[4] ? "image://theme/%1".arg(iconNormal[4])
+                                    : ""
+                            color: key.colorNormal
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: units.gu(0.25)
+                            visible: (iconNormal[4] != "" && !panel.hideKeyLabels)
+                            width: iconSize
+                            height: iconSize
+                            transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[4]}
+                    }
+
                     Text {
-                        id: bottomCenterLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[4]+botlabel
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: units.gu(0.25)
-                        font.family: UI.fontFamily
-                        font.pixelSize:fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
+                            id: bottomCenterLabel
+                            text:  (panel.hideKeyLabels)?"":charlabel[4]
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: units.gu(0.25)
+                            font.family: UI.fontFamily
+                            font.pixelSize:fontSize
+                            font.weight: Font.Light
+                            color: fullScreenItem.theme.fontColor
+                            textFormat: Text.StyledText
+                            visible: !iconImageDown.visible
                     }
                 }
 
                 ColumnLayout {
                     id: rightColumn
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
+                    Layout.minimumWidth: !fullScreenItem.landscape ? buttonRect.width/4 : buttonRect.width/6
                     Layout.preferredHeight: buttonRect.height
                     spacing: 0
 
-                    Text {
-                        id: middleRightLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[3]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: UI.fontFamily
-                        font.pixelSize:fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
+                    Icon {
+                            id: iconImageRight
+                            source: iconNormal[3] ? "image://theme/%1".arg(iconNormal[3])
+									 : ""
+                            color: key.colorNormal
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            visible: (iconNormal[3] != "" && !panel.hideKeyLabels)
+                            width: iconSize
+                            height: iconSize
+                            transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[3]}
                     }
+
                     Text {
-                        id: annotationLabel
-                        text: (panel.hideKeyLabels)?"":annotation
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottomMargin: units.gu( UI.annotationMargins )
-                        font.family: UI.fontFamily
-                        font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
-		        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
-		        visible: annotation != ""
+                            id: middleRightLabel
+                            text: (panel.hideKeyLabels)?"":charlabel[3]
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: UI.fontFamily
+                            font.pixelSize:fontSize
+                            font.weight: Font.Light
+                            color: fullScreenItem.theme.fontColor
+                            textFormat: Text.StyledText
+                            visible: !iconImageRight.visible
                     }
                 }
             }
@@ -283,15 +364,15 @@ Item {
         }
 
         FlickPop {
-	    id : flickPop
+            id : flickPop
             anchors.horizontalCenter: buttonRect.horizontalCenter
             anchors.bottom: buttonRect.top
             anchors.bottomMargin: key.height * 0.5
             width: units.gu((UI.fontSize + UI.flickMargin) * 3)
             height: units.gu((UI.fontSize + UI.flickMargin) * 3)
             chars: leaves
-	    icons:iconNormal
-	    angles:iconAngles
+            icons:iconNormal
+            angles:iconAngles
             index: keyFlickArea.index
             visible:(maliit_input_method.enableMagnifier)? key.currentlyPressed && chars.length > 1:false
         }
