@@ -52,9 +52,9 @@ KeyPad {
             spacing: 0
 
             FlickCharKey {
-                charlabel:  ["=", "", "!", "&amp;", "|"]
+                charlabel:  ["=", "", "±", "÷", "×"]
 		labelleft:true
-                leaves: layout.state == "caps" ? ["=", "", "!", "&", "|"] : ["=", "", "!", "&", "|"]
+                leaves: ["=", "", "±", "÷", "×"]
             }
             FlickCharKey {
                 charlabel: layout.state == "caps" ? ["4", "È", "Ê", "É", "Ë"] : ["4", "è", "ê", "é", "ë"];
@@ -69,9 +69,9 @@ KeyPad {
                 leaves: layout.state == "caps" ? ["6", "Ò", "Ô", "Ó", "Ö"] : ["6", "ò", "ô", "ó", "ö"];
             }
             FlickCharKey {
-                charlabel: ["~", "_", "^", "", "$"]
+                charlabel: ["~", "™", "©", "", "®"]
 		labelright:true
-                leaves: ["~", "_", "^", "", "$"]
+                leaves: ["~", "™", "©", "", "®"]
 
             }
         }
