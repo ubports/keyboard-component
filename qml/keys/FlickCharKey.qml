@@ -59,19 +59,19 @@ Item {
     property var iconShifted: ["", "", "", "", ""];
     property var iconCapsLock: ["", "", "", "", ""];
     property var iconCaps: [
-			    "",
-			    iconCapsLock[1] ? "image://theme/%1".arg(iconCapsLock[1]) : "",
-			    iconCapsLock[2] ? "image://theme/%1".arg(iconCapsLock[2]) : "",
-			    iconCapsLock[3] ? "image://theme/%1".arg(iconCapsLock[3]) : "",
-			    iconCapsLock[4] ? "image://theme/%1".arg(iconCapsLock[4]) : ""
-		    ];
+                            "",
+                            iconCapsLock[1] ? "image://theme/%1".arg(iconCapsLock[1]) : "",
+                            iconCapsLock[2] ? "image://theme/%1".arg(iconCapsLock[2]) : "",
+                            iconCapsLock[3] ? "image://theme/%1".arg(iconCapsLock[3]) : "",
+                            iconCapsLock[4] ? "image://theme/%1".arg(iconCapsLock[4]) : ""
+                    ];
     property var iconAutoCaps: [
-			    "",
-			    iconShifted[1] ? "image://theme/%1".arg(iconShifted[1]) : "",
-			    iconShifted[2] ? "image://theme/%1".arg(iconShifted[2]) : "",
-			    iconShifted[3] ? "image://theme/%1".arg(iconShifted[3]) : "",
-			    iconShifted[4] ? "image://theme/%1".arg(iconShifted[4]) : ""
-		    ];
+                            "",
+                            iconShifted[1] ? "image://theme/%1".arg(iconShifted[1]) : "",
+                            iconShifted[2] ? "image://theme/%1".arg(iconShifted[2]) : "",
+                            iconShifted[3] ? "image://theme/%1".arg(iconShifted[3]) : "",
+                            iconShifted[4] ? "image://theme/%1".arg(iconShifted[4]) : ""
+                    ];
 
     property color colorNormal: fullScreenItem.theme.fontColor
     property color colorShifted: fullScreenItem.theme.fontColor
@@ -86,7 +86,6 @@ Item {
     property bool borderEnabled: fullScreenItem.theme.keyBorderEnabled
     property string borderColor: borderEnabled ? fullScreenItem.theme.charKeyBorderColor : "transparent"
     property int fontSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8));
-    property int iconSize: !fullScreenItem.landscape ? buttonRect.width/4 : buttonRect.width/6
 
     /// annotation shows a small label in the upper right corner
     // if the annotiation property is set, it will be used. If not, the first position in extended[] list or extendedShifted[] list will
@@ -121,6 +120,7 @@ Item {
             anchors.rightMargin: key.rightSide ? (parent.width - panel.keyWidth) + key.keyMargin : key.keyMargin
             anchors.bottomMargin: key.rowMargin
             radius: units.dp(4)
+            property int iconSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8));
             border{
                 width: borderEnabled ? units.gu(0.1) : 0
                 color: borderColor
@@ -174,9 +174,9 @@ Item {
                         color: fullScreenItem.theme.selectionColor
                         anchors.horizontalCenter: parent.horizontalCenter
                         visible: (iconNormal[0] != "" && !panel.hideKeyLabels)
-                        width: iconSize
-                        height: iconSize
-                        transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[0]}
+                        width: buttonRect.iconSize
+                        height: buttonRect.iconSize
+                        transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[0]}
                     }
 
                     Text {
@@ -207,9 +207,9 @@ Item {
                             color: key.colorNormal
                             anchors.horizontalCenter: parent.horizontalCenter
                             visible: (iconNormal[1] != "" && !panel.hideKeyLabels)
-                            width: iconSize
-                            height: iconSize
-                            transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[1]}
+                            width: buttonRect.iconSize
+                            height: buttonRect.iconSize
+                            transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[1]}
                     }
 
                     Text {
@@ -236,14 +236,14 @@ Item {
                   Icon {
                             id: iconImageUp
                             source: iconNormal[2] ? "image://theme/%1".arg(iconNormal[2])
-									 : ""
+                                                                         : ""
                             color: key.colorNormal
                             anchors.horizontalCenter: parent.horizontalCenter
 
                             visible: (iconNormal[2] != "" && !panel.hideKeyLabels)
-                            width: iconSize
-                            height: iconSize
-                            transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[2]}
+                            width: buttonRect.iconSize
+                            height: buttonRect.iconSize
+                            transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[2]}
                   }
 
                   Text {
@@ -292,9 +292,9 @@ Item {
                             anchors.bottom: parent.bottom
                             anchors.bottomMargin: units.gu(0.25)
                             visible: (iconNormal[4] != "" && !panel.hideKeyLabels)
-                            width: iconSize
-                            height: iconSize
-                            transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[4]}
+                            width: buttonRect.iconSize
+                            height: buttonRect.iconSize
+                            transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[4]}
                     }
 
                     Text {
@@ -323,13 +323,13 @@ Item {
                     Icon {
                             id: iconImageRight
                             source: iconNormal[3] ? "image://theme/%1".arg(iconNormal[3])
-									 : ""
+                                                                         : ""
                             color: key.colorNormal
                             anchors.horizontalCenter: parent.horizontalCenter
                             visible: (iconNormal[3] != "" && !panel.hideKeyLabels)
-                            width: iconSize
-                            height: iconSize
-                            transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[3]}
+                            width: buttonRect.iconSize
+                            height: buttonRect.iconSize
+                            transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[3]}
                     }
 
                     Text {
@@ -374,7 +374,7 @@ Item {
             chars: leaves
             icons:iconNormal
             angles:iconAngles
-	    popFontSize: leavesFontSize
+            popFontSize: leavesFontSize
             index: keyFlickArea.index
             visible:(maliit_input_method.enableMagnifier)? key.currentlyPressed && chars.length > 1:false
         }
@@ -389,11 +389,11 @@ Item {
                 key.released();
                 return;
             }
-	   event_handler.onKeyReleased(leaves[index], action);
+          event_handler.onKeyReleased(leaves[index], action);
        if(panel.autoCapsTriggered){
-	    		panel.autoCapsTriggered=false;
-		}
- 
+                       panel.autoCapsTriggered=false;
+               }
+
  }
 
         onPressed: {
@@ -426,26 +426,26 @@ Item {
         State {
             name: "caps"
 
-	    PropertyChanges {
+            PropertyChanges {
                 target: flickPop
-		icons: panel.autoCapsTriggered ? iconShifted : iconCapsLock
+                icons: panel.autoCapsTriggered ? iconShifted : iconCapsLock
             }
-	    PropertyChanges {
+            PropertyChanges {
                 target: iconImageUp
                 source: panel.autoCapsTriggered ? iconAutoCaps[2] : iconCaps[2]
                 color: key.colorShifted
             }
-	    PropertyChanges {
+            PropertyChanges {
                 target: iconImageDown
                 source: panel.autoCapsTriggered ? iconAutoCaps[4] : iconCaps[4]
                 color: key.colorShifted
             }
-	    PropertyChanges {
+            PropertyChanges {
                 target: iconImageLeft
                 source: panel.autoCapsTriggered ? iconAutoCaps[1] : iconCaps[1]
                 color: key.colorShifted
             }
-	    PropertyChanges {
+            PropertyChanges {
                 target: iconImageRight
                 source: panel.autoCapsTriggered ? iconAutoCaps[3] : iconCaps[3]
                 color: key.colorShifted

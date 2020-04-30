@@ -47,11 +47,11 @@ Rectangle {
     }
     Icon {
         anchors.centerIn: parent
-	source: parent.labelIcon ? "image://theme/%1".arg(parent.labelIcon):""
+        source: parent.labelIcon ? "image://theme/%1".arg(parent.labelIcon):""
         color: parent.labelColor
         opacity: parent.labelOpacity
-	transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:labelAngle}
-        height: iconSize
-        width: iconSize
+        transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:labelAngle}
+        height: buttonRect.iconSize
+        width: buttonRect.iconSize
     }
 }

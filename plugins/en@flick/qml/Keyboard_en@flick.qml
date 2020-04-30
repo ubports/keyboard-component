@@ -55,9 +55,9 @@ KeyPad {
             spacing: 0
 
             FlickCharKey {
-                label: layout.state == "caps" ? "!_" : "!_"
-                leaves: layout.state == "caps" ? ["=", "", "!", "_", "|"] : ["=", "", "!", "_", "|"]
-                annotation: layout.state == "caps" ? "=|" : "=|"
+                charlabel:  ["=", "", "!", "&amp;", "|"]
+		labelleft:true
+                leaves: ["=", "", "!", "&", "|"]
             }
             FlickCharKey {
                 label: layout.state == "caps" ? "AWD" : "awd";
