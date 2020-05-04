@@ -48,7 +48,7 @@ Item {
         objectName: "characterKeyPadLoader"
         anchors.fill: parent
         asynchronous: false
-        source: panel.state === "CHARACTERS" ? internal.characterKeypadSource : internal.symbolKeypadSource
+        source: internal.loadKeypad();
         onLoaded: {
             if (delayedAutoCaps) {
                 activeKeypadState = "SHIFTED";
@@ -83,18 +83,27 @@ Item {
         maliit_input_method.keyboardState = state
     }
 
+
     QtObject {
         id: internal
 
         property Item activeKeypad: characterKeypadLoader.item
         property string characterKeypadSource: loadLayout(maliit_input_method.contentType,
                                                           maliit_input_method.activeLanguage)
-	
-        property string symbolKeypad: activeKeypad ? activeKeypad.symbols : ""
-        property string symbolKeypadSource: panel.state == "EMOJI" ? "languages/Keyboard_emoji.qml" : activeKeypad.symbols
+        property string symbolKeypadSource: activeKeypad ? activeKeypad.symbols : ""
 
         onCharacterKeypadSourceChanged: {
             panel.state = "CHARACTERS";
+        }
+
+        function loadKeypad() {
+            if (panel.state === "CHARACTERS" ) {
+                return characterKeypadSource;
+            } else if (panel.state === "SYMBOLS") {
+                return symbolKeypadSource;
+            } else {
+                return "languages/Keyboard_"+panel.state+".qml";
+            }
         }
 
         function loadLayout(contentType, activeLanguage)
