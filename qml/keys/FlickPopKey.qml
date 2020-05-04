@@ -47,7 +47,7 @@ Rectangle {
     }
     Icon {
         anchors.centerIn: parent
-        source: parent.labelIcon ? "image://theme/%1".arg(parent.labelIcon):""
+        source: parent.labelIcon ? parent.labelIcon : ""
         color: parent.labelColor
         opacity: parent.labelOpacity
         transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:labelAngle}

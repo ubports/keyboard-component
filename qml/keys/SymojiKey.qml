@@ -19,20 +19,41 @@ import QtQuick 2.4
 import "key_constants.js" as UI
 
 FlickActionKey {
-    charlabel: (panel.state == "SYMBOLS") ? ["abc", "", "", "😀", ""]:["àþç", "", "", "😀", ""]
-    leaves: (panel.state == "SYMBOLS") ? ["abc", "", "", "😀", ""]:["àþç", "", "", "😀", ""]
+    charlabel: (panel.state == "ACCENTS") ? ["", "", "", "", "abc"]:["", "", "ã｡", "", "āñ‽"]
+    leaves: (panel.state == "ACCENTS") ? ["", "", "", "", "abc"]:["", "", "ã｡", "", "āñ‽"]
+    iconNormal: ["language-chooser", "", "", "", ""]
+    iconNormalSource: ["", "", "", "../images/happy.svg", ""]
     leavesFontSize: 30;
+    shiftedlabel: charlabel
+    shiftedleaves: leaves
     width: panel.keyWidth;
     action: "symbols";
 
     overridePressArea: true;
 
     onReleased: {
-	    if (index == 0) {
-		    panel.state = (panel.state == "CHARACTERS") ? "SYMBOLS" : "CHARACTERS";
-	    } else if (index == 3) {
-		    panel.state = (panel.state == "CHARACTERS") ? "EMOJI" : "CHARACTERS";
-	    }
+        if (index == 0) {
+            if (maliit_input_method.previousLanguage && maliit_input_method.previousLanguage != maliit_input_method.activeLanguage && panel.state == "CHARACTERS") {
+                maliit_input_method.activeLanguage = maliit_input_method.previousLanguage
+            } else if(panel.state == "ACCENTS") {
+                        Qt.openUrlExternally("settings:///system/language")
+                        maliit_input_method.hide();
+            } else {
+                canvas.languageMenuShown = true
+            }
+        } else if (index == 2) {
+            panel.state = (panel.activeKeypadState == "NORMAL") ? "ACCENTS" : "CHARACTERS";
+            panel.activeKeypadState = (panel.activeKeypadState == "NORMAL" && panel.state == "ACCENTS") ? "CAPSLOCK" : "NORMAL";
+        } else if (index == 3) {
+            panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
+        } else if (index == 4) {
+            if(panel.state == "ACCENTS" && panel.activeKeypadState == "CAPSLOCK"){
+                panel.activeKeypadState = "NORMAL";
+                panel.state = "ACCENTS";
+            } else {
+                panel.state = panel.state == "CHARACTERS" ? "ACCENTS" : "CHARACTERS";
+            }
+        }
     }
     onPressed: {
         if (maliit_input_method.useAudioFeedback)
