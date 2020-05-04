@@ -182,6 +182,7 @@ KeyPad {
                 fontSize: units.gu(2.5)
                 onKeySent: {
                     internal.updateRecent(key);
+                    event_handler.onKeyReleased("", "commit");
                 }
             }
         }
