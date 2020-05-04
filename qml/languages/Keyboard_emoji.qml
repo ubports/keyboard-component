@@ -208,13 +208,15 @@ KeyPad {
 
         spacing: fullScreenItem.tablet ? panel.keyWidth / 5 : 0
 
-	SymbolShiftKey {
-	    id: symShiftKey;
-	    label: "ABC";
-	    shifted: label;
-	    padding: 0;
-	    height: parent.height;
-	}
+        SymbolShiftKey {
+            id: symShiftKey;
+            label: "ABC"
+            shifted: label
+            normalColor: fullScreenItem.theme.backgroundColor
+            padding:0
+            borderColor: normalColor
+            pressedColor: fullScreenItem.theme.backgroundColor
+        }
 
         CategoryKey {
             id: recentCat
