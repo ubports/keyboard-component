@@ -145,11 +145,11 @@ KeyPad {
                 shiftedleaves:leaves
             }
             StringKey {
-                charlabel: [".", ".io", ".com", ".org",".net"]
+                charlabel: [".", "<font size=\"4\">.io</font>", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]
                 shiftedlabel: [".", "}", "#", "{", "@"];
                 leaves: [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]
                 shiftedleaves:[".", "}", "#", "{", "@"];
-                unstyledLeaves: layout.state == "caps" ? [".", ".io", ".com", ".org",".net"]: [".", "}", "#", "{", "@"];
+                unstyledLeaves: (panel.activeKeypadState === "NORMAL") ? [".", ".io", ".com", ".org",".net"]: [".", "}", "#", "{", "@"];
             }
             BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
         }
