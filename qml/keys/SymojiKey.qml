@@ -19,10 +19,11 @@ import QtQuick 2.4
 import "key_constants.js" as UI
 
 FlickActionKey {
-    charlabel: (panel.state == "ACCENTS") ? ["", "", "", "", "abc"]:["", "", "ã｡", "", "āñ‽"]
-    leaves: (panel.state == "ACCENTS") ? ["", "", "", "", "abc"]:["", "", "ã｡", "", "āñ‽"]
-    iconNormal: ["language-chooser", "", "", "", ""]
-    iconNormalSource: ["", "", "", "../images/happy.svg", ""]
+    id: symojiKey
+    charlabel: (panel.state == "CHARACTERS") ? ["", "", "¡ä", "", ""] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "ñ", "", "a!"]
+    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "ñ", "", "a!"]
+    iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", "navigation-menu"] : ["settings", "", "", "", ""]
+    iconNormalSource: ["", "", "", "happy.svg", ""]
     leavesFontSize: 30;
     shiftedlabel: charlabel
     shiftedleaves: leaves
@@ -30,29 +31,53 @@ FlickActionKey {
     action: "symbols";
 
     overridePressArea: true;
+    property string default_state:"signs"
+    state: diacritics.state
+
+    Item {
+        id: diacritics
+
+        state: parent.default_state;
+        states: [
+            State {
+                name: "marks"
+                PropertyChanges {
+                    target: diacritics;
+                    state: "marks";
+              }
+            },
+            State {
+                name: "signs"
+                PropertyChanges {
+                    target: diacritics;
+                    state: "signs";
+                }
+            }
+        ]
+    }
 
     onReleased: {
         if (index == 0) {
             if (maliit_input_method.previousLanguage && maliit_input_method.previousLanguage != maliit_input_method.activeLanguage && panel.state == "CHARACTERS") {
-                maliit_input_method.activeLanguage = maliit_input_method.previousLanguage
+                maliit_input_method.activeLanguage = maliit_input_method.previousLanguage;
             } else if(panel.state == "ACCENTS") {
-                        Qt.openUrlExternally("settings:///system/language")
+                        Qt.openUrlExternally("settings:///system/language");
                         maliit_input_method.hide();
             } else {
-                canvas.languageMenuShown = true
+                canvas.languageMenuShown = true;
             }
         } else if (index == 2) {
-            panel.state = (panel.activeKeypadState == "NORMAL") ? "ACCENTS" : "CHARACTERS";
-            panel.activeKeypadState = (panel.activeKeypadState == "NORMAL" && panel.state == "ACCENTS") ? "CAPSLOCK" : "NORMAL";
+            if (panel.state == "ACCENTS")
+                state = "marks";
+            else
+                panel.state = "ACCENTS";
         } else if (index == 3) {
             panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
         } else if (index == 4) {
-            if(panel.state == "ACCENTS" && panel.activeKeypadState == "CAPSLOCK"){
-                panel.activeKeypadState = "NORMAL";
-                panel.state = "ACCENTS";
-            } else {
-                panel.state = panel.state == "CHARACTERS" ? "ACCENTS" : "CHARACTERS";
-            }
+            if (panel.state == "CHARACTERS")
+                canvas.languageMenuShown = true;
+            else
+                panel.state = "CHARACTERS";
         }
     }
     onPressed: {
