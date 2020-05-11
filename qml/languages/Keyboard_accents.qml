@@ -21,28 +21,33 @@ KeyPad {
 
     anchors.fill: parent;
     content: c1
-    symbols: "languages/Keyboard_emoji.qml"
     Column {
         id: c1
-	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
+        property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
         anchors.fill: parent;
-	spacing: 0
+        spacing: 0
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-     ActionKey{width:panel.keyWidth;height:layout.height;visHeight:height}
-     FlickCharKey {
-                charlabel: layout.state == "caps" ? ["1", "À", "Â", "Á", "Ä"] : ["1", "à", "â", "á", "ä"];
-                leaves: layout.state == "caps" ? ["1", "À", "Â", "Á", "Ä"] : ["1", "à", "â", "á", "ä"];
+            ActionKey{width:panel.keyWidth;height:layout.height;visHeight:height}
+            FlickCharKey {
+                charlabel: symojiKey.state == "marks" ?  ["ă", "ą", "ȧ", "ā", "ǎ"]: ["ã", "à", "â", "á", "ä"];
+                leaves: charlabel
+                shiftedlabel:symojiKey.state == "marks" ? ["Ă", "Ą", "Ȧ", "Ā", "Ǎ"] : ["Ã", "À", "Â", "Á", "Ä"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["2", "Ù", "Û", "Ú", "Ü"] : ["2", "ù", "û", "ú", "ü"];
-		leaves: layout.state == "caps" ? ["2", "Ù", "Û", "Ú", "Ü"] : ["2", "ù", "û", "ú", "ü"];
+                charlabel: symojiKey.state == "marks" ? ["ŭ", "ų", "ṁ", "ū", "ǔ"] : ["ũ", "ù", "û", "ú", "ü"];
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ŭ", "Ų", "Ṁ", "Ū", "Ǔ"] : ["Ũ", "Ù", "Û", "Ú", "Ü"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["3", "Å", "Æ", "Ý", "Œ"] : ["3", "å", "æ", "ý", "œ"];
-		leaves: layout.state == "caps" ? ["3", "Å", "Æ", "Ý", "Œ"] : ["3", "å", "æ", "ý", "œ"];
+                charlabel: symojiKey.state == "marks" ? ["ŏ", "ǫ", "ȯ", "ō", "ǒ"] : ["õ", "ò", "ô", "ó", "ö"];
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ŏ", "Ǫ", "Ȯ", "Ō", "Ǒ"] : ["Õ", "Ò", "Ô", "Ó", "Ö"];
+                shiftedleaves: shiftedlabel
             }
             CaseSwitchKey { id: layout; labelright:true}
         }
@@ -52,26 +57,36 @@ KeyPad {
             spacing: 0
 
             FlickCharKey {
-                charlabel:  ["=", "", "±", "÷", "×"]
-		labelleft:true
-                leaves: ["=", "", "±", "÷", "×"]
+                charlabel: symojiKey.state == "marks" ? ["ω", "", "ɛ", "д", "ɵ"] : ["√", "", "±", "÷", "×"]
+                labelleft:true
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ω", "", "Ɛ", "Д", "Ɵ"] : ["✿", "", "∆", "｡", "﹏"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["4", "È", "Ê", "É", "Ë"] : ["4", "è", "ê", "é", "ë"];
-                leaves: layout.state == "caps" ? ["4", "È", "Ê", "É", "Ë"] : ["4", "è", "ê", "é", "ë"];
+                charlabel: symojiKey.state == "marks" ? ["ĕ", "ę", "ė", "ē", "ě"] : ["ẽ", "è", "ê", "é", "ë"];
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ĕ", "Ę", "Ė", "Ē", "Ě"] : ["Ẽ", "È", "Ê", "É", "Ë"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["5", "Ì", "Î", "Í", "Ï"] : ["5", "ì", "î", "í", "ï"];
-                leaves: layout.state == "caps" ? ["5", "Ì", "Î", "Í", "Ï"] : ["5", "ì", "î", "í", "ï"];
+                charlabel: symojiKey.state == "marks" ? ["ĭ", "į", "ḃ", "ī", "ǐ"] : ["ĩ", "ì", "î", "í", "ï"];
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ĭ", "Į", "Ḃ", "Ī", "Ǐ"] : ["Ĩ", "Ì", "Î", "Í", "Ï"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["6", "Ò", "Ô", "Ó", "Ö"] : ["6", "ò", "ô", "ó", "ö"];
-                leaves: layout.state == "caps" ? ["6", "Ò", "Ô", "Ó", "Ö"] : ["6", "ò", "ô", "ó", "ö"];
+                charlabel: symojiKey.state == "marks" ?  ["đ", "ķ", "ẏ", "ȳ", "ď"]: ["ỹ", "ỳ", "ŷ", "ý", "ÿ"];
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Đ", "Ķ", "Ẏ", "Ȳ", "Ď"] : ["Ỹ", "Ỳ", "Ŷ", "Ý", "Ÿ"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: ["~", "™", "©", "", "®"]
-		labelright:true
-                leaves: ["~", "™", "©", "", "®"]
+                charlabel: symojiKey.state == "marks" ? ["þ", "ŋ", "æ", "", "œ"] : ["‾", "™", "©", "", "®"];
+                labelright:true
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Þ", "Ŋ", "Æ", "", "Œ"] : ["ʖ", "๑", " ͡", "", " ͜"];
+                shiftedleaves: shiftedlabel
 
             }
         }
@@ -80,59 +95,74 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            SymojiKey { id: symojiKey;}
-	    FlickCharKey {
-                charlabel: ["7", "»", "–", "«", "—"]
-		leaves: ["7", "»", "–", "«", "—"]
+            CursorKey { leftSide:true; padding: 0 }
+            FlickCharKey {
+                charlabel: symojiKey.state == "marks" ? ["ğ", "å", "ġ", "ǵ", "ǧ"] : ["–", "»", "—", "«", "…"]
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ğ", "Å", "Ġ", "Ǵ", "Ǧ"] : ["ง", "ᕙ", "∀", "ᕗ", "⊸"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["8", "Ð", "Ñ", "Þ", "Ç"] : ["8", "ð", "ñ", "þ", "ç"]
-		leaves: layout.state == "caps" ? ["8", "Ð", "Ñ", "Þ", "Ç"] : ["8", "ð", "ñ", "þ", "ç"]
+                charlabel: symojiKey.state == "marks" ? ["ł", "ļ", "ṗ", "ĺ", "ľ"] : ["ñ", "ņ", "ṅ", "ń", "ň"]
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ł", "Ļ", "Ṗ", "Ĺ", "Ľ"] : ["Ñ", "Ń", "Ṅ", "Ņ", "Ň"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: ["9", "♪", "√", "☆", "…"]
-                leaves: ["9", "♪", "√", "☆", "…"]
+                charlabel: symojiKey.state == "marks" ? ["ű", "ů", "ż", "ź", "ž"] : ["¨", "♪", "¤", "☆", "✧"]
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ű", "Ů", "Ż", "Ź", "Ž"] : ["ﾉ", "≧", "人", "≦", "ڡ"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: ["€", "₹", "£", "", "¥"]
-                leaves: ["€", "₹", "£", "", "¥"]
+                charlabel: symojiKey.state == "marks" ? ["ŧ", "ţ", "ṫ", "", "ť"] : ["¢", "ſ", "ı", "", "ð"]
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ŧ", "Ţ", "Ṫ", "", "Ť"] : ["•", "ẙ", "·", "", "∴"];
+                shiftedleaves: shiftedlabel
             }
-	 }
+         }
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-	LanguageKey {  width: panel.keyWidth; visHeight:layout.height;}
+            SymojiKey { id: symojiKey;}
+
             FlickCharKey {
-		 charlabel: [",", "“", "•", "”", "„"]
-		 leaves: [",", "“", "•", "”", "„"]
-	    }
-	    FlickCharKey {
-                charlabel: ["0", "§", "ª", "ß", "°"]
-                leaves: ["0", "§", "ª", "ß", "°"]
+                charlabel: symojiKey.state == "marks" ? ["ø", "ŗ", "ṙ", "ŕ", "ř"] : ["≠", "§", "ª", "ß", "°"]
+                leaves: charlabel
+                shiftedlabel:  symojiKey.state == "marks" ? ["Ø", "Ŗ", "Ṙ", "Ŕ", "Ř"] : ["つ", "’̀", "ﾂ", "‘́", "ヮ"];
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: [".", "¡", "‽", "¿", "⸘"]
-		leaves: [".", "¡", "‽", "¿", "⸘"]
-	    }
+                charlabel: symojiKey.state == "marks" ? ["ő", "ç", "ċ", "ć", "č"] : ["¦", "“", "‰", "”", "„"]
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ő", "Ç", "Ċ", "Ć", "Č"] : ["∇", "╰", "「", "╯", "┐"];
+                shiftedleaves: shiftedlabel
+            }
+            FlickCharKey {
+                charlabel: symojiKey.state == "marks" ? ["ə", "ş", "ṡ", "ś", "š"] : ["´", "¡", "‽", "¿", "⸘"]
+                leaves: charlabel
+                shiftedlabel: symojiKey.state == "marks" ? ["Ə", "Ş", "Ṡ", "Ś", "Š"] : ["∠", "☜", "ﾟ", "☞", "」"];
+                shiftedleaves: shiftedlabel
+            }
             BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
-	}
+        }
 
    } // column
-	Row{
-	 anchors.horizontalCenter: parent.horizontalCenter;
-	 anchors.left:parent.left
-	 anchors.bottom:parent.bottom
-	 spacing: 0
+        Row{
+         anchors.horizontalCenter: parent.horizontalCenter;
+         anchors.left:parent.left
+         anchors.bottom:parent.bottom
+         spacing: 0
 
-	    LayoutBar {
-	        id: layoutBar;
-	        width: parent.width;
-	        height:layout.height-layout.height*0.5;
-	        visHeight:height;
-		fontSize:fontSize;
-	    }
+            LayoutBar {
+                id: layoutBar;
+                width: parent.width;
+                height:layout.height-layout.height*0.5;
+                visHeight:height;
+                fontSize:fontSize;
+            }
 
      }
 }
