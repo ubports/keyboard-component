@@ -21,7 +21,6 @@ KeyPad {
 
     anchors.fill: parent;
     content: c1
-    symbols: "languages/Keyboard_accents.qml"
     Column {
         id: c1
         property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
@@ -63,10 +62,10 @@ KeyPad {
             spacing: 0
 
             FlickCharKey {
-                charlabel:  ["#", "", "|", "&amp;", "_"]
+                charlabel:  ["#", "", "+", "~", "-"]
                 shiftedlabel:charlabel
                 labelleft:true
-                leaves: ["#", "", "|", "&", "_"]
+                leaves: ["#", "", "+", "~", "-"]
                 shiftedleaves:leaves
             }
             FlickCharKey {
@@ -133,9 +132,9 @@ KeyPad {
                 shiftedleaves:leaves
             }
             FlickCharKey {
-                charlabel: ["~", "₹", "£", "", "¥"]
+                charlabel: ["=", "₹", "£", "", "¥"]
                 shiftedlabel:charlabel
-                leaves: ["~", "₹", "£", "", "¥"]
+                leaves: ["=", "₹", "£", "", "¥"]
                 shiftedleaves:leaves
             }
          }
@@ -146,9 +145,9 @@ KeyPad {
 
             SymojiKey { id: symojiKey;}
             FlickCharKey {
-                 charlabel: [",", ">", "+", "&lt;", "-"]
+                 charlabel: [",", ">", "&amp;", "&lt;", "_"]
                  shiftedlabel:charlabel
-                 leaves: [",", ">", "+", "<", "-"]
+                 leaves: [",", ">", "&", "<", "_"]
                  shiftedleaves:leaves
             }
             FlickCharKey {
@@ -158,9 +157,9 @@ KeyPad {
                 shiftedleaves:leaves
             }
             FlickCharKey {
-                charlabel: [".", "}", "=", "{", "@"]
+                charlabel: [".", "}", "|", "{", "@"]
                 shiftedlabel:charlabel
-                leaves: [".", "}", "=", "{", "@"]
+                leaves: [".", "}", "|", "{", "@"]
                 shiftedleaves:leaves
             }
             BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
