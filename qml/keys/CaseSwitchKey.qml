@@ -57,7 +57,7 @@ FlickActionKey {
                     if (panelState === "NORMAL"){
                         panel.activeKeypadState = "SHIFTED";
                     } else {
-                        panel.activeKeypadState = "CAPSLOCK";
+                        panel.activeKeypadState = panel.activeKeypadState == "CAPSLOCK" ? "SHIFTED" : "CAPSLOCK";
                     }
             } else if (index == 4) {
                     if (panelState !== "NORMAL")

@@ -20,9 +20,9 @@ import "key_constants.js" as UI
 
 FlickActionKey {
     id: symojiKey
-    charlabel: (panel.state == "CHARACTERS") ? ["", "", "¡ä", "", ""] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "ñ", "", "a!"]
-    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "ñ", "", "a!"]
-    iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", "navigation-menu"] : ["settings", "", "", "", ""]
+    charlabel: (panel.state == "CHARACTERS") ? ["", "", "¡ä", "", ""] : (state == "marks") ? ["", "", "¡ä", "", "a!"] : ["", "", "īø", "", "a!"]
+    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "¡ä", "", "a!"] : ["", "", "īø", "", "a!"]
+    iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : (state == "marks") ? ["settings", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
     iconNormalSource: ["", "", "", "happy.svg", ""]
     leavesFontSize: 30;
     shiftedlabel: charlabel
@@ -61,22 +61,23 @@ FlickActionKey {
             if (maliit_input_method.previousLanguage && maliit_input_method.previousLanguage != maliit_input_method.activeLanguage && panel.state == "CHARACTERS") {
                 maliit_input_method.activeLanguage = maliit_input_method.previousLanguage;
             } else if(panel.state == "ACCENTS") {
-                        Qt.openUrlExternally("settings:///system/language");
-                        maliit_input_method.hide();
+                        if (state == "marks"){
+                            Qt.openUrlExternally("settings:///system/language");
+                            maliit_input_method.hide();
+                        }else {
+                            canvas.languageMenuShown = true;
+                        }
             } else {
                 canvas.languageMenuShown = true;
             }
         } else if (index == 2) {
             if (panel.state == "ACCENTS")
-                state = "marks";
+                state = state == "marks" ? "signs" : "marks";
             else
                 panel.state = "ACCENTS";
         } else if (index == 3) {
             panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
         } else if (index == 4) {
-            if (panel.state == "CHARACTERS")
-                canvas.languageMenuShown = true;
-            else
                 panel.state = "CHARACTERS";
         }
     }
