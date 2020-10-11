@@ -25,6 +25,7 @@ CharKey {
     borderColor: normalColor
     pressedColor: normalColor
     fontSize: fullScreenItem.landscape ? height / 1.8 : height / 2.5
+    fontFamily: "OpenMoji"
     layer.enabled: !highlight
     layer.effect: ShaderEffect {
         fragmentShader: "
