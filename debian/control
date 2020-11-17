@@ -369,7 +369,7 @@ Depends: ubuntu-keyboard (= ${binary:Version}),
 Description: Ubuntu on-screen keyboard data files - Lithuanian
  Data files for the Ubuntu virtual keyboard - Lithuanian
 
- Package: ubuntu-keyboard-macedonian
+Package: ubuntu-keyboard-macedonian
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
          myspell-mk,
