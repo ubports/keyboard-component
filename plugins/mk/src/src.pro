@@ -39,7 +39,6 @@ INSTALLS += target lang_db_sr_install
 
 OTHER_FILES += \
     macedonianplugin.json \
-    free_ebook.txt
 
 LIBS += $${TOP_BUILDDIR}/plugins/plugins/libwesternsupport.a -lpresage -lhunspell
 
