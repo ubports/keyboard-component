@@ -32,10 +32,10 @@ lang_db_mk.files += $$PWD/database_mk.db
 lang_db_mk_install.files += $$PWD/database_mk.db
 lang_db_mk_install.path = $$PLUGIN_INSTALL_PATH
 
-QMAKE_EXTRA_TARGETS += lang_db_sr lang_db_mk_install
+QMAKE_EXTRA_TARGETS += lang_db_mk lang_db_mk_install
 
 target.path = $$PLUGIN_INSTALL_PATH
-INSTALLS += target lang_db_sr_install
+INSTALLS += target lang_db_mk_install
 
 OTHER_FILES += \
     macedonianplugin.json \
