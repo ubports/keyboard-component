@@ -15,12 +15,12 @@ INCLUDEPATH    += \
 HEADERS         = \
     macedonianplugin.h
 
-TARGET          = $$qtLibraryTarget(srplugin)
+TARGET          = $$qtLibraryTarget(mkplugin)
 
 EXAMPLE_FILES = macedonianplugin.json
 
 # generate database for presage:
-PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/sr/
+PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/mk/
 
 lang_db_mk.commands += \
   rm -f $$PWD/database_mk.db && \
@@ -29,10 +29,10 @@ lang_db_mk.commands += \
   text2ngram -n 3 -l -f sqlite -o $$PWD/database_mk.db $$PWD/free_ebook.txt
 lang_db_mk.files += $$PWD/database_mk.db
 
-lang_db_sr_install.files += $$PWD/database_mk.db
-lang_db_sr_install.path = $$PLUGIN_INSTALL_PATH
+lang_db_mk_install.files += $$PWD/database_mk.db
+lang_db_mk_install.path = $$PLUGIN_INSTALL_PATH
 
-QMAKE_EXTRA_TARGETS += lang_db_sr lang_db_sr_install
+QMAKE_EXTRA_TARGETS += lang_db_sr lang_db_mk_install
 
 target.path = $$PLUGIN_INSTALL_PATH
 INSTALLS += target lang_db_sr_install
