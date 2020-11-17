@@ -372,7 +372,7 @@ Description: Ubuntu on-screen keyboard data files - Lithuanian
  Package: ubuntu-keyboard-macedonian
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
-         myspell-lt,
+         myspell-mk,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Macedonian
