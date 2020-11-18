@@ -22,24 +22,8 @@ EXAMPLE_FILES = macedonianplugin.json
 # generate database for presage:
 PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/mk/
 
-lang_db_mk.commands += \
-  rm -f $$PWD/database_mk.db && \
-  text2ngram -n 1 -l -f sqlite -o $$PWD/database_mk.db $$PWD/free_ebook.txt && \
-  text2ngram -n 2 -l -f sqlite -o $$PWD/database_mk.db $$PWD/free_ebook.txt && \
-  text2ngram -n 3 -l -f sqlite -o $$PWD/database_mk.db $$PWD/free_ebook.txt
-lang_db_mk.files += $$PWD/database_mk.db
-
-lang_db_mk_install.files += $$PWD/database_mk.db
-lang_db_mk_install.path = $$PLUGIN_INSTALL_PATH
-
-QMAKE_EXTRA_TARGETS += lang_db_mk lang_db_mk_install
-
-target.path = $$PLUGIN_INSTALL_PATH
-INSTALLS += target lang_db_mk_install
-
 OTHER_FILES += \
     macedonianplugin.json \
-    free_ebook.txt
 
 LIBS += $${TOP_BUILDDIR}/plugins/plugins/libwesternsupport.a -lpresage -lhunspell
 
