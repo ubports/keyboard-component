@@ -42,8 +42,7 @@ KeyPad {
             CharKey { label: "и"; shifted: "И"; extended: ["8", "и́", "и̑", "ѝ", "и̏", "ӣ"]; extendedShifted: ["8", "И́", "И̑", "Ѝ", "И̏", "Ӣ"] }
             CharKey { label: "о"; shifted: "О"; extended: ["9", "о́", "о̑", "о̀", "о̏", "о̄"]; extendedShifted: ["9", "О́", "О̑", "О̀", "О̏", "О̄"] }
             CharKey { label: "п"; shifted: "П"; extended: ["0"]; extendedShifted: ["0"] }
-            CharKey { label: "ш"; shifted: "Ш"; }
-            CharKey { label: "ѓ"; shifted: "Ѓ"; rightSide: true; }
+            CharKey { label: "ш"; shifted: "Ш"; rightSide: true; }
         }
 
         Row {
@@ -75,6 +74,7 @@ KeyPad {
             CharKey { label: "б"; shifted: "Б"; }
             CharKey { label: "н"; shifted: "Н"; }
             CharKey { label: "м"; shifted: "М"; }
+            CharKey { label: "ѓ"; shifted: "Ѓ"; }
             CharKey { label: "ж"; shifted: "Ж"; }
             BackspaceKey { }
         }
