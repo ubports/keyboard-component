@@ -12,7 +12,11 @@ After building the keyboard (such as with `dpkg-buildpackage -us -uc`), run `mak
 
 ## On-device testing
 
-To test a pull request on your device, type
+To test a pull request on your device, type:
+
+    sudo mount -t tmpfs tmpfs /var/cache/apt
+
+which will use RAM to give enough space to download the packages.
 
     sudo ubports-qa install keyboard-component X
 
