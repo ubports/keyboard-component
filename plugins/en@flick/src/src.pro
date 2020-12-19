@@ -22,6 +22,9 @@ EXAMPLE_FILES = englishflickplugin.json
 # generate database for presage:
 PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/en@flick/
 
+target.path = $$PLUGIN_INSTALL_PATH
+INSTALLS += target
+
 OTHER_FILES += \
     englishflickplugin.json 
 
