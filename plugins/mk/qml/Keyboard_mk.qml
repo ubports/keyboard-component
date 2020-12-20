@@ -65,7 +65,7 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            ShiftKey { }
+            ShiftKey { width: panel.keyWidth }
             CharKey { label: "з"; shifted: "З"; }
             CharKey { label: "џ"; shifted: "Џ"; }
             CharKey { label: "ц"; shifted: "Ц"; }
@@ -75,7 +75,7 @@ KeyPad {
             CharKey { label: "м"; shifted: "М"; }
             CharKey { label: "ѓ"; shifted: "Ѓ"; }
             CharKey { label: "ж"; shifted: "Ж"; }
-            BackspaceKey { }
+            BackspaceKey { width: panel.keyWidth }
         }
 
         Item {
