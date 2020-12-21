@@ -21,7 +21,6 @@ import "../../keys/languages.js" as Languages
 KeyPad {
     anchors.fill:parent;
     content: c1
-    symbols: "languages/Keyboard_accents.qml"
     Column {
         id: c1
         property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
@@ -40,20 +39,20 @@ KeyPad {
             FlickCharKey {
                 charlabel:["1", "q", "e", "r", ":"];
                 shiftedlabel:["1", "Q", "E", "R", ":"];
-                leaves:["1", "q", "e", "r", ":"];
-                shiftedleaves:["1", "Q", "E", "R", ":"];
+                leaves:charlabel;
+                shiftedleaves:shiftedlabel;
             }
             FlickCharKey {
                 charlabel:["2", "t", "y", "u", "g"];
                 shiftedlabel:["2", "T", "Y", "U", "G"];
-                leaves:["2", "t", "y", "u", "g"];
-                shiftedleaves:["2", "T", "Y", "U", "G"];
+                leaves:charlabel;
+                shiftedleaves:shiftedlabel;
             }
             FlickCharKey {
                 charlabel:["3", "i", "o", "m", ";"];
                 shiftedlabel:["3", "I", "O", "M", ";"]
-                leaves:["3", "i", "o", "m", ";"];
-                shiftedleaves:["3", "I", "O", "M", ";"];
+                leaves:charlabel;
+                shiftedleaves:shiftedlabel;
             }
             BackspaceKey { rightSide: true; width: panel.keyWidth; height:layout.height;}
         }
@@ -63,36 +62,36 @@ KeyPad {
             spacing: 0
 
             FlickCharKey {
-                charlabel:  ["#", "", "+", "~", "-"]
-                shiftedlabel:charlabel
+                charlabel: ["#", "", "+", "~", "-"]
+                shiftedlabel: charlabel
                 labelleft:true
-                leaves: ["#", "", "+", "~", "-"]
-                shiftedleaves:leaves
+                leaves: charlabel
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
                 charlabel:["4", "a", "w", "d", "s"];
                 shiftedlabel:["4", "A", "W", "D", "S"];
-                leaves:["4", "a", "w", "d", "s"];
-                shiftedleaves:["4", "A", "W", "D", "S"];
+                leaves: charlabel;
+                shiftedleaves: shiftedlabel;
             }
             FlickCharKey {
                 charlabel:["5", "b", "p", "f", "n"];
                 shiftedlabel:["5", "B", "P", "F", "N"];
-                leaves:["5", "b", "p", "f", "n"];
-                shiftedleaves:["5", "B", "P", "F", "N"];
+                leaves: charlabel;
+                shiftedleaves: shiftedlabel;
             }
             FlickCharKey {
                 charlabel:["6", "h", "k", "l", "j"];
                 shiftedlabel:["6", "H", "K", "L", "J"];
-                leaves:["6", "h", "k", "l", "j"];
-                shiftedleaves:["6", "H", "K", "L", "J"];
+                leaves: charlabel;
+                shiftedleaves: shiftedlabel;
             }
             FlickCharKey {
                 charlabel: ["*", "€", "^", "", "$"]
-                shiftedlabel:charlabel
+                shiftedlabel: charlabel
                 labelright:true
-                leaves: ["*", "€", "^", "", "$"]
-                shiftedleaves:leaves
+                leaves: charlabel
+                shiftedleaves: shiftedlabel
             }
         }
 
@@ -103,27 +102,27 @@ KeyPad {
             CursorKey { leftSide:true; padding:0; }
             FlickCharKey {
                 charlabel: ["7", "]", "!", "[", "\\"]
-                shiftedlabel:charlabel
-                leaves: ["7", "]", "!", "[", "\\"]
-                shiftedleaves:leaves
+                shiftedlabel: charlabel
+                leaves: charlabel
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
                 charlabel:["8", "z", "x", "c", "v"]
                 shiftedlabel:["8", "Z", "X", "C", "V"];
-                leaves:["8", "z", "x", "c", "v"]
-                shiftedleaves:["8", "Z", "X", "C", "V"];
+                leaves: charlabel
+                shiftedleaves: shiftedlabel;
             }
             FlickCharKey {
                 charlabel: ["9", ")", "?", "(", "/"]
-                shiftedlabel: charlabel
-                leaves: ["9", ")", "?", "(", "/"]
-                shiftedleaves:leaves
+                shiftedlabel:  charlabel
+                leaves: charlabel
+                shiftedleaves: shiftedlabel
             }
             FlickCharKey {
                 charlabel: ["=", "₹", "£", "", "¥"]
-                shiftedlabel:charlabel
-                leaves: ["=", "₹", "£", "", "¥"]
-                shiftedleaves:leaves
+                leaves: charlabel
+                shiftedlabel: charlabel
+                shiftedleaves: shiftedlabel
             }
          }
 
@@ -134,15 +133,15 @@ KeyPad {
             SymojiKey { id: symojiKey;}
             FlickCharKey {
                  charlabel: [",", ">", "&amp;", "&lt;", "_"]
-                 shiftedlabel:charlabel
+                 shiftedlabel: charlabel
                  leaves: [",", ">", "&", "<", "_"]
                  shiftedleaves:leaves
             }
             FlickCharKey {
                 charlabel: ["0", "'", "`", "\"", "%"]
-                shiftedlabel:charlabel
-                leaves: ["0", "'", "`", "\"", "%"]
-                shiftedleaves:leaves
+                shiftedlabel: charlabel
+                leaves: charlabel
+                shiftedleaves: shiftedlabel
             }
             StringKey {
                 charlabel: [".", "<font size=\"4\">.io</font>", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]
