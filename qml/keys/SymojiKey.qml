@@ -20,8 +20,8 @@ import "key_constants.js" as UI
 
 FlickActionKey {
     id: symojiKey
-    charlabel: (panel.state == "CHARACTERS") ? ["", "", "¡ä", "", ""] : (state == "marks") ? ["", "", "¡ä", "", "a!"] : ["", "", "īø", "", "a!"]
-    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "¡ä", "", "a!"] : ["", "", "īø", "", "a!"]
+    charlabel: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "ä‽", "", "a!"] : ["", "", "īø", "", "a!"]
+    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "ä‽", "", "a!"] : ["", "", "īø", "", "a!"]
     iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : (state == "marks") ? ["settings", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
     iconNormalSource: ["", "", "", "happy.svg", ""]
     leavesFontSize: 30;

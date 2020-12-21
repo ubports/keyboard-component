@@ -133,6 +133,7 @@ Item {
     // row of keys all the way to the bottom of the keyboard, whilst
     // maintaining the same visual appearance.
     Item {
+        id:button
         anchors.top: parent.top
         height: parent.height
         width: parent.width
