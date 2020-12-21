@@ -62,6 +62,7 @@ Item {
     /* icons */
     property var iconNormal: ["", "", "", "", ""];
     property var iconNormalSource: ["", "", "", "", ""];
+    property var iconDisabled: ["", "", "", "", ""];
     property var iconCommon: [
                             iconNormalSource[0] !== "" ? iconNormalSource[0]
                                                        : iconNormal[0] ? "image://theme/%1".arg(iconNormal[0]) : "",
@@ -228,6 +229,16 @@ Item {
                             transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[1]}
                     }
 
+                    Icon {
+                            id: iconLeft
+                            source: iconDisabled[1] != "" ? "image://theme/%1".arg(iconDisabled[1]):""
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            width: buttonRect.iconSize
+                            height: buttonRect.iconSize
+                            visible: (middleLeftLabel.text == "" && !iconImageLeft.visible && !panel.hideKeyLabels)
+                            transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[1]}
+                    }
+
                     Text {
                             id: middleLeftLabel
                             text: (panel.activeKeypadState === "NORMAL")?charlabel[1]:shiftedlabel[1]
@@ -238,7 +249,7 @@ Item {
                             font.weight: Font.Light
                             color: fullScreenItem.theme.fontColor
                             textFormat: Text.StyledText
-                            visible: !iconImageLeft.visible && !panel.hideKeyLabels
+                            visible: !iconLeft.visible && !iconImageLeft.visible && !panel.hideKeyLabels
                     }
                 }
 
@@ -298,6 +309,16 @@ Item {
                             transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[4]}
                     }
 
+                    Icon {
+                            id: iconDown
+                            source: iconDisabled[4] != "" ? "image://theme/%1".arg(iconDisabled[4]):""
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            width: buttonRect.iconSize
+                            height: buttonRect.iconSize
+                            visible: (bottomCenterLabel.text == "" && !iconImageDown.visible && !panel.hideKeyLabels)
+                            transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[4]}
+                    }
+
                     Text {
                             id: bottomCenterLabel
                             text:  (panel.activeKeypadState === "NORMAL")?charlabel[4]:shiftedlabel[4]
@@ -308,7 +329,7 @@ Item {
                             font.weight: Font.Light
                             color: fullScreenItem.theme.fontColor
                             textFormat: Text.StyledText
-                            visible: !iconImageDown.visible && !panel.hideKeyLabels
+                            visible: !iconDown.visible && !iconImageDown.visible && !panel.hideKeyLabels
                     }
                 }
 
@@ -330,6 +351,16 @@ Item {
                             transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[3]}
                     }
 
+                    Icon {
+                            id: iconRight
+                            source: iconDisabled[3] != "" ? "image://theme/%1".arg(iconDisabled[3]):""
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            width: buttonRect.iconSize
+                            height: buttonRect.iconSize
+                            visible: (middleRightLabel.text == "" && !iconImageRight.visible && !panel.hideKeyLabels)
+                            transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[3]}
+                    }
+
                     Text {
                             id: middleRightLabel
                             text: (panel.activeKeypadState === "NORMAL")?charlabel[3]:shiftedlabel[3]
@@ -340,7 +371,7 @@ Item {
                             font.weight: Font.Light
                             color: fullScreenItem.theme.fontColor
                             textFormat: Text.StyledText
-                            visible: !iconImageRight.visible && !panel.hideKeyLabels
+                            visible: !iconImageRight.visible && !iconRight.visible && !panel.hideKeyLabels
                     }
                 }
             }

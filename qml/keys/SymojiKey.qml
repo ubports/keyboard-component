@@ -24,6 +24,8 @@ FlickActionKey {
     leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "ä‽", "", "a!"] : ["", "", "īø", "", "a!"]
     iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : (state == "marks") ? ["settings", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
     iconNormalSource: ["", "", "", "happy.svg", ""]
+    iconAngles:["","270","","","180"]
+    iconDisabled: ["", "keyboard-caps-locked", "", "", "keyboard-caps-locked"]
     leavesFontSize: 60;
     shiftedlabel: charlabel
     shiftedleaves: leaves
