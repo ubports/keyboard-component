@@ -99,7 +99,6 @@ Depends: autopilot-qt5 (>= 1.4),
          ubuntu-keyboard-czech (>= ${source:Version}),
          ubuntu-keyboard-danish (>= ${source:Version}),
          ubuntu-keyboard-dutch (>= ${source:Version}),
-         ubuntu-keyboard-emoji (>= ${source:Version}),
          ubuntu-keyboard-english (>= ${source:Version}),
          ubuntu-keyboard-english-dvorak (>= ${source:Version}),
          ubuntu-keyboard-persian (>= ${source:Version}),
@@ -234,15 +233,6 @@ Depends: ubuntu-keyboard (= ${binary:Version}),
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Dutch
  Data files for the Ubuntu virtual keyboard - Dutch
-
-Package: ubuntu-keyboard-emoji
-Architecture: any
-Depends: ubuntu-keyboard (= ${binary:Version}),
-         qml-module-qtquick-localstorage,
-         ${misc:Depends},
-         ${shlibs:Depends},
-Description: Ubuntu on-screen keyboard data files - Emoji
- Data files for the Ubuntu virtual keyboard - Emoji
 
 Package: ubuntu-keyboard-english
 Architecture: any
