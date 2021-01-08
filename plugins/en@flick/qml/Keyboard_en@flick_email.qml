@@ -19,7 +19,8 @@ import keys 1.0
 import "../../keys/languages.js" as Languages
 
 KeyPad {
-    anchors.fill:parent;
+
+    anchors.fill: parent;
     content: c1
     Column {
         id: c1
@@ -54,7 +55,7 @@ KeyPad {
                 leaves:charlabel;
                 shiftedleaves:shiftedlabel;
             }
-            BackspaceKey { rightSide: true; width: panel.keyWidth; height:layout.height;}
+            CaseSwitchKey { id: layout; labelright:true}
         }
 
         Row {

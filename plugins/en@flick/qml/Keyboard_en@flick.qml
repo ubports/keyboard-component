@@ -54,7 +54,7 @@ KeyPad {
                 leaves:charlabel;
                 shiftedleaves:shiftedlabel;
             }
-            BackspaceKey { rightSide: true; width: panel.keyWidth;height:layout.height;}
+            CaseSwitchKey { id: layout; labelright:true}
         }
 
         Row {
@@ -69,19 +69,6 @@ KeyPad {
                 shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                label: layout.state == "caps" ? "(F)" : "(f)";
-                leaves: layout.state == "caps" ? ["5", "(", "F", ")", "G"] : ["5", "(", "f", ")", "g"];
-                annotation: layout.state == "caps" ? "5G" : "5g";
-            }
-            FlickCharKey {
-                label: layout.state == "caps" ? "HKL" : "hkl";
-                leaves: layout.state == "caps" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
-                annotation: layout.state == "caps" ? "6J" : "6j";
-            }
-            FlickCharKey {
-                label: layout.state == "caps" ? "&amp;`" : "&amp;`"
-                leaves: layout.state == "caps" ? [";", "&", "`", "", "~"] : [";", "&", "`", "", "~"]
-		annotation: layout.state == "caps" ? ";~" : ";~"
                 charlabel:["4", "a", "w", "d", "s"];
                 shiftedlabel:["4", "A", "W", "D", "S"];
                 leaves: charlabel;

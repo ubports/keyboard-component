@@ -18,6 +18,7 @@ import QtQuick 2.4
 import QtMultimedia 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
+import QtQuick.Layouts 1.1
 
 import "key_constants.js" as UI
 
@@ -25,10 +26,9 @@ Item {
     id: key
 
     property int padding: 0
- 
     width: leftSide || rightSide ? panel.keyWidth * 2 : panel.keyWidth
     height: c1.keyHeight
-    
+
     /* to be set in keyboard layouts */
     property string label: "";
     property var leaves: ["", "", "", "", ""];
@@ -40,6 +40,8 @@ Item {
 
     property string action
     property bool noMagnifier: true
+    property bool labelright:false
+    property bool labelleft:false
     property bool skipAutoCaps: false
     property bool switchBackFromSymbols: false
 
@@ -239,7 +241,6 @@ Item {
                             visible: !iconImageLeft.visible && !panel.hideKeyLabels
                     }
                 }
-            }
 
                 ColumnLayout {
                   id: topColumn
@@ -271,17 +272,6 @@ Item {
                             textFormat: Text.StyledText
                             visible: !iconImageUp.visible && !panel.hideKeyLabels
                   }
-                  Text {
-                      id: keyLabel
-                      text: (panel.hideKeyLabels)?"":label
-                      anchors.horizontalCenter: parent.horizontalCenter
-                      font.family: UI.fontFamily
-                      font.pixelSize: fontSize
-		      font.weight: Font.Light
-                      color: fullScreenItem.theme.fontColor
-                      textFormat: Text.StyledText
-                      visible: label!=""
-                   }
                 }
             }
 
@@ -357,22 +347,6 @@ Item {
                     }
                 }
             }
-	    Column {
-                spacing: units.gu( UI.annotationMargins )
-                anchors.left: parent.left
-		 Text {
-                    id: tapLabel
-                    text: (panel.hideKeyLabels)?"":charlabel[0]
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    font.family: UI.fontFamily
-                    font.pixelSize: fontSize
-		    font.weight: Font.Light
-                    color: fullScreenItem.theme.selectionColor
-                    textFormat: Text.StyledText
-                }
-
-		}
-
         }
 
         FlickPop {
