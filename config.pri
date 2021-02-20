@@ -1,12 +1,10 @@
 # Linker optimization for release build
 QMAKE_LFLAGS_RELEASE+=-Wl,--as-needed
-# Compiler warnings are error if the build type is debug.
-# Except when we pass a CONFIG+=no-werror as a workaround for QTBUG-18092
-no-werror {
-    QMAKE_CXXFLAGS_DEBUG+=-O0
-} else {
-    QMAKE_CXXFLAGS_DEBUG+=-Werror -O0
-}
+
+QMAKE_CXXFLAGS_DEBUG+=-O0
+
+QMAKE_CXXFLAGS += -Werror -Wextra -pedantic
+QMAKE_CFLAGS += -Werror -Wextra -pedantic
 
 #CONFIG += no_keywords
 

@@ -45,7 +45,7 @@ using namespace MaliitKeyboard;
 
 typedef void (Editor::*Method)(const Key &key);
 
-Q_DECLARE_METATYPE(Method);
+Q_DECLARE_METATYPE(Method)
 
 // This test suite verifies how Editor implements auto-repeat for backspace key
 class TestRepeatBackspace
