@@ -323,7 +323,11 @@ Item {
             property point firstPress
             property point lastRelease
             property bool selectionMode: false
-            
+
+            // Custom implementation of double click
+            readonly property real doubleClickThreshold: units.gu(4)
+            signal doubleClick
+
             anchors {
                 fill: parent
                 topMargin: toolbar.height
@@ -352,7 +356,12 @@ Item {
                                 : i18n.tr("Swipe to move cursor") + "\n\n" + i18n.tr("Double-tap to enter selection mode")
                 }
             }
-            
+
+            Timer {
+                id: doubleClickTimer
+                interval: 400 // Default Qt double click interval
+            }
+
             function exitSelectionMode() {
                 selectionMode = false
                 fullScreenItem.timerSwipe.restart()
@@ -376,12 +385,28 @@ Item {
                 if (firstPress === Qt.point(0,0)) {
                     firstPress = Qt.point(mouse.x, mouse.y)
                 }
+
+                if (doubleClickTimer.running) {
+                    // Check if the distance of the first and second taps are within the threshold to distinguish tap from swipe
+                    var xReleaseDiff = Math.abs(lastRelease.x - firstPress.x)
+                    var yReleaseDiff = Math.abs(lastRelease.y - firstPress.y)
+                    var xPressDiff = Math.abs(firstPress.x - mouse.x)
+                    var yPressDiff = Math.abs(firstPress.y - mouse.y)
+
+                    if (xReleaseDiff < doubleClickThreshold && yReleaseDiff < doubleClickThreshold
+                            && xPressDiff < doubleClickThreshold && yPressDiff < doubleClickThreshold) {
+                        doubleClick()
+                    }
+                    
+                    firstPress = Qt.point(0,0)
+                } else {
+                    doubleClickTimer.restart();
+                }
             }
 
             onReleased: {
                 if (!cursorSwipeArea.selectionMode) {
                     fullScreenItem.timerSwipe.restart()
-                    firstPress = Qt.point(0,0)
                 } else {
                     fullScreenItem.timerSwipe.stop()
                     
@@ -396,26 +421,20 @@ Item {
                     */
                 }
 
+                if (!doubleClickTimer.running) {
+                    firstPress = Qt.point(0,0)
+                }
+
                 lastRelease = Qt.point(mouse.x, mouse.y)
             }
-            
-            onDoubleClicked: {
-                // We avoid triggering double click accidentally by using a threshold
-                var xReleaseDiff = Math.abs(lastRelease.x - firstPress.x)
-                var yReleaseDiff = Math.abs(lastRelease.y - firstPress.y)
-                
-                var threshold = units.gu(2)
 
-                if (xReleaseDiff < threshold && yReleaseDiff < threshold) {
-                    if (!cursorSwipeArea.selectionMode) {
-                        cursorSwipeArea.selectionMode = true
-                        fullScreenItem.timerSwipe.stop()
-                    } else {
-                        exitSelectionMode();
-                    }
+            onDoubleClick: {
+                if (!cursorSwipeArea.selectionMode) {
+                    cursorSwipeArea.selectionMode = true
+                    fullScreenItem.timerSwipe.stop()
+                } else {
+                    exitSelectionMode();
                 }
-                
-                firstPress = Qt.point(0,0)
             }
         }
         
