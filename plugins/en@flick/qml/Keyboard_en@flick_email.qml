@@ -63,7 +63,7 @@ KeyPad {
             spacing: 0
 
             FlickCharKey {
-                charlabel: ["#", "", "+", "~", "-"]
+                charlabel: ["#", "", "+", "@", "-"]
                 shiftedlabel: charlabel
                 labelleft:true
                 leaves: charlabel
@@ -146,10 +146,10 @@ KeyPad {
             }
             StringKey {
                 charlabel: [".", "<font size=\"4\">.io</font>", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]
-                shiftedlabel: [".", "}", "#", "{", "@"];
+                shiftedlabel: [".", "}", "#", "{", "~"];
                 leaves: [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]
-                shiftedleaves:[".", "}", "#", "{", "@"];
-                unstyledLeaves: (panel.activeKeypadState === "NORMAL") ? [".", ".io", ".com", ".org",".net"]: [".", "}", "#", "{", "@"];
+                shiftedleaves:[".", "}", "#", "{", "~"];
+                unstyledLeaves: (panel.activeKeypadState === "NORMAL") ? [".", ".io", ".com", ".org",".net"]: [".", "}", "#", "{", "~"];
             }
             BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
         }

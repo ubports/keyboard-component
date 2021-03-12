@@ -62,7 +62,7 @@ KeyPad {
             spacing: 0
 
             FlickCharKey {
-                charlabel: ["#", "", "+", "~", "-"]
+                charlabel: ["#", "", "+", "@", "-"]
                 shiftedlabel: charlabel
                 labelleft:true
                 leaves: charlabel
@@ -144,7 +144,7 @@ KeyPad {
                 shiftedleaves: shiftedlabel
             }
             FlickCharKey {
-                charlabel: [".", "}", "|", "{", "@"]
+                charlabel: [".", "}", "|", "{", "~"]
                 shiftedlabel: charlabel
                 leaves: charlabel
                 shiftedleaves: shiftedlabel
