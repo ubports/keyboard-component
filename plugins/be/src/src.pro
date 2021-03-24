@@ -22,15 +22,15 @@ EXAMPLE_FILES = belarusianplugin.json
 # generate database for presage:
 PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/be/
 
-lang_db_ru.commands += \
+lang_db_be.commands += \
   rm -f $$PWD/database_be.db && \
   text2ngram -n 1 -l -f sqlite -o $$PWD/database_be.db $$PWD/free_ebook.txt && \
   text2ngram -n 2 -l -f sqlite -o $$PWD/database_be.db $$PWD/free_ebook.txt && \
   text2ngram -n 3 -l -f sqlite -o $$PWD/database_be.db $$PWD/free_ebook.txt
-lang_db_ru.files += $$PWD/database_be.db
+lang_db_be.files += $$PWD/database_be.db
 
-lang_db_ru_install.files += $$PWD/database_be.db
-lang_db_ru_install.path = $$PLUGIN_INSTALL_PATH
+lang_db_be_install.files += $$PWD/database_be.db
+lang_db_be_install.path = $$PLUGIN_INSTALL_PATH
 
 QMAKE_EXTRA_TARGETS += lang_db_be lang_db_be_install
 
