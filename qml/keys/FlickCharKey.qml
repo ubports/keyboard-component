@@ -189,7 +189,7 @@ Item {
                         id: iconImage
                         source: iconCommon[0]
                         color: fullScreenItem.theme.selectionColor
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        Layout.alignment: Qt.AlignHCenter
                         visible: (iconCommon[0] != "" && !panel.hideKeyLabels)
                         width: buttonRect.iconSize
                         height: buttonRect.iconSize
@@ -199,7 +199,7 @@ Item {
                     Text {
                         id: tapLabel
                         text: (panel.activeKeypadState === "NORMAL")?charlabel[0]:shiftedlabel[0]
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        Layout.alignment: Qt.AlignHCenter
                         horizontalAlignment: Text.AlignHCenter
                         font.family: UI.fontFamily
                         font.pixelSize: fontSize
@@ -221,7 +221,7 @@ Item {
                             id: iconImageLeft
                             source: iconCommon[1]
                             color: key.colorNormal
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
                             visible: (iconCommon[1] != "" && !panel.hideKeyLabels)
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
@@ -231,7 +231,7 @@ Item {
                     Text {
                             id: middleLeftLabel
                             text: (panel.activeKeypadState === "NORMAL")?charlabel[1]:shiftedlabel[1]
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: UI.fontFamily
                             font.pixelSize:fontSize
@@ -252,7 +252,7 @@ Item {
                             id: iconImageUp
                             source: iconCommon[2]
                             color: key.colorNormal
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
 
                             visible: (iconCommon[2] != "" && !panel.hideKeyLabels)
                             width: buttonRect.iconSize
@@ -263,7 +263,7 @@ Item {
                   Text {
                             id: topCenterLabel
                             text: (panel.activeKeypadState === "NORMAL")?charlabel[2]:shiftedlabel[2];
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: UI.fontFamily
                             font.pixelSize:fontSize
@@ -291,9 +291,7 @@ Item {
                             id: iconImageDown
                             source: iconCommon[4]
                             color: key.colorNormal
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            anchors.bottom: parent.bottom
-                            anchors.bottomMargin: units.gu(0.25)
+                            Layout.alignment: Qt.AlignHCenter
                             visible: (iconCommon[4] != "" && !panel.hideKeyLabels)
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
@@ -303,10 +301,8 @@ Item {
                     Text {
                             id: bottomCenterLabel
                             text:  (panel.activeKeypadState === "NORMAL")?charlabel[4]:shiftedlabel[4]
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
                             horizontalAlignment: Text.AlignHCenter
-                            anchors.bottom: parent.bottom
-                            anchors.bottomMargin: units.gu(0.25)
                             font.family: UI.fontFamily
                             font.pixelSize:fontSize
                             font.weight: Font.Light
@@ -327,7 +323,7 @@ Item {
                             id: iconImageRight
                             source: iconCommon[3]
                             color: key.colorNormal
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
                             visible: (iconCommon[3] != "" && !panel.hideKeyLabels)
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
@@ -337,7 +333,7 @@ Item {
                     Text {
                             id: middleRightLabel
                             text: (panel.activeKeypadState === "NORMAL")?charlabel[3]:shiftedlabel[3]
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: UI.fontFamily
                             font.pixelSize:fontSize
