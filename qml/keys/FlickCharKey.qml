@@ -278,6 +278,7 @@ Item {
             RowLayout {
                 id: bottomRightCol
                 anchors.right: parent.right
+                anchors.bottom: parent.bottom
                 spacing: 0
 
                 ColumnLayout {
