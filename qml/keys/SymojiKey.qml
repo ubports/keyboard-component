@@ -20,12 +20,12 @@ import "key_constants.js" as UI
 
 FlickActionKey {
     id: symojiKey
-    charlabel: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "ä‽", "", "a!"] : ["", "", "īø", "", "a!"]
-    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "ä‽", "", "a!"] : ["", "", "īø", "", "a!"]
+    charlabel: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "a!", "", ""]
+    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "a!", "", ""]
     iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : (state == "marks") ? ["settings", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
     iconNormalSource: ["", "", "", "happy.svg", ""]
-    iconAngles:["","270","","","180"]
-    iconDisabled: ["", "keyboard-caps-locked", "", "", "keyboard-caps-locked"]
+    iconAngles:["","","","","180"]
+    iconDisabled: ["", "", "keyboard-caps-locked", "", "keyboard-caps-locked"]
     leavesFontSize: 60;
     shiftedlabel: charlabel
     shiftedleaves: leaves
@@ -74,13 +74,17 @@ FlickActionKey {
             }
         } else if (index == 2) {
             if (panel.state == "ACCENTS")
-                state = state == "marks" ? "signs" : "marks";
+                state =  "marks";
             else
                 panel.state = "ACCENTS";
         } else if (index == 3) {
             panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
         } else if (index == 4) {
-                panel.state = "CHARACTERS";
+		if(state == "marks")
+			panel.state = "CHARACTERS";
+		else{
+		      state = "signs";
+	        }
         }
     }
     onPressed: {
