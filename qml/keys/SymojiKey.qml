@@ -23,7 +23,7 @@ FlickActionKey {
     charlabel: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "a!", "", ""]
     leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "a!", "", ""]
     iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : (state == "marks") ? ["settings", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
-    iconNormalSource: ["", "", "", "happy.svg", ""]
+    iconNormalSource: ["", "", "", "../images/happy.svg", ""]
     iconAngles:["","","","","180"]
     iconDisabled: ["", "", "keyboard-caps-locked", "", "keyboard-caps-locked"]
     leavesFontSize: 60;
