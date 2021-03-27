@@ -24,7 +24,7 @@ FlickActionKey {
     leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", ""] : (state == "marks") ? ["", "", "ä‽", "", "a!"] : ["", "", "īø", "", "a!"]
     iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : (state == "marks") ? ["settings", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
     iconNormalSource: ["", "", "", "happy.svg", ""]
-    leavesFontSize: 30;
+    leavesFontSize: 60;
     shiftedlabel: charlabel
     shiftedleaves: leaves
     width: panel.keyWidth;
