@@ -20,8 +20,8 @@ import "key_constants.js" as UI
 
 FlickActionKey {
     id: symojiKey
-    charlabel: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "a!", "", ""]
-    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "", "", "a!"] : ["", "", "a!", "", ""]
+    charlabel: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "a!", "", ""] : ["", "", "", "", "a!"]
+    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "a!", "", ""] : ["", "", "", "", "a!"]
     iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : (state == "marks") ? ["settings", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
     iconNormalSource: ["", "", "", "../images/happy.svg", ""]
     iconAngles:["","","","","180"]
@@ -73,18 +73,11 @@ FlickActionKey {
                 canvas.languageMenuShown = true;
             }
         } else if (index == 2) {
-            if (panel.state == "ACCENTS")
-                state =  "marks";
-            else
-                panel.state = "ACCENTS";
+	    panel.state = (panel.state == "ACCENTS" && state =="marks") ? "CHARACTERS" : "ACCENTS";
         } else if (index == 3) {
             panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
         } else if (index == 4) {
-		if(state == "marks")
-			panel.state = "CHARACTERS";
-		else{
-		      state = "signs";
-	        }
+	    if(panel.state == "ACCENTS" && state =="signs") panel.state = "CHARACTERS";
         }
     }
     onPressed: {
