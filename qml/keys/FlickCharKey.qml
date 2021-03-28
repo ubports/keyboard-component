@@ -232,7 +232,7 @@ Item {
                     Icon {
                             id: iconLeft
                             source: iconDisabled[1] != "" ? "image://theme/%1".arg(iconDisabled[1]):""
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
                             visible: (middleLeftLabel.text == "" && !iconImageLeft.visible && !panel.hideKeyLabels)
@@ -271,6 +271,15 @@ Item {
                             transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[2]}
                   }
 
+                    Icon {
+                            id: iconUp
+                            source: iconDisabled[2] != "" ? "image://theme/%1".arg(iconDisabled[2]):""
+                            Layout.alignment: Qt.AlignHCenter
+                            width: buttonRect.iconSize
+                            height: buttonRect.iconSize
+                            visible: (topCenterLabel.text == "" && !iconImageUp.visible && !panel.hideKeyLabels)
+                            transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[2]}
+                    }
                   Text {
                             id: topCenterLabel
                             text: (panel.activeKeypadState === "NORMAL")?charlabel[2]:shiftedlabel[2];
@@ -281,7 +290,7 @@ Item {
                             font.weight: Font.Light
                             color: fullScreenItem.theme.fontColor
                             textFormat: Text.StyledText
-                            visible: !iconImageUp.visible && !panel.hideKeyLabels
+                            visible: !iconImageUp.visible && !iconUp.visible && !panel.hideKeyLabels
                   }
                 }
             }
@@ -312,7 +321,7 @@ Item {
                     Icon {
                             id: iconDown
                             source: iconDisabled[4] != "" ? "image://theme/%1".arg(iconDisabled[4]):""
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
                             visible: (bottomCenterLabel.text == "" && !iconImageDown.visible && !panel.hideKeyLabels)
@@ -354,7 +363,7 @@ Item {
                     Icon {
                             id: iconRight
                             source: iconDisabled[3] != "" ? "image://theme/%1".arg(iconDisabled[3]):""
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            Layout.alignment: Qt.AlignHCenter
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
                             visible: (middleRightLabel.text == "" && !iconImageRight.visible && !panel.hideKeyLabels)
