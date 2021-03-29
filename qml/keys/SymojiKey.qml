@@ -26,7 +26,6 @@ FlickActionKey {
     iconNormalSource: ["", "", "", "../images/happy.svg", ""]
     iconAngles:["","","","","180"]
     iconDisabled: ["", "", "keyboard-caps-locked", "", "keyboard-caps-locked"]
-    leavesFontSize: 60;
     shiftedlabel: charlabel
     shiftedleaves: leaves
     width: panel.keyWidth;
