@@ -59,15 +59,14 @@ FlickActionKey {
 
     onReleased: {
         if (index == 0) {
-            if (maliit_input_method.previousLanguage && maliit_input_method.previousLanguage != maliit_input_method.activeLanguage && panel.state == "CHARACTERS") {
-                maliit_input_method.activeLanguage = maliit_input_method.previousLanguage;
-            } else if(panel.state == "ACCENTS") {
-                        if (state == "marks"){
-                            Qt.openUrlExternally("settings:///system/language");
-                            maliit_input_method.hide();
-                        }else {
-                            canvas.languageMenuShown = true;
-                        }
+            if(state == "marks") {
+                Qt.openUrlExternally("settings:///system/language");
+                maliit_input_method.hide();
+            } else if (maliit_input_method.previousLanguage && maliit_input_method.previousLanguage != maliit_input_method.activeLanguage && panel.state == "CHARACTERS") {
+                if(maliit_input_method.previousLanguage == "emoji")
+                    canvas.languageMenuShown = true;
+                else
+                    maliit_input_method.activeLanguage = maliit_input_method.previousLanguage;
             } else {
                 canvas.languageMenuShown = true;
             }
@@ -75,7 +74,8 @@ FlickActionKey {
 	    panel.state = (state == "marks") ? "CHARACTERS" : "ACCENTS";
             state = (state == "marks") ? "signs" : "marks";
         } else if (index == 3) {
-            panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
+            //panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
+            maliit_input_method.activeLanguage = "emoji";
         } else if (index == 4) {
 	    if(panel.state == "ACCENTS" && state =="signs") panel.state = "CHARACTERS";
             else state="marks";
