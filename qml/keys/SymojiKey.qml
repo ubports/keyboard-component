@@ -74,7 +74,8 @@ FlickActionKey {
         } else if (index == 2) {
 	    panel.state = (panel.state == "ACCENTS" && state =="marks") ? "CHARACTERS" : "ACCENTS";
         } else if (index == 3) {
-            panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
+            //panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
+		maliit_input_method.activeLanguage = "emoji";
         } else if (index == 4) {
 	    if(panel.state == "ACCENTS" && state =="signs") panel.state = "CHARACTERS";
         }
