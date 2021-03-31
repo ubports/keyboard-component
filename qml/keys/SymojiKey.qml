@@ -20,9 +20,9 @@ import "key_constants.js" as UI
 
 FlickActionKey {
     id: symojiKey
-    charlabel: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "a!", "", ""] : ["", "", "", "", "a!"]
-    leaves: (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : (state == "marks") ? ["", "", "a!", "", ""] : ["", "", "", "", "a!"]
-    iconNormal: panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : (state == "marks") ? ["settings", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
+    charlabel: (state == "marks") ? ["", "", "a!", "", ""] : (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : ["", "", "", "", "a!"]
+    leaves: (state == "marks") ? ["", "", "a!", "", ""] : (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : ["", "", "", "", "a!"]
+    iconNormal: (state == "marks") ? ["settings", "", "", "", ""] : panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
     iconNormalSource: ["", "", "", "../images/happy.svg", ""]
     iconAngles:["","","","","180"]
     iconDisabled: ["", "", "keyboard-caps-locked", "", "keyboard-caps-locked"]
@@ -72,12 +72,13 @@ FlickActionKey {
                 canvas.languageMenuShown = true;
             }
         } else if (index == 2) {
-	    panel.state = (panel.state == "ACCENTS" && state =="marks") ? "CHARACTERS" : "ACCENTS";
+	    panel.state = (state == "marks") ? "CHARACTERS" : "ACCENTS";
+            state = (state == "marks") ? "signs" : "marks";
         } else if (index == 3) {
-            //panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
-		maliit_input_method.activeLanguage = "emoji";
+            panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
         } else if (index == 4) {
 	    if(panel.state == "ACCENTS" && state =="signs") panel.state = "CHARACTERS";
+            else state="marks";
         }
     }
     onPressed: {
