@@ -89,13 +89,26 @@ Item {
             id: settingsComp
             Column {
                 width: menuList.width
-                height: settingsItem.height + settingsDiv.height * 2
+                height: emojiItem.height + settingsItem.height + settingsDiv.height * 2
                 
                 ListItem {
                     id: settingsDiv
                     height: units.dp(2)
                     divider{
                         height: units.dp(2)
+                    }
+                }
+                ListItem {
+                    id: emojiItem
+                    highlightColor: fullScreenItem.theme.charKeyPressedColor
+                    divider.visible: false
+                    ListItemLayout {
+                       title.text: i18n.tr("Emoji")
+                       title.color: fullScreenItem.theme.fontColor
+                   }
+                   onClicked: {
+                        keypad.state = "emoji"
+                        canvas.languageMenuShown = false;
                     }
                 }
                 ListItem {
