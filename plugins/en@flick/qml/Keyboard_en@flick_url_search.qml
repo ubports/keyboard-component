@@ -134,8 +134,8 @@ KeyPad {
             FlickCharKey {
                  charlabel: symojiKey.state == "marks" ? ["ø", "ŗ", "ṙ", "ŕ", "ř"] : [",", ">", "&amp;", "&lt;", "_"]
                  shiftedlabel:  symojiKey.state == "marks" ? ["Ø", "Ŗ", "Ṙ", "Ŕ", "Ř"] : charlabel
-                 leaves: charlabel
-                 shiftedleaves:shiftedlabel
+                 leaves: symojiKey.state == "marks" ? charlabel : [",", ">", "&", "<", "_"]
+                 shiftedleaves: symojiKey.state == "marks" ? shiftedlabel : leaves
             }
             FlickCharKey {
                 charlabel: symojiKey.state == "marks" ? ["ő", "ç", "ċ", "ć", "č"] : ["0", "'", "`", "\"", "%"]
