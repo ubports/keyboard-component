@@ -20,10 +20,12 @@ import "key_constants.js" as UI
 
 FlickActionKey {
     id: symojiKey
+    property bool standard: (maliit_input_method.previousLanguage && panel.state == "CHARACTERS" && state == "signs") ? true : false
+    property bool stdsingle: (!maliit_input_method.previousLanguage && panel.state == "CHARACTERS" && state == "signs") ? true : false
     charlabel: (state == "marks") ? ["", "", "a!", "", ""] : (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : ["", "", "", "", "a!"]
-    leaves: (state == "marks") ? ["", "", "a!", "", ""] : (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : ["", "", "", "", "a!"]
-    iconNormal: (state == "marks") ? ["settings", "", "", "", ""] : panel.state == "CHARACTERS" ? ["language-chooser", "", "", "", ""] : ["navigation-menu", "", "", "", ""]
-    iconNormalSource: ["", "", "", "../images/happy.svg", ""]
+    leaves: charlabel
+    iconNormal: stdsingle? ["", "", "", "settings", ""]: ["language-chooser", "", "", "navigation-menu", ""]
+    iconNormalSource: standard ? ["", "", "", "happy.svg", ""] : maliit_input_method.previousLanguage ?["", "", "", "", ""]:["happy.svg", "", "", "", ""]
     iconAngles:["","","","","180"]
     iconDisabled: ["", "", "keyboard-caps-locked", "", "keyboard-caps-locked"]
     shiftedlabel: charlabel
@@ -59,23 +61,23 @@ FlickActionKey {
 
     onReleased: {
         if (index == 0) {
-            if(state == "marks") {
-                Qt.openUrlExternally("settings:///system/language");
-                maliit_input_method.hide();
-            } else if (maliit_input_method.previousLanguage && maliit_input_method.previousLanguage != maliit_input_method.activeLanguage && panel.state == "CHARACTERS") {
-                if(maliit_input_method.previousLanguage == "emoji")
-                    canvas.languageMenuShown = true;
-                else
+            if (maliit_input_method.previousLanguage && maliit_input_method.previousLanguage != maliit_input_method.activeLanguage && panel.state == "CHARACTERS") {
                     maliit_input_method.activeLanguage = maliit_input_method.previousLanguage;
             } else {
-                canvas.languageMenuShown = true;
+		panel.state = "EMOJI";
             }
         } else if (index == 2) {
 	    panel.state = (state == "marks") ? "CHARACTERS" : "ACCENTS";
             state = (state == "marks") ? "signs" : "marks";
         } else if (index == 3) {
-            //panel.state = (panel.state != "EMOJI") ? "EMOJI" : "CHARACTERS";
-            maliit_input_method.activeLanguage = "emoji";
+            if(standard)
+                 panel.state = "EMOJI";
+            else if(panel.state == "CHARACTERS" && state == "signs"){
+                 Qt.openUrlExternally("settings:///system/language")
+                 maliit_input_method.hide();
+            }else {
+                 canvas.languageMenuShown = true;
+	    }
         } else if (index == 4) {
 	    if(panel.state == "ACCENTS" && state =="signs") panel.state = "CHARACTERS";
             else state="marks";
