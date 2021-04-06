@@ -20,6 +20,9 @@ ActionKey {
     iconNormal: "language-chooser";
     iconShifted: "language-chooser";
     iconCapsLock: "language-chooser";
+    iconSourceNormal: maliit_input_method.previousLanguage ? "" : "../images/happy.svg";
+    iconSourceShifted: maliit_input_method.previousLanguage ? "" : "../images/happy.svg";
+    iconSourceCapsLock: maliit_input_method.previousLanguage ? "" : "../images/happy.svg";
 
     property bool held: false;
 
