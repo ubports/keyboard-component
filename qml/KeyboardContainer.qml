@@ -76,9 +76,6 @@ Item {
         },
         State {
             name: "SYMBOLS"
-        },
-        State {
-            name: "ACCENTS"
         }
     ]
 
@@ -93,7 +90,6 @@ Item {
         property string characterKeypadSource: loadLayout(maliit_input_method.contentType,
                                                           maliit_input_method.activeLanguage)
         property string symbolKeypadSource: activeKeypad ? activeKeypad.symbols : ""
-        property string accentsKeypadSource: activeKeypad ? activeKeypad.accents : ""
 
         onCharacterKeypadSourceChanged: {
             panel.state = "CHARACTERS";
@@ -102,10 +98,10 @@ Item {
         function loadKeypad() {
             if (panel.state === "CHARACTERS" ) {
                 return characterKeypadSource;
-            } else if (panel.state === "ACCENTS") {
-                return accentsKeypadSource;
-            } else {
+            } else if (panel.state === "SYMBOLS") {
                 return symbolKeypadSource;
+            } else {
+                return "languages/Keyboard_"+panel.state+".qml";
             }
         }
 
