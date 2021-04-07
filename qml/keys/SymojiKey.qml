@@ -64,14 +64,14 @@ FlickActionKey {
             if (maliit_input_method.previousLanguage && maliit_input_method.previousLanguage != maliit_input_method.activeLanguage && panel.state == "CHARACTERS") {
                     maliit_input_method.activeLanguage = maliit_input_method.previousLanguage;
             } else {
-		panel.state = "EMOJI";
+		panel.state = "emoji";
             }
         } else if (index == 2) {
 	    panel.state = (state == "marks") ? "CHARACTERS" : "accents";
             state = (state == "marks") ? "signs" : "marks";
         } else if (index == 3) {
             if(standard)
-                 panel.state = "EMOJI";
+                 panel.state = "emoji";
             else if(panel.state == "CHARACTERS" && state == "signs"){
                  Qt.openUrlExternally("settings:///system/language")
                  maliit_input_method.hide();
