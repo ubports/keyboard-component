@@ -25,7 +25,7 @@ FlickActionKey {
     charlabel: (state == "marks") ? ["", "", "a!", "", ""] : (panel.state == "CHARACTERS") ? ["", "", "ä‽", "", "īø"] : ["", "", "", "", "a!"]
     leaves: charlabel
     iconNormal: stdsingle? ["", "", "", "settings", ""]: ["language-chooser", "", "", "navigation-menu", ""]
-    iconNormalSource: standard ? ["", "", "", "happy.svg", ""] : maliit_input_method.previousLanguage ?["", "", "", "", ""]:["happy.svg", "", "", "", ""]
+    iconNormalSource: standard ? ["", "", "", "../images/happy.svg", ""] : maliit_input_method.previousLanguage ?["", "", "", "", ""]:["../images/happy.svg", "", "", "", ""]
     iconAngles:["","","","","180"]
     iconDisabled: ["", "", "keyboard-caps-locked", "", "keyboard-caps-locked"]
     shiftedlabel: charlabel
