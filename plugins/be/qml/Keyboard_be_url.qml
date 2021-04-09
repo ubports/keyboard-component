@@ -44,7 +44,7 @@ KeyPad {
             CharKey { label: "ў"; shifted: "Ў"; extended: ["8"]; extendedShifted: ["8"] }
             CharKey { label: "з"; shifted: "З"; extended: ["9"]; extendedShifted: ["9"] }
             CharKey { label: "х"; shifted: "Х"; extended: ["0"]; extendedShifted: ["0"] }
-            CharKey { label: "ё"; shifted: "Ё"; extended: ["'"]; extendedShifted: ["'"] } rightSide: true; }
+            CharKey { label: "ё"; shifted: "Ё"; extended: ["'"]; extendedShifted: ["'"]; rightSide: true; }
         }
 
         Row {
