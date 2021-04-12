@@ -502,14 +502,6 @@ void AbstractTextEditor::onKeyReleased(const Key &key)
         }
 
         if (replace_preedit) {
-            if (!textOnRight.isEmpty() && d->editing_middle_of_text) {
-                // Don't insert a space if we are correcting a word in the middle of a sentence
-                space = "";
-                d->look_for_a_double_space = false;
-                d->editing_middle_of_text = false;
-            } else {
-                space = d->appendix_for_previous_preedit = d->word_engine->languageFeature()->appendixForReplacedPreedit(d->text->preedit());
-            }
             d->previous_preedit = d->text->preedit();
             d->previous_preedit_position = d->text->surroundingOffset();
             d->text->setPreedit(d->text->primaryCandidate());
@@ -558,8 +550,6 @@ void AbstractTextEditor::onKeyReleased(const Key &key)
             full_stop_inserted = true;
             d->look_for_a_triple_space = true;
         }
-
-        d->text->appendToPreedit(space);
 
         if (d->word_engine->languageFeature()->commitOnSpace() || full_stop_inserted) {
             commitPreedit();
