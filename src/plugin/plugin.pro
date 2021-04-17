@@ -40,7 +40,7 @@ SOURCES += \
     keyboardsettings.cpp \
 #    updatenotifier.cpp \
 
-target.path += $${MALIIT_PLUGINS_DIR}
+target.path += $${MALIIT_PREFIX}/$${MALIIT_PLUGINS_DIR}
 INSTALLS += target
 
 include(../word-prediction.pri)
