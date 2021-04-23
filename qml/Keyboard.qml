@@ -79,6 +79,7 @@ Item {
         property int keypadHeight: height;
 
         visible: true
+        layer.enabled: true
 
         property bool wordribbon_visible: maliit_word_engine.enabled
         onWordribbon_visibleChanged: fullScreenItem.reportKeyboardVisibleRect();
