@@ -56,7 +56,7 @@ KeyPopover {
                     longestKey = extendedKeysModel[i].length;
                 }
             }
-            fontSize = (fullScreenItem.landscape ? (panel.keyHeight / 2) : (panel.keyHeight / 2.8))
+            fontSize = (fullScreenItem.keyboardLandscape ? (panel.keyHeight / 2) : (panel.keyHeight / 2.8))
                        * (4 / (longestKey >= 2 ? (longestKey <= 6 ? longestKey + 2.5 : 8) : 4));
         }
     }

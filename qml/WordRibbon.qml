@@ -33,6 +33,7 @@ Rectangle {
         id: listView
         objectName: "wordListView"
         anchors.fill: parent
+        clip: true
 
         model: maliit_wordribbon
 

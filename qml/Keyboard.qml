@@ -37,6 +37,7 @@ import "keys/key_constants.js" as UI
 import Ubuntu.Components 1.3
 import QtFeedback 5.0
 import QtMultimedia 5.0
+import QtQuick.Layouts 1.3
 
 Item {
     id: fullScreenItem
@@ -44,6 +45,9 @@ Item {
 
     property bool landscape: width > height
     readonly property bool tablet: landscape ? width >= units.gu(90) : height >= units.gu(90)
+    readonly property bool keyboardFloating: state == "FLOATING"
+    readonly property bool oneHanded: state == "ONE-HANDED-LEFT" || state == "ONE-HANDED-RIGHT" || state == "FLOATING"
+    readonly property bool keyboardLandscape: landscape && !oneHanded
 
     property bool cursorSwipe: false
     property int prevSwipePositionX
@@ -57,23 +61,180 @@ Item {
 
     onXChanged: fullScreenItem.reportKeyboardVisibleRect();
     onYChanged: fullScreenItem.reportKeyboardVisibleRect();
-    onWidthChanged: fullScreenItem.reportKeyboardVisibleRect();
-    onHeightChanged: fullScreenItem.reportKeyboardVisibleRect();
-    
+    onWidthChanged: {
+        fullScreenItem.reportKeyboardVisibleRect();
+        if (fullScreenItem.keyboardFloating) {
+            canvas.x = canvas.returnToBoundsX(canvas.x)
+        }
+    }
+    onHeightChanged: {
+        fullScreenItem.reportKeyboardVisibleRect();
+        if (fullScreenItem.keyboardFloating) {
+            canvas.y = canvas.returnToBoundsY(canvas.floatY)
+        }
+    }
+
     Component.onCompleted: Theme.load(maliit_input_method.theme)
+
+    onStateChanged: {
+        fullScreenItem.reportKeyboardVisibleRect()
+        input_method.usageMode = stateToSettings(state)
+    }
+
+    states: [
+        State {
+            name: "FULL"
+
+            PropertyChanges { target: swipeArea; drag.minimumY: canvas.fixedY }
+            AnchorChanges {
+                target: canvas
+                anchors.left: fullScreenItem.left
+                anchors.right: fullScreenItem.right
+            }
+            PropertyChanges { target: canvas; width: fullScreenItem.width; y: canvas.fixedY }
+
+            // Action bar
+            PropertyChanges { target: actionBar; visible: false }
+            PropertyChanges { target: swipeArea; anchors.rightMargin: 0; anchors.leftMargin: 0 }
+            PropertyChanges { target: cursorSwipeArea; anchors.rightMargin: 0; anchors.leftMargin: 0 }
+
+            // Borders
+            PropertyChanges { target: keyboardBorder; visible: false }
+            PropertyChanges { target: dividerRect; visible: false }
+        }
+        ,State {
+            name: "ONE-HANDED-LEFT"
+
+            PropertyChanges { target: swipeArea; drag.minimumY: canvas.fixedY }
+            AnchorChanges {
+                target: canvas
+                anchors.left: fullScreenItem.left
+                anchors.right: undefined
+            }
+            PropertyChanges { target: canvas; width: canvas.oneHandedWidth; y: canvas.fixedY }
+
+            // Action bar
+            PropertyChanges { target: actionBar; visible: true; x: canvas.width - width }
+            PropertyChanges { target: swipeArea; anchors.rightMargin: actionBar.width; anchors.leftMargin: 0 }
+            PropertyChanges { target: cursorSwipeArea; anchors.rightMargin: actionBar.width; anchors.leftMargin: 0 }
+
+            // Borders
+            PropertyChanges { target: keyboardBorder; visible: false }
+            PropertyChanges { target: dividerRect; visible: true }
+            AnchorChanges { target: dividerRect; anchors.left: canvas.right ; anchors.right: undefined }
+        }
+        ,State {
+            name: "ONE-HANDED-RIGHT"
+
+            PropertyChanges { target: swipeArea; drag.minimumY: canvas.fixedY }
+            AnchorChanges {
+                target: canvas
+                anchors.right: fullScreenItem.right
+                anchors.left: undefined
+            }
+            PropertyChanges { target: canvas; width: canvas.oneHandedWidth; y: canvas.fixedY }
+
+            // Action bar
+            PropertyChanges { target: actionBar; visible: true; x: 0 }
+            PropertyChanges { target: swipeArea; anchors.rightMargin: 0; anchors.leftMargin: actionBar.width }
+            PropertyChanges { target: cursorSwipeArea; anchors.rightMargin: 0; anchors.leftMargin: actionBar.width }
+
+            // Borders
+            PropertyChanges { target: keyboardBorder; visible: false }
+            PropertyChanges { target: dividerRect; visible: true }
+            AnchorChanges { target: dividerRect; anchors.left: undefined ; anchors.right: canvas.left }
+        }
+        ,State {
+            name: "FLOATING"
+
+            PropertyChanges { target: swipeArea; drag.minimumY: canvas.y }
+            AnchorChanges {
+                target: canvas
+                anchors.left: undefined
+                anchors.right: undefined
+            }
+            PropertyChanges { target: canvas; width: canvas.oneHandedWidth; x: canvas.floatInitialX; y: canvas.fixedY; floatY: y }
+
+            // Action bar
+            PropertyChanges { target: actionBar; visible: true; x: canvas.positionedToLeft ? canvas.width - width : 0 }
+            PropertyChanges { target: swipeArea; anchors.rightMargin: canvas.positionedToLeft ? actionBar.width : 0; anchors.leftMargin: canvas.positionedToLeft ? 0 : actionBar.width }
+            PropertyChanges { target: cursorSwipeArea; anchors.rightMargin: canvas.positionedToLeft ? actionBar.width : 0; anchors.leftMargin: canvas.positionedToLeft ? 0 : actionBar.width }
+
+            // Borders
+            PropertyChanges { target: keyboardBorder; visible: true }
+            PropertyChanges { target: dividerRect; visible: false }
+        }
+    ]
+
+    // These rectangles are outside canvas so that they can still be drawn even if layer.enabled is true
+    Rectangle {
+        id: keyboardBorder
+
+        visible: canvas.visible
+        border.color: fullScreenItem.theme.popupBorderColor
+        border.width: units.gu(UI.keyboardBorderWidth)
+        color: "transparent"
+        opacity: canvas.opacity
+        anchors {
+            fill: canvas
+            margins: units.gu(-UI.keyboardBorderWidth)
+        }
+    }
+
+    Rectangle {
+        height: units.dp(1)
+        color: fullScreenItem.theme.dividerColor
+        anchors {
+            bottom: canvas.top
+            left: canvas.left
+            right: canvas.right
+        }
+        opacity: canvas.opacity
+        visible: canvas.visible
+    }
+
+    Rectangle {
+        id: dividerRect
+
+        width: units.dp(1)
+        color: fullScreenItem.theme.dividerColor
+        opacity: canvas.opacity
+        visible: canvas.visible
+        anchors {
+            left: canvas.left
+            top: canvas.top
+            bottom: canvas.bottom
+        }
+    }
+
+    transitions: Transition {
+        AnchorAnimation { targets: canvas; duration: UbuntuAnimation.FastDuration; easing: UbuntuAnimation.StandardEasing }
+    }
 
     Item {
         id: canvas
         objectName: "ubuntuKeyboard" // Allow us to specify a specific keyboard within autopilot.
 
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
+        readonly property real oneHandedWidth: Math.min(fullScreenItem.width
+                                        * (fullScreenItem.tablet ? fullScreenItem.landscape ? UI.tabletOneHandedPreferredWidthLandscape : UI.tabletOneHandedPreferredWidthPortrait
+                                                        : fullScreenItem.landscape ? UI.phoneOneHandedPreferredWidthLandscape : UI.phoneOneHandedPreferredWidthPortrait)
+                                        , fullScreenItem.tablet ? units.gu(UI.tabletOneHandedMaxWidth) : units.gu(UI.phoneOneHandedMaxWidth))
+        readonly property real fixedY: fullScreenItem.height - height
+        readonly property bool positionedToLeft: dragButton.pressed ? positionedToLeft : x + (width / 2) < (fullScreenItem.width / 2)
+        property real floatY: y
+        property real floatInitialX: (fullScreenItem.width / 2) - (canvas.width / 2)
 
-        width: parent.width
-        height: fullScreenItem.height * (fullScreenItem.landscape ? fullScreenItem.tablet ? UI.tabletKeyboardHeightLandscape 
-                                                                                          : UI.phoneKeyboardHeightLandscape
-                                                                  : fullScreenItem.tablet ? UI.tabletKeyboardHeightPortrait 
-                                                                                          : UI.phoneKeyboardHeightPortrait)
+        // Initially anchor to bottom to avoid the keyboard jumping into place on first show
+        anchors.bottom: parent.bottom
+
+        x: 0
+        y: fixedY
+        width: fullScreenItem.width
+        height: (fullScreenItem.oneHanded ? canvas.oneHandedWidth * UI.oneHandedHeight 
+                            : fullScreenItem.height * (fullScreenItem.landscape ? fullScreenItem.tablet ? UI.tabletKeyboardHeightLandscape 
+                                                                                                                          : UI.phoneKeyboardHeightLandscape
+                                                                                            : fullScreenItem.tablet ? UI.tabletKeyboardHeightPortrait 
+                                                                                                                          : UI.phoneKeyboardHeightPortrait))
                                       + wordRibbon.height + borderTop.height
 
         property int keypadHeight: height;
@@ -93,10 +254,153 @@ Item {
 
         onXChanged: fullScreenItem.reportKeyboardVisibleRect();
         onYChanged: fullScreenItem.reportKeyboardVisibleRect();
-        onWidthChanged: fullScreenItem.reportKeyboardVisibleRect();
-        onHeightChanged: fullScreenItem.reportKeyboardVisibleRect();
+        onWidthChanged: {
+            fullScreenItem.reportKeyboardVisibleRect();
+            if (fullScreenItem.keyboardFloating) {
+                canvas.x = canvas.returnToBoundsX(canvas.x)
+            }
+        }
+        onHeightChanged: {
+            fullScreenItem.reportKeyboardVisibleRect();
+            if (fullScreenItem.keyboardFloating) {
+                canvas.y = canvas.returnToBoundsY(canvas.floatY)
+            }
+        }
 
-        opacity: maliit_input_method.opacity
+        opacity: fullScreenItem.keyboardFloating && dragButton.pressed && maliit_input_method.opacity == 1 ? 0.5 : maliit_input_method.opacity
+        layer.enabled: dragButton.pressed
+
+        function returnToBoundsX(baseX) {
+            var correctedX = baseX
+            if (baseX + canvas.width > fullScreenItem.width) {
+                correctedX = fullScreenItem.width - canvas.oneHandedWidth
+            }
+            return correctedX
+        }
+
+        function returnToBoundsY(baseY) {
+            var correctedY = baseY
+            if (baseY + canvas.height > fullScreenItem.height) {
+                correctedY = fullScreenItem.height - canvas.height
+            }
+            return correctedY
+        }
+
+        Rectangle {
+            id: background
+
+            anchors.fill: parent
+            color: fullScreenItem.theme.backgroundColor
+        }
+
+        Rectangle {
+            id: actionBar
+
+            color: fullScreenItem.theme.backgroundColor
+            width: units.gu(UI.actionBarWidth)
+            z: 2
+
+            // Anchor is not used due to issues with dynamic anchor changes
+            x: 0
+            visible: false
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+            }
+
+            ColumnLayout {
+                anchors.fill: parent
+
+                BarActionButton {
+                    id: dragButton
+
+                    readonly property bool dragActive: drag.active
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: width
+                    Layout.alignment: Qt.AlignTop
+                    iconName: "grip-large"
+
+                    drag.target: canvas
+                    drag.axis: Drag.XAndYAxis
+                    drag.minimumX: 0
+                    drag.maximumX: fullScreenItem.width - canvas.width
+                    drag.minimumY: 0
+                    drag.maximumY: fullScreenItem.height - canvas.height
+
+                    onDragActiveChanged: {
+                        if (!dragActive) {
+                            canvas.floatY = canvas.y
+                        }
+                    }
+
+                    onPressed: {
+                        if (!dragActive && !fullScreenItem.keyboardFloating) {
+                            canvas.floatInitialX = canvas.x
+                            fullScreenItem.state = "FLOATING"
+                        }
+                    }
+                }
+
+                BarActionButton {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.preferredHeight: width
+                    iconName: "go-last"
+                    visible: fullScreenItem.state == "ONE-HANDED-LEFT" || (fullScreenItem.keyboardFloating && canvas.x + canvas.width !== fullScreenItem.width)
+
+                    onClicked: {
+                        if (fullScreenItem.keyboardFloating) {
+                            canvas.x = fullScreenItem.width - canvas.width
+                        } else {
+                            fullScreenItem.state = "ONE-HANDED-RIGHT"
+                        }
+                    }
+                }
+
+                BarActionButton {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.preferredHeight: width
+                    iconName: "go-first"
+                    visible: fullScreenItem.state == "ONE-HANDED-RIGHT" || (fullScreenItem.keyboardFloating && canvas.x !== 0)
+
+                    onClicked: {
+                        if (fullScreenItem.keyboardFloating) {
+                            canvas.x = 0
+                        } else {
+                            fullScreenItem.state = "ONE-HANDED-LEFT"
+                        }
+                    }
+                }
+
+                BarActionButton {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.preferredHeight: width
+                    iconName: "go-last"
+                    iconRotation: 90
+                    visible: fullScreenItem.keyboardFloating && canvas.y + canvas.height < fullScreenItem.height
+
+                    onClicked: {
+                        yAnimation.startAnimation(canvas.fixedY)
+                        canvas.floatY = canvas.fixedY
+                    }
+                }
+
+                BarActionButton {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredHeight: width * 1.2
+                    iconName: "view-fullscreen"
+                    visible: fullScreenItem.state !== "FULL"
+
+                    onClicked: {
+                        fullScreenItem.state = "FULL"
+                    }
+                }
+            }
+        }
 
         MouseArea {
             id: swipeArea
@@ -109,10 +413,10 @@ Item {
             height: (parent.height - canvas.keypadHeight) + wordRibbon.height +
                     borderTop.height
 
-            drag.target: keyboardSurface
+            drag.target: canvas
             drag.axis: Drag.YAxis;
-            drag.minimumY: 0
-            drag.maximumY: parent.height
+            drag.minimumY: canvas.fixedY
+            drag.maximumY: fullScreenItem.height
             //fix for lp:1277186
             //only filter children when wordRibbon visible
             drag.filterChildren: wordRibbon.visible
@@ -120,27 +424,33 @@ Item {
             enabled: !canvas.extendedKeysShown && !fullScreenItem.cursorSwipe
 
             onReleased: {
-                if (keyboardSurface.y > jumpBackThreshold) {
+                var baseY = fullScreenItem.keyboardFloating ? canvas.floatY : canvas.fixedY
+                if (canvas.y > baseY + jumpBackThreshold) {
                     maliit_geometry.shown = false;
                 } else {
-                    bounceBackAnimation.from = keyboardSurface.y
+                    bounceBackAnimation.from = canvas.y
                     bounceBackAnimation.start();
                 }
+            }
+
+            Behavior on anchors.rightMargin {
+                UbuntuNumberAnimation { duration: UbuntuAnimation.SnapDuration}
+            }
+
+            Behavior on anchors.leftMargin {
+                UbuntuNumberAnimation { duration: UbuntuAnimation.SnapDuration}
             }
 
             Item {
                 id: keyboardSurface
                 objectName: "keyboardSurface"
 
-                x:0
-                y:0
-                width: parent.width
                 height: canvas.height
-
-                onXChanged: fullScreenItem.reportKeyboardVisibleRect();
-                onYChanged: fullScreenItem.reportKeyboardVisibleRect();
-                onWidthChanged: fullScreenItem.reportKeyboardVisibleRect();
-                onHeightChanged: fullScreenItem.reportKeyboardVisibleRect();
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                }
 
                 Rectangle {
                     width: parent.width
@@ -192,14 +502,6 @@ Item {
 
                     onHeightChanged: fullScreenItem.reportKeyboardVisibleRect();
 
-                    Rectangle {
-                        id: background
-
-                        anchors.fill: parent
-
-                        color: fullScreenItem.theme.backgroundColor
-                    }
-                
                     Item {
                         id: borderTop
                         width: parent.width
@@ -211,7 +513,7 @@ Item {
                         id: keypad
 
                         anchors.top: borderTop.bottom
-                        anchors.bottom: background.bottom
+                        anchors.bottom: parent.bottom
                         anchors.bottomMargin: units.gu(UI.bottom_margin)
                         width: parent.width
                         hideKeyLabels: fullScreenItem.cursorSwipe
@@ -234,11 +536,11 @@ Item {
 
         PropertyAnimation {
             id: bounceBackAnimation
-            target: keyboardSurface
+            target: canvas
             properties: "y"
             easing.type: Easing.OutBounce;
             easing.overshoot: 2.0
-            to: 0
+            to: fullScreenItem.keyboardFloating ? canvas.floatY : canvas.fixedY
         }
 
         state: "HIDDEN"
@@ -246,9 +548,14 @@ Item {
         states: [
             State {
                 name: "SHOWN"
-                PropertyChanges { target: keyboardSurface; y: 0; }
+                PropertyChanges { target: canvas; y: fullScreenItem.keyboardFloating ? canvas.returnToBoundsY(canvas.floatY) : canvas.fixedY; }
                 onCompleted: {
-                    canvas.firstShow = false;
+                    // Initialize state and visibility on first show
+                    if (canvas.firstShow) {
+                        fullScreenItem.state = fullScreenItem.settingsToState(input_method.usageMode)
+                        canvas.anchors.bottom = undefined;
+                        canvas.firstShow = false;
+                    }
                     canvas.hidingComplete = false;
                 }
                 when: maliit_geometry.shown === true
@@ -256,7 +563,7 @@ Item {
 
             State {
                 name: "HIDDEN"
-                PropertyChanges { target: keyboardSurface; y: canvas.height }
+                PropertyChanges { target: canvas; y: fullScreenItem.height }
                 onCompleted: {
                     canvas.languageMenuShown = false;
                     keypad.closeExtendedKeys();
@@ -282,7 +589,25 @@ Item {
             }
         ]
         transitions: Transition {
-            UbuntuNumberAnimation { target: keyboardSurface; properties: "y"; }
+            UbuntuNumberAnimation { target: canvas; properties: "y"; }
+        }
+
+        Behavior on x {
+            UbuntuNumberAnimation {duration: UbuntuAnimation.FastDuration}
+        }
+
+        // Use Standlone animation instead of Behavior to avoid conflict with y changes from PressArea
+        UbuntuNumberAnimation {
+            id: yAnimation
+            target: canvas
+            duration: UbuntuAnimation.FastDuration
+            from: canvas.y
+            property: "y"
+            
+            function startAnimation(toY) {
+                to = toY
+                start()
+            }
         }
 
         Connections {
@@ -307,6 +632,10 @@ Item {
                 keypad.delayedAutoCaps = false;
             }
             onThemeChanged: Theme.load(target.theme)
+
+            onUsageModeChanged: {
+                fullScreenItem.state = fullScreenItem.settingsToState(target.usageMode)
+            }
         }
         
         FloatingActions {
@@ -315,6 +644,10 @@ Item {
             
             z: 1
             visible: fullScreenItem.cursorSwipe && !cursorSwipeArea.pressed && !bottomSwipe.pressed
+            anchors {
+                left: cursorSwipeArea.left
+                right: cursorSwipeArea.right
+            }
         }
 
         MouseArea {
@@ -410,7 +743,69 @@ Item {
                 }
             }
         }
-        
+
+        SwipeArea {
+            id: leftSwipe
+
+            height: units.gu(1.5)
+            anchors {
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
+            }
+            direction: SwipeArea.Leftwards
+            immediateRecognition: false
+            grabGesture: false
+            visible: (fullScreenItem.state !== "ONE-HANDED-LEFT" || fullScreenItem.keyboardFloating) && !fullScreenItem.cursorSwipe
+
+            onDraggingChanged: {
+                if (dragging) {
+                    switch (fullScreenItem.state) {
+                        case "ONE-HANDED-RIGHT":
+                            fullScreenItem.state = "FULL"
+                            break
+                        case "FULL":
+                            fullScreenItem.state = "ONE-HANDED-LEFT"
+                            break
+                        case "FLOATING":
+                            canvas.x = 0
+                            break
+                    }
+                }
+            }
+        }
+
+        SwipeArea {
+            id: rightSwipe
+
+            height: units.gu(1.5)
+            anchors {
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
+            }
+            direction: SwipeArea.Rightwards
+            immediateRecognition: false
+            grabGesture: false
+            visible: (fullScreenItem.state !== "ONE-HANDED-RIGHT" || fullScreenItem.keyboardFloating) && !fullScreenItem.cursorSwipe
+
+            onDraggingChanged: {
+                if (dragging) {
+                    switch (fullScreenItem.state) {
+                        case "ONE-HANDED-LEFT":
+                            fullScreenItem.state = "FULL"
+                            break
+                        case "FULL":
+                            fullScreenItem.state = "ONE-HANDED-RIGHT"
+                            break
+                        case "FLOATING":
+                            canvas.x = fullScreenItem.width - canvas.width
+                            break
+                    }
+                }
+            }
+        }
+
         SwipeArea{
             id: bottomSwipe
             
@@ -425,6 +820,7 @@ Item {
             }
             direction: SwipeArea.Upwards
             immediateRecognition: true
+            grabGesture: false
 
             onDraggingCustomChanged:{
                 if (dragging && !fullScreenItem.cursorSwipe) {
@@ -509,7 +905,55 @@ Item {
         target: maliit_input_method
         onAudioFeedbackSoundChanged: audioFeedback.source = sound;
     }
-    
+
+    function stateToSettings(_state) {
+        var _usageMode
+
+        switch (_state) {
+            case "FULL":
+                _usageMode = "Full"
+                break
+            case "ONE-HANDED-LEFT":
+                _usageMode = "One-handed-left"
+                break
+            case "ONE-HANDED-RIGHT":
+                _usageMode = "One-handed-right"
+                break
+            case "FLOATING":
+                _usageMode = "Floating"
+                break
+            default:
+                _usageMode = "Full"
+                break
+        }
+
+        return _usageMode
+    }
+
+    function settingsToState(_usageMode) {
+        var _state
+
+        switch (_usageMode) {
+            case "Full":
+                _state = "FULL"
+                break
+            case "One-handed-left":
+                _state = "ONE-HANDED-LEFT"
+                break
+            case "One-handed-right":
+                _state = "ONE-HANDED-RIGHT"
+                break
+            case "Floating":
+                _state = "FLOATING"
+                break
+            default:
+                _state = "FULL"
+                break
+        }
+
+        return _state
+    }
+
     function keyFeedback() {
         if (maliit_input_method.useHapticFeedback) {
             pressEffect.start()
@@ -536,14 +980,16 @@ Item {
 
     function reportKeyboardVisibleRect() {
 
-        var vx = 0;
-        var vy = wordRibbon.y;
-        var vwidth = keyboardSurface.width;
-        var vheight = keyboardComp.height + wordRibbon.height;
+        var vx = canvas.x;
+        var vy = canvas.y;
+        var vwidth = canvas.width;
+        var vheight = canvas.height;
 
-        var obj = mapFromItem(keyboardSurface, vx, vy, vwidth, vheight);
+        var obj = Qt.rect(vx, vy, vwidth, vheight);
         // Report visible height of the keyboard to support anchorToKeyboard
-        obj.height = fullScreenItem.height - obj.y;
+        if (!fullScreenItem.keyboardFloating) {
+            obj.height = fullScreenItem.height - obj.y;
+        }
 
         // Work around QT bug: https://bugreports.qt-project.org/browse/QTBUG-20435
         // which results in a 0 height being reported incorrectly immediately prior

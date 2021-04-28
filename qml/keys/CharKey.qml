@@ -52,9 +52,9 @@ Item {
     property bool rightSide: false
 
     property double rowMargin: fullScreenItem.tablet ? units.gu(UI.tabletRowMargin)
-                                                     : (fullScreenItem.landscape ? units.dp(UI.phoneRowMarginLandscape)
+                                                     : (fullScreenItem.keyboardLandscape ? units.dp(UI.phoneRowMarginLandscape)
                                                                                  : units.dp(UI.phoneRowMarginPortrait))
-    property double keyMargin: fullScreenItem.tablet ? units.gu(UI.tabletKeyMargins)
+    property double keyMargin: fullScreenItem.tablet && !fullScreenItem.oneHanded ? units.gu(UI.tabletKeyMargins)
                                                      : units.gu(UI.phoneKeyMargins)
 
     // These properties are used by autopilot to determine the visible
@@ -69,7 +69,7 @@ Item {
     property string borderColor: borderEnabled ? fullScreenItem.theme.charKeyBorderColor : "transparent"
 
     // Scale the font so the label fits if a long word is set
-    property int fontSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8))
+    property int fontSize: (fullScreenItem.keyboardLandscape ? (height / 2) : (height / 2.8))
                            * (4 / (label.length >= 2 ? (label.length <= 6 ? label.length + 2.5 : 8) : 4));
 
     /// annotation shows a small label in the upper right corner

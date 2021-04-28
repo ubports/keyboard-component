@@ -51,6 +51,7 @@ const QLatin1String DISABLE_HEIGHT_KEY = QLatin1String("disableHeight");
 const QLatin1String PLUGIN_PATHS_KEY = QLatin1String("pluginPaths");
 const QLatin1String OPACITY_KEY = QLatin1String("opacity");
 const QLatin1String THEME_KEY = QLatin1String("theme");
+const QLatin1String USAGE_MODE_KEY = QLatin1String("usageMode");
 
 /*!
  * \brief KeyboardSettings::KeyboardSettings class to load the settings, and
@@ -75,6 +76,21 @@ KeyboardSettings::KeyboardSettings(QObject *parent) :
         enabled.replace(enabled.indexOf("zh"), "zh-hans");
         m_settings->set(ENABLED_LANGUAGES_KEY, QVariant(enabled));
     }
+}
+
+/*!
+ * \brief KeyboardSettings::usageMode returns the current usage mode
+ * \return current usage mode
+ */
+
+QString KeyboardSettings::usageMode() const
+{
+    return m_settings->get(USAGE_MODE_KEY).toString();
+}
+
+void KeyboardSettings::setUsageMode(const QString& mode)
+{
+    m_settings->set(USAGE_MODE_KEY, QVariant(mode));
 }
 
 /*!
@@ -255,7 +271,10 @@ QString KeyboardSettings::theme() const
  */
 void KeyboardSettings::settingUpdated(const QString &key)
 {
-    if (key == ACTIVE_LANGUAGE_KEY) {
+    if (key == USAGE_MODE_KEY) {
+        Q_EMIT usageModeChanged(usageMode());
+        return;
+    } else if (key == ACTIVE_LANGUAGE_KEY) {
         Q_EMIT activeLanguageChanged(activeLanguage());
         return;
     } else if (key == PREVIOUS_LANGUAGE_KEY) {

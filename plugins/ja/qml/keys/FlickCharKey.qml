@@ -44,7 +44,7 @@ Item {
     property bool rightSide: false
 
     property double rowMargin: fullScreenItem.tablet ? units.gu(UI.tabletRowMargin)
-                                                     : (fullScreenItem.landscape ? units.dp(UI.phoneRowMarginLandscape)
+                                                     : (fullScreenItem.keyboardLandscape ? units.dp(UI.phoneRowMarginLandscape)
                                                                                  : units.dp(UI.phoneRowMarginPortrait))
     property double keyMargin: fullScreenItem.tablet ? units.gu(UI.tabletKeyMargins)
                                                      : units.gu(UI.phoneKeyMargins)
@@ -59,7 +59,7 @@ Item {
     property string pressedColor: fullScreenItem.theme.charKeyPressedColor
     property bool borderEnabled: fullScreenItem.theme.keyBorderEnabled
     property string borderColor: borderEnabled ? fullScreenItem.theme.charKeyBorderColor : "transparent"
-    property int fontSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8));
+    property int fontSize: (fullScreenItem.keyboardLandscape ? (height / 2) : (height / 2.8));
 
     /// annotation shows a small label in the upper right corner
     // if the annotiation property is set, it will be used. If not, the first position in extended[] list or extendedShifted[] list will

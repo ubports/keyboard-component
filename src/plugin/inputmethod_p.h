@@ -231,6 +231,12 @@ public:
     /*
      * register settings
      */
+    void registerUsageMode()
+    {
+        QObject::connect(&m_settings, SIGNAL(usageModeChanged(QString)),
+                        q, SIGNAL(usageModeChanged(QString)));
+    }
+
     void registerAudioFeedbackSoundSetting()
     {
         QObject::connect(&m_settings, SIGNAL(keyPressAudioFeedbackSoundChanged(QString)),

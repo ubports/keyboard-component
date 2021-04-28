@@ -78,7 +78,7 @@ MultiPointTouchArea {
                     // If changing direction wait until movement passes 1 gu
                     // to avoid jitter
                     if ((lastYChange * distance > 0 || Math.abs(distance) > units.gu(1)) && !held) {
-                        keyboardSurface.y += distance;
+                        canvas.y += distance;
                         lastY = point.y;
                         lastYChange = distance;
                     }
@@ -150,7 +150,7 @@ MultiPointTouchArea {
             if (!held && point.y > startY + units.gu(8)) {
                 maliit_input_method.hide();
             } else {
-                bounceBackAnimation.from = keyboardSurface.y;
+                bounceBackAnimation.from = canvas.y;
                 bounceBackAnimation.start();
             }
         }

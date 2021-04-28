@@ -48,6 +48,7 @@ class InputMethod
     Q_DISABLE_COPY(InputMethod)
     Q_DECLARE_PRIVATE(InputMethod)
 
+    Q_PROPERTY(QString usageMode READ usageMode WRITE setUsageMode NOTIFY usageModeChanged)
     Q_PROPERTY(TextContentType contentType READ contentType WRITE setContentType NOTIFY contentTypeChanged)
     Q_PROPERTY(QStringList enabledLanguages READ enabledLanguages NOTIFY enabledLanguagesChanged)
     Q_PROPERTY(QString activeLanguage READ activeLanguage WRITE setActiveLanguage NOTIFY activeLanguageChanged)
@@ -113,6 +114,9 @@ public:
 
     void update();
 
+    const QString usageMode() const;
+    Q_SLOT void setUsageMode(const QString& newMode);
+
     const QStringList &enabledLanguages() const;
 
     const QString &activeLanguage() const;
@@ -155,6 +159,7 @@ public:
     Q_SLOT void onPluginPathsChanged(const QStringList& pluginPaths);
 
 Q_SIGNALS:
+    void usageModeChanged(QString usageMode);
     void contentTypeChanged(TextContentType contentType);
     void activateAutocaps();
     void deactivateAutocaps();

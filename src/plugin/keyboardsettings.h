@@ -42,7 +42,10 @@ class KeyboardSettings : public QObject
     Q_OBJECT
 public:
     explicit KeyboardSettings(QObject *parent = 0);
-    
+
+    QString usageMode() const;
+    void setUsageMode(const QString& mode);
+
     QString activeLanguage() const;
     void setActiveLanguage(const QString& id);
     QString previousLanguage() const;
@@ -59,11 +62,13 @@ public:
     bool doubleSpaceFullStop() const;
     bool stayHidden() const;
     bool disableHeight() const;
+
     QStringList pluginPaths() const;
     double opacity() const;
     QString theme() const;
 
 Q_SIGNALS:
+    void usageModeChanged(QString);
     void activeLanguageChanged(QString);
     void previousLanguageChanged(QString);
     void enabledLanguagesChanged(QStringList);

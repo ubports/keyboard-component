@@ -24,7 +24,7 @@ CharKey {
     normalColor: fullScreenItem.theme.backgroundColor
     borderColor: normalColor
     pressedColor: normalColor
-    fontSize: fullScreenItem.landscape ? height / 1.8 : height / 2.5
+    fontSize: fullScreenItem.keyboardLandscape ? height / 1.8 : height / 2.5
     layer.enabled: !highlight
     layer.effect: ShaderEffect {
         fragmentShader: "

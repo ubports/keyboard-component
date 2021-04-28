@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
+  <enum id="osk-usage-mode-enum">
+    <value nick="Full" value="0" />
+    <value nick="One-handed-left" value="1" />
+    <value nick="One-handed-right" value="2" />
+    <value nick="Floating" value="3" />
+  </enum>
   <schema id="com.canonical.keyboard.maliit" path="/com/canonical/keyboard/maliit/">
+    <key enum="osk-usage-mode-enum" name="usage-mode">
+      <summary>The usage mode.</summary>
+      <description>The usage mode chosen will affect how the keyboard is displayed and behaves.</description>
+      <default>'Full'</default>
+    </key>
     <key name="active-language" type="s">
       <summary>Active language</summary>
       <description>Currently active language, selected by user in the keyboard language menu</description>

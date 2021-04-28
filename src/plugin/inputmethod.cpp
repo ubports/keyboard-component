@@ -101,6 +101,7 @@ InputMethod::InputMethod(MAbstractInputMethodHost *host)
     connect(&d->editor,  SIGNAL(autoCapsActivated()), this, SIGNAL(activateAutocaps()));
     connect(&d->editor,  SIGNAL(autoCapsDeactivated()), this, SIGNAL(deactivateAutocaps()));
 
+    connect(&d->m_settings, SIGNAL(usageModeChanged(QString)), this, SLOT(onVisibleRectChanged()));
     connect(this, SIGNAL(contentTypeChanged(TextContentType)), this, SLOT(setContentType(TextContentType)));
     connect(this, SIGNAL(activeLanguageChanged(QString)), this, SLOT(onLanguageChanged(QString)));
     connect(this, SIGNAL(languagePluginChanged(QString, QString)), d->editor.wordEngine(), SLOT(onLanguageChanged(QString, QString)));
@@ -114,6 +115,7 @@ InputMethod::InputMethod(MAbstractInputMethodHost *host)
     connect(&d->editor, SIGNAL(preeditChanged(QString)), this, SIGNAL(preeditChanged(QString)));
     connect(&d->editor, SIGNAL(cursorPositionChanged(int)), this, SIGNAL(cursorPositionChanged(int)));
 
+    d->registerUsageMode();
     d->registerAudioFeedbackSoundSetting();
     d->registerAudioFeedbackSetting();
     d->registerHapticFeedbackSetting();
@@ -430,6 +432,20 @@ void InputMethod::updateWordEngine()
     d->editor.wordEngine()->setEnabled( d->wordEngineEnabled );
 }
 
+//! \brief InputMethod::usageMode returns the current usage mode of
+//!  the keyboard
+void InputMethod::setUsageMode(const QString &newMode)
+{
+    Q_D(InputMethod);
+    d->m_settings.setUsageMode(newMode);
+}
+
+const QString InputMethod::usageMode() const
+{
+    Q_D(const InputMethod);
+    return d->m_settings.usageMode();
+}
+
 //! \brief InputMethod::contentType returns the type, of the input field, like free text, email, url
 //! \return
 InputMethod::TextContentType InputMethod::contentType()
@@ -635,7 +651,7 @@ void InputMethod::onVisibleRectChanged()
 
     QRect visibleRect = d->m_geometry->visibleRect().toRect();
 
-    if (d->m_settings.disableHeight() &&
+    if ((d->m_settings.disableHeight() || d->m_settings.usageMode() == "Floating") &&
         (QGuiApplication::platformName() == "ubuntumirclient" || QGuiApplication::platformName() == "wayland")) {
         visibleRect.setHeight(0);
     }
