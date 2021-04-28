@@ -549,6 +549,7 @@ Item {
             State {
                 name: "SHOWN"
                 PropertyChanges { target: canvas; y: fullScreenItem.keyboardFloating ? canvas.returnToBoundsY(canvas.floatY) : canvas.fixedY; }
+                AnchorChanges { target: canvas; anchors.top: undefined }
                 onCompleted: {
                     // Initialize state and visibility on first show
                     if (canvas.firstShow) {
@@ -564,6 +565,9 @@ Item {
             State {
                 name: "HIDDEN"
                 PropertyChanges { target: canvas; y: fullScreenItem.height }
+
+                // Makes sure keyboard comes from the bottom when showing even if the screen rotated
+                AnchorChanges { target: canvas; anchors.top: parent.bottom }
                 onCompleted: {
                     canvas.languageMenuShown = false;
                     keypad.closeExtendedKeys();
