@@ -51,7 +51,7 @@ Rectangle{
             Layout.fillHeight: true
             
             numberOfSlots: 4
-            delegate: ActionsToolbarButton{fullLayout: canvas.width > units.gu(80)}
+            delegate: ActionsToolbarButton{fullLayout: keyboardSurface.width > units.gu(80)}
             actions: [		
                 Action { text: i18n.tr("Select All"); iconName: "edit-select-all"; onTriggered: fullScreenItem.selectAll(); },
                 Action { text: i18n.tr("Redo"); iconName: "redo"; onTriggered: fullScreenItem.redo();},
@@ -65,7 +65,7 @@ Rectangle{
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
             
-            delegate: ActionsToolbarButton{fullLayout: canvas.width > units.gu(45)}
+            delegate: ActionsToolbarButton{fullLayout: keyboardSurface.width > units.gu(45)}
             
             // TODO: Disabled dynamic visibility of copy and cut buttons until input_method.hasSelection is working properly in QtWebEngine
             // ubports/ubuntu-touch#1157 <https://github.com/ubports/ubuntu-touch/issues/1157>

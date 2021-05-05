@@ -78,7 +78,7 @@ MultiPointTouchArea {
                     // If changing direction wait until movement passes 1 gu
                     // to avoid jitter
                     if ((lastYChange * distance > 0 || Math.abs(distance) > units.gu(1)) && !held) {
-                        canvas.y += distance;
+                        keyboardSurface.y += distance;
                         lastY = point.y;
                         lastYChange = distance;
                     }
@@ -142,7 +142,7 @@ MultiPointTouchArea {
         // or further away from its start than the height of the whole keyboard.
         // This works around touches sometimes being recognized as ending below
         // the bottom of the screen.
-        if (point.y > panel.height) {
+        if (!fullScreenItem.keyboardFloating && point.y > panel.height) {
             console.warn("Touch point released past height of keyboard. Ignoring.");
         } else if (!(point.y <= startY)) {
             // Handles swiping away the keyboard
@@ -150,7 +150,7 @@ MultiPointTouchArea {
             if (!held && point.y > startY + units.gu(8)) {
                 maliit_input_method.hide();
             } else {
-                bounceBackAnimation.from = canvas.y;
+                bounceBackAnimation.from = keyboardSurface.y;
                 bounceBackAnimation.start();
             }
         }
