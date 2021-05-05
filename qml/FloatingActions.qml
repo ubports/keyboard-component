@@ -55,7 +55,6 @@ RowLayout {
         Layout.alignment: Qt.AlignHCenter
         Layout.fillWidth: true
         Layout.minimumWidth: units.gu(5)
-        Layout.maximumWidth: units.gu(20)
         Layout.preferredHeight: units.gu(5)
         keyFeedback: false
         action: Action {
