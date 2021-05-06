@@ -177,12 +177,15 @@ Item {
             onStateChanged: {
                 fullScreenItem.reportKeyboardVisibleRect()
                 input_method.usageMode = stateToSettings(state)
+                if (state == "FLOATING") {
+                    inactivityTimer.restart()
+                }
             }
 
             // Do not initialize state when in floating mode to position the keyboard correctly on first show
             state: input_method.usageMode == "Floating" ? "" : keyboardSurface.settingsToState(input_method.usageMode)
 
-             states: [
+            states: [
                 State {
                     name: "FULL"
 
