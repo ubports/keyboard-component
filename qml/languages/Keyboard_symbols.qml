@@ -58,7 +58,7 @@ KeyPad {
             CharKey { label: "-"; shifted: "_"; extended: ["—", "–", "•"]; }
             CharKey { label: "="; shifted: "§"; }
             CharKey { label: "("; shifted: "{"; }
-            CharKey { label: ")"; shifted: "}"; }
+            CharKey { label: ")"; shifted: "}"; extended: ["°"]; }
             CharKey { label: "!"; shifted: "¡"; }
             CharKey { label: "?"; shifted: "¿"; rightSide: true; }
         }
