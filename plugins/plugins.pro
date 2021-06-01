@@ -6,6 +6,7 @@ SUBDIRS = \
     az \
     be \
     bg \
+    bn \
     bs \
     ca \
     cs \
