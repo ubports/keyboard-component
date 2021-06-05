@@ -150,7 +150,7 @@ Item {
                                     , fullScreenItem.tablet ? units.gu(UI.tabletOneHandedMaxWidth) : units.gu(UI.phoneOneHandedMaxWidth))
 
             // Additional bottom margin when in floating mode to make it easier to use bottom swipe
-            readonly property real addBottomMargin: fullScreenItem.keyboardFloating ? units.gu(1.5) : 0
+            readonly property real addBottomMargin: fullScreenItem.keyboardFloating ? units.gu(2) : 0
             readonly property real defaultBottomMargin: units.gu(UI.bottom_margin)
 
             readonly property real fixedY: 0
