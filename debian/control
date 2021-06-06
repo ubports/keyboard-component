@@ -392,7 +392,6 @@ Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends},
-
 Description: Ubuntu on-screen keyboard data files - Bengali
  Data files for the Ubuntu virtual keyboard - Bengali
 
