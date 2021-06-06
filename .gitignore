@@ -60,3 +60,13 @@ tests/autopilot/build/
 *.egg-info
 *.user
 *.deb
+*.log
+*.mo
+
+# debian
+debian/tmp
+debian/ubuntu-keyboard-data
+debian/ubuntu-keyboard-dev
+debian/ubuntu-keyboard-tests
+debian/ubuntu-keyboard
+tests/unittests
