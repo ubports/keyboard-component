@@ -33,6 +33,22 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
+            CharKey { label: "১"; shifted: "১"; }
+            CharKey { label: "২"; shifted: "২"; }
+            CharKey { label: "৩";  shifted: "৩"; }
+            CharKey { label: "৪";  shifted: "৪"; }
+            CharKey { label: "৫";  shifted: "৫"; }
+            CharKey { label: "৬";  shifted: "৬"; }
+            CharKey { label: "৭";  shifted: "৭"; }
+            CharKey { label: "৮";  shifted: "৮"; }
+            CharKey { label: "৯";  shifted: "৯"; }
+            CharKey { label: "০";  shifted: "০"; }
+        }
+
+        Row {
+            anchors.horizontalCenter: parent.horizontalCenter;
+            spacing: 0
+
             CharKey { label: "ঙ"; extended: ["ং"]; shifted: "ং"; extendedShifted: ["১"]; }
             CharKey { label: "য"; extended: ["য়"]; shifted: "য"; extendedShifted: ["২"]; }
             CharKey { label: "ড"; extended: ["ঢ"]; shifted: "ঢ"; extendedShifted: ["৩"]; }
@@ -58,7 +74,8 @@ KeyPad {
             CharKey { label: "ক"; extended: ["খ"]; shifted: "খ"; }
             CharKey { label: "ত"; extended: ["ৎ"]; shifted: "থ"; }
             CharKey { label: "দ"; extended: ["ধ"]; shifted: "ধ"; }
-}
+        }
+
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0

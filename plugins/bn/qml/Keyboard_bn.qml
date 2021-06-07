@@ -72,7 +72,8 @@ KeyPad {
             CharKey { label: "ক"; extended: ["খ"]; shifted: "খ"; }
             CharKey { label: "ত"; extended: ["ৎ"]; shifted: "থ"; }
             CharKey { label: "দ"; extended: ["ধ"]; shifted: "ধ"; }
-}
+        }
+
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
