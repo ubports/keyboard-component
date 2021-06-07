@@ -95,6 +95,7 @@ Depends: autopilot-qt5 (>= 1.4),
          ubuntu-keyboard-catalan (>= ${source:Version}),
          ubuntu-keyboard-chinese-chewing (>= ${source:Version}),
          ubuntu-keyboard-chinese-pinyin (>= ${source:Version}),
+         ubuntu-keyboard-chinese-cangjie (>= ${source:Version}),
          ubuntu-keyboard-croatian (>= ${source:Version}),
          ubuntu-keyboard-czech (>= ${source:Version}),
          ubuntu-keyboard-danish (>= ${source:Version}),
@@ -198,6 +199,13 @@ Depends: ubuntu-keyboard (= ${binary:Version}),
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Chinese Pinyin
  Data files for the Ubuntu virtual keyboard - Chinese Pinyin
+
+Package: ubuntu-keyboard-chinese-cangjie
+Architecture: any
+Depends: ubuntu-keyboard (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends},
+Description: Ubuntu on-screen keyboard data files - Chinese Cangjie
 
 Package: ubuntu-keyboard-croatian
 Architecture: any

@@ -22,12 +22,12 @@ SOURCES         = \
                   cangjielanguagefeatures.cpp \
                   $${TOP_SRCDIR}/src/lib/logic/abstractlanguageplugin.cpp
 
-TARGET          = $$qtLibraryTarget(zh-hantplugin)
+TARGET          = $$qtLibraryTarget(zh-hant-cangjieplugin)
 
 EXAMPLE_FILES = cangjieplugin.json
 
 # install
-target.path = $${UBUNTU_KEYBOARD_LIB_DIR}/zh-hant/
+target.path = $${UBUNTU_KEYBOARD_LIB_DIR}/zh-hant-cangjie/
 INSTALLS += target
 
 OTHER_FILES += \

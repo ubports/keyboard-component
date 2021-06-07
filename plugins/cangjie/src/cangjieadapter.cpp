@@ -34,10 +34,6 @@ CangjieAdapter::CangjieAdapter(QObject *parent) :
     m_processingWords(false)
 {
     prepareDb();
-    /*m_chewingContext = chewing_new();
-    chewing_set_easySymbolInput(m_chewingContext, 0);
-    chewing_set_maxChiSymbolLen(m_chewingContext, CANGJIE_MAX_LEN);
-    chewing_set_spaceAsSelection(m_chewingContext, 0);*/
 }
 
 CangjieAdapter::~CangjieAdapter()
@@ -47,9 +43,9 @@ CangjieAdapter::~CangjieAdapter()
 
 void CangjieAdapter::prepareDb()
 {
-    QFile inputFile;
+    QFile inputFile(QString(UBUNTU_KEYBOARD_DATA_DIR) + QString("/lib/zh-hant-cangjie/cangjie3.txt"));
 
-    if (inputFile.open(QIODevice::ReadOnly))
+    if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         QTextStream in(&inputFile);
 
@@ -74,57 +70,42 @@ void CangjieAdapter::parse(const QString& string)
 
     m_candidates.clear();
 
-    const QChar *c = string.data();
-    while (!c->isNull()) {
-        if (c->isSpace()) {
-
-        } else {
-
-        }
-
-        c++;
-    }
-
-    /*clearCangjiePreedit();
-
-    char * buf_str = chewing_buffer_String(m_chewingContext);
-    QString buffer(buf_str);
-    QString choppedBuffer = buffer;
-    choppedBuffer.chop(1);
-    chewing_free(buf_str);
+    QString firstChar = string.left(1);
     
-    chewing_cand_open(m_chewingContext);
+    if (firstChar.isLower()) {
+        firstChar = firstChar.toLower();
 
-    if (!chewing_cand_CheckDone(m_chewingContext)) {
-        // Get candidate words
-        chewing_cand_Enumerate(m_chewingContext);
-        while (chewing_cand_hasNext(m_chewingContext)) {
-            char *chewingCand = chewing_cand_String(m_chewingContext);
-            QString candidate(chewingCand);
-            m_candidates.append(choppedBuffer + candidate);
-            chewing_free(chewingCand);
+        if (characters.contains(firstChar) && m_wordDb.contains(firstChar)) {
+            QStringList list = m_wordDb[firstChar];
+
+            for (int i = 0; i < list.size(); i++) {
+                QString line = list[i];
+                QStringList values = line.split(QLatin1Char(' '));
+
+                if (values.size() > 1) {
+                    if (values[0].startsWith(string.trimmed())) {
+                        m_candidates << values[1];
+                    }
+                }
+
+                if (m_candidates.size() > 40)
+                    break;
+            }
         }
     }
 
-    if (chewing_buffer_Len(m_chewingContext) <= chewing_cursor_Current(m_chewingContext)) {    
-        // Insert bopomofo string
-        m_candidates.prepend(buffer + QString(chewing_bopomofo_String_static(m_chewingContext)));
+    if (string.endsWith(" ") && m_candidates.size() > 0) {
+        QString selected = m_candidates[0];
+        m_candidates.clear();
+        m_candidates << selected;
     }
-
-    chewing_cand_close(m_chewingContext);*/
 
     Q_EMIT newPredictionSuggestions(string, m_candidates);
 }
 
 void CangjieAdapter::clearCangjiePreedit()
 {
-    /*int origState = chewing_get_escCleanAllBuf(m_chewingContext);
-    // Send a false event, then clean it to wipe the commit
-    chewing_handle_Default(m_chewingContext, '1');
-    chewing_set_escCleanAllBuf(m_chewingContext, 1);
-    chewing_handle_Esc(m_chewingContext);
-    chewing_set_escCleanAllBuf(m_chewingContext, origState);
-    chewing_clean_preedit_buf(m_chewingContext);*/
+    // Not Using
 }
 
 void CangjieAdapter::wordCandidateSelected(const QString& word)

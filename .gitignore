@@ -62,6 +62,8 @@ tests/autopilot/build/
 *.deb
 *.log
 *.mo
+*.tar
+create_repository.sh
 
 # debian
 debian/tmp

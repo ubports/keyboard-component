@@ -50,7 +50,7 @@ QString CangjieLanguageFeatures::appendixForReplacedPreedit(const QString &preed
     if (preedit.isEmpty())
         return QString("");
 
-    return QString(" ");
+    return QString("");
 }
 
 bool CangjieLanguageFeatures::isSeparator(const QString &text) const
@@ -105,7 +105,7 @@ bool CangjieLanguageFeatures::restorePreedit() const
 
 bool CangjieLanguageFeatures::commitOnSpace() const
 {
-    return false;
+    return true;
 }
 
 bool CangjieLanguageFeatures::showPrimaryInPreedit() const
