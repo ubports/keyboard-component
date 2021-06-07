@@ -37,7 +37,7 @@ KeyPad {
             CharKey { label: "ড"; extended: ["ঢ"]; shifted: "ঢ"; extendedShifted: ["৩"]; }
             CharKey { label: "প"; extended: ["ফ"]; shifted: "ফ"; extendedShifted: ["৪"]; }
             CharKey { label: "ট"; extended: ["ঠ"]; shifted: "ঠ"; extendedShifted: ["৫"]; }
-            CharKey { label: "চ"; extended: ["ছ"]; shifted: "ছ",; extendedShifted: ["৬"]; }
+            CharKey { label: "চ"; extended: ["ছ"]; shifted: "ছ"; extendedShifted: ["৬"]; }
             CharKey { label: "জ"; extended: ["ঝ"]; shifted: "ঝ"; extendedShifted: ["৭"]; }
             CharKey { label: "হ"; extended: ["ঞ"]; shifted: "ঞ"; extendedShifted: ["৮"]; }
             CharKey { label: "গ"; extended: ["ঘ"]; shifted: "ঘ"; extendedShifted: ["৯"]; }
