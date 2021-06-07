@@ -20,7 +20,7 @@ TARGET          = $$qtLibraryTarget(mkplugin)
 EXAMPLE_FILES = bengaliplugin.json
 
 # generate database for presage:
-PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/mk/
+PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/bn/
 
 OTHER_FILES += \
     bengaliplugin.json \
