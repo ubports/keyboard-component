@@ -26,39 +26,39 @@ msgstr "সবগুলি নির্বাচন"
 
 #: ../qml/ActionsToolbar.qml:57
 msgid "Redo"
-msgstr ""
+msgstr "পুনরায় করুন"
 
 #: ../qml/ActionsToolbar.qml:58
 msgid "Undo"
-msgstr ""
+msgstr "বাতিল"
 
 #: ../qml/ActionsToolbar.qml:73
 msgid "Paste"
-msgstr ""
+msgstr "পেস্ট"
 
 #: ../qml/ActionsToolbar.qml:74
 msgid "Copy"
-msgstr ""
+msgstr "অনুলিপি"
 
 #: ../qml/ActionsToolbar.qml:75
 msgid "Cut"
-msgstr ""
+msgstr "কর্তন"
 
 #: ../qml/FloatingActions.qml:62
 msgid "Done"
-msgstr ""
+msgstr "সম্পন্ন"
 
 #: ../qml/Keyboard.qml:351
 msgid "Swipe to move selection"
-msgstr ""
+msgstr "নির্বাচন সরানোর জন্য সোয়াইপ করুন"
 
 #: ../qml/Keyboard.qml:352
 msgid "Swipe to move cursor"
-msgstr ""
+msgstr "কার্সার সরানোর জন্য সোয়াইপ করুন"
 
 #: ../qml/Keyboard.qml:352
 msgid "Double-tap to enter selection mode"
-msgstr ""
+msgstr "নির্বাচন মোডে প্রবেশ করতে দু'বার চাপুন "
 
 #: ../qml/keys/LanguageMenu.qml:106
 msgid "Settings"
@@ -120,7 +120,7 @@ msgstr "স্পেনীয়"
 
 #: ../qml/keys/languages.js:32
 msgid "Persian"
-msgstr ""
+msgstr "ফারসি"
 
 #: ../qml/keys/languages.js:33
 msgid "Finnish"
@@ -136,7 +136,7 @@ msgstr "ফরাসি"
 msgid ""
 "French\n"
 "(Swiss)"
-msgstr "ফরাসি"
+msgstr "ফরাসি (সুইস)"
 
 #: ../qml/keys/languages.js:36
 msgid "Scottish Gaelic"
@@ -164,19 +164,19 @@ msgstr "ইতালীয়"
 
 #: ../qml/keys/languages.js:42
 msgid "Japanese"
-msgstr ""
+msgstr "জাপানি"
 
 #: ../qml/keys/languages.js:43
 msgid "Lithuanian"
-msgstr ""
+msgstr "লিথুয়ানিয়ান"
 
 #: ../qml/keys/languages.js:44
 msgid "Latvian"
-msgstr ""
+msgstr "লাত্ভীয়"
 
 #: ../qml/keys/languages.js:45
 msgid "Korean"
-msgstr ""
+msgstr "কোরিয়ান"
 
 #: ../qml/keys/languages.js:46
 msgid "Dutch"
@@ -216,7 +216,7 @@ msgstr "সুইডিশ"
 
 #: ../qml/keys/languages.js:55
 msgid "Turkish"
-msgstr ""
+msgstr "তুর্কি"
 
 #: ../qml/keys/languages.js:56
 msgid "Ukrainian"
@@ -226,13 +226,13 @@ msgstr "ইউক্রেনীয়"
 msgid ""
 "Chinese\n"
 "(Pinyin)"
-msgstr ""
+msgstr "চীনা (পিনয়িন)"
 
 #: ../qml/keys/languages.js:58
 msgid ""
 "Chinese\n"
 "(Chewing)"
-msgstr ""
+msgstr "চীনা (চিউইং)"
 
 #~ msgid "Chinese - Pinyin"
 #~ msgstr "চীনা - পিনইন"
