@@ -61,6 +61,7 @@ function languageIdToName(languageId)
     if (languageId == "zh-hans")         return i18n.tr("Chinese\n(Pinyin)");
     if (languageId == "zh-hant")         return i18n.tr("Chinese\n(Chewing)");
     if (languageId == "zh-hant-cangjie")         return i18n.tr("Chinese\n(Cangjie)");
+    if (languageId == "zh-hant-quick")         return i18n.tr("Chinese\n(Quick)");
 
     // fallback
     return languageId.charAt(0).toUpperCase() + languageId.slice(1);
