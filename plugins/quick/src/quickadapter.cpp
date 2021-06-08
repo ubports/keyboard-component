@@ -43,7 +43,7 @@ QuickAdapter::~QuickAdapter()
 
 void QuickAdapter::prepareDb()
 {
-    QFile inputFile(QString(UBUNTU_KEYBOARD_DATA_DIR) + QString("/lib/zh-hant-quick/quick3.txt"));
+    QFile inputFile(QString(UBUNTU_KEYBOARD_DATA_DIR) + QString("/lib/zh-hant-quick/quick-classic.txt"));
 
     if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
