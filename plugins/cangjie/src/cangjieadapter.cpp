@@ -38,7 +38,7 @@ CangjieAdapter::CangjieAdapter(QObject *parent) :
 
 CangjieAdapter::~CangjieAdapter()
 {
-    //chewing_delete(m_chewingContext);
+    m_wordDb.clear();
 }
 
 void CangjieAdapter::prepareDb()
