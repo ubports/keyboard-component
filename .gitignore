@@ -67,6 +67,7 @@ create_repository.sh
 
 # debian
 debian/tmp
+debian/ubuntu-keyboard
 debian/ubuntu-keyboard-*
 debian/qtdeclarative5-*
 !debian/*.install
