@@ -15,12 +15,12 @@ INCLUDEPATH    += \
 HEADERS         = \
     georgianplugin.h
 
-TARGET          = $$qtLibraryTarget(mkplugin)
+TARGET          = $$qtLibraryTarget(kaplugin)
 
 EXAMPLE_FILES = georgianplugin.json
 
 # generate database for presage:
-PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/mk/
+PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/ka/
 
 OTHER_FILES += \
     georgianplugin.json \
