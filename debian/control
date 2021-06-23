@@ -105,6 +105,7 @@ Depends: autopilot-qt5 (>= 1.4),
          ubuntu-keyboard-persian (>= ${source:Version}),
          ubuntu-keyboard-finnish (>= ${source:Version}),
          ubuntu-keyboard-french (>= ${source:Version}),
+         ubuntu-keyboard-georgian (>= ${source:Version}),
          ubuntu-keyboard-german (>= ${source:Version}),
          ubuntu-keyboard-greek (>= ${source:Version}),
          ubuntu-keyboard-hebrew (>= ${source:Version}),
@@ -297,6 +298,14 @@ Depends: ubuntu-keyboard (= ${binary:Version}),
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - French
  Data files for the Ubuntu virtual keyboard - French
+
+Package: ubuntu-keyboard-georgian
+Architecture: any
+Depends: ubuntu-keyboard (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends},
+Description: Ubuntu on-screen keyboard data files - Georgian
+ Data files for the Ubuntu virtual keyboard - Georgian
 
 Package: ubuntu-keyboard-german
 Architecture: any
