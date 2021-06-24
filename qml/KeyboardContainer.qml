@@ -48,7 +48,8 @@ Item {
         objectName: "characterKeyPadLoader"
         anchors.fill: parent
         asynchronous: false
-        source: internal.loadKeypad();
+        visible: panel.state === "CHARACTERS" || panel.state === "SYMBOLS"
+        source: panel.state === "CHARACTERS" ? internal.characterKeypadSource : internal.symbolKeypadSource
         onLoaded: {
             if (delayedAutoCaps) {
                 activeKeypadState = "SHIFTED";
@@ -57,6 +58,15 @@ Item {
                 activeKeypadState = "NORMAL";
             }
         }
+    }
+
+    Loader {
+        id: emojiKeypadLoader
+        objectName: "emojiKeyPadLoader"
+        anchors.fill: parent
+        asynchronous: true
+        visible: panel.state !== "CHARACTERS" && panel.state !== "SYMBOLS"
+        source: internal.loadKeypad()
     }
 
     ExtendedKeysSelector {
@@ -97,12 +107,10 @@ Item {
         }
 
         function loadKeypad() {
-            if (panel.state === "CHARACTERS" ) {
-                return characterKeypadSource;
-            } else if (panel.state === "SYMBOLS") {
-                return symbolKeypadSource;
-            } else {
+            if (panel.state !== "CHARACTERS" && panel.state !== "SYMBOLS") {
                 return "languages/Keyboard_"+panel.state+".qml";
+            } else {
+                return "";
             }
         }
 
