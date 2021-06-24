@@ -48,8 +48,9 @@ Item {
         objectName: "characterKeyPadLoader"
         anchors.fill: parent
         asynchronous: false
-        source: panel.state === "CHARACTERS" ? internal.characterKeypadSource : internal.symbolKeypadSource
-        onLoaded: {
+        visible: panel.state === "CHARACTERS"
+        source: internal.characterKeypadSource
+        onVisibleChanged: {
             if (delayedAutoCaps) {
                 activeKeypadState = "SHIFTED";
                 delayedAutoCaps = false;
@@ -57,6 +58,14 @@ Item {
                 activeKeypadState = "NORMAL";
             }
         }
+    }
+    Loader {
+        id: symbolKeypadLoader
+        objectName: "characterKeyPadLoader"
+        anchors.fill: parent
+        asynchronous: true
+        visible: panel.state !== "CHARACTERS"
+        source: internal.symbolKeypadSource
     }
 
     ExtendedKeysSelector {
