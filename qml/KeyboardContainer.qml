@@ -117,7 +117,7 @@ Item {
         function loadLayout(contentType, activeLanguage)
         {
 
-	   if (!maliit_input_method.languageIsSupported(maliit_input_method.previousLanguage)) {
+            if (!maliit_input_method.languageIsSupported(maliit_input_method.previousLanguage)) {
                 console.log("Language '" + language + "' not supported - clearin
 g previous language");
                 maliit_input_method.previousLanguage = "";
@@ -125,7 +125,7 @@ g previous language");
 
             var language = activeLanguage.toLowerCase();
             if (!maliit_input_method.languageIsSupported(language)) {
-                // If we don't have a layout for this specific locale 
+                // If we don't have a layout for this specific locale
                 // check more generic locale
                 language = language.slice(0,2);
             }
