@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Canonical Ltd.
+ * Copyright 2021 Abdullah AL Shohag
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef KOREANLANGUAGEFEATURES_H
-#define KOREANLANGUAGEFEATURES_H
+#ifndef AVROLANGUAGEFEATURES_H
+#define AVROLANGUAGEFEATURES_H
 
 #include "abstractlanguagefeatures.h"
 #include <QObject>
@@ -38,4 +38,4 @@ public:
     virtual bool wordEngineAvailable() const;
 };
 
-#endif // KOREANLANGUAGEFEATURES_H
+#endif // AVROLANGUAGEFEATURES_H
