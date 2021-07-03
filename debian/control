@@ -175,8 +175,8 @@ Depends: ubuntu-keyboard (= ${binary:Version}),
          fonts-beng,
          ${misc:Depends},
          ${shlibs:Depends},
-Description: Ubuntu on-screen keyboard data files - Bengali Avro (Phonetic Keyboard)
- Data files for the Ubuntu virtual keyboard - Bengali Avro (Phonetic Keyboard)
+Description: Ubuntu on-screen keyboard data files - Bengali Phonetic Keyboard Avro
+ Data files for the Ubuntu virtual keyboard - Bengali Phonetic Keyboard Avro
 
 Package: ubuntu-keyboard-bosnian
 Architecture: any
