@@ -159,8 +159,8 @@ Depends: ubuntu-keyboard (= ${binary:Version}),
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Belarusian
  Data files for the Ubuntu virtual keyboard - Belarusian
- 
- Package: ubuntu-keyboard-bengali
+
+Package: ubuntu-keyboard-bengali
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
          fonts-beng,
@@ -168,15 +168,15 @@ Depends: ubuntu-keyboard (= ${binary:Version}),
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Bengali
  Data files for the Ubuntu virtual keyboard - Bengali
- 
- Package: ubuntu-keyboard-bengali-avro
+
+Package: ubuntu-keyboard-bengali-avro
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
          fonts-beng,
          ${misc:Depends},
          ${shlibs:Depends},
-Description: Ubuntu on-screen keyboard data files - Bengali Phonetic Keyboard Avro
- Data files for the Ubuntu virtual keyboard - Bengali Phonetic Keyboard Avro
+Description: Ubuntu on-screen keyboard data files - Bengali Avro (Phonetic Keyboard)
+ Data files for the Ubuntu virtual keyboard - Bengali Avro (Phonetic Keyboard)
 
 Package: ubuntu-keyboard-bosnian
 Architecture: any
