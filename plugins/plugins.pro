@@ -7,6 +7,7 @@ SUBDIRS = \
     be \
     bg \
     bn \
+    bn-avro \
     bs \
     ca \
     cs \

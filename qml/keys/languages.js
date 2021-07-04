@@ -21,6 +21,7 @@ function languageIdToName(languageId)
     if (languageId == "be")         return i18n.tr("Belarusian");
     if (languageId == "bg")         return i18n.tr("Bulgarian");
     if (languageId == "bn")         return i18n.tr("Bengali");
+    if (languageId == "bn-avro")         return i18n.tr("Bengali\n(Avro)");
     if (languageId == "bs")         return i18n.tr("Bosnian");
     if (languageId == "ca")         return i18n.tr("Catalan");
     if (languageId == "cs")         return i18n.tr("Czech");
