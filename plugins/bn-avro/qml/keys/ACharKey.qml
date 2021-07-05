@@ -31,7 +31,7 @@ CharKey {
 
     Item {
         id: avrokey
-//        propertry var global_tmp : "" 
+        propertry var avrotmp: "" 
 
         function onKeyReleased(keyString, action) {
             // get previous avrotmp string
@@ -47,7 +47,7 @@ CharKey {
             }
             var englishtext = prevtmp + keyString;
             maliit_input_method.avrotmp = englishtext;
-//            global_tmp = englishtext; 
+            avrotmp = englishtext; 
 
             if (Database.db[englishtext]) {
                 englishtext = Database.db[englishtext];
@@ -55,7 +55,6 @@ CharKey {
 
             maliit_input_method.preedit = Parser.OmicronLab.Avro.Phonetic.parse(englishtext);
             return;
-            event_handler.onKeyReleased("", "commit");
         }
     }
 }
