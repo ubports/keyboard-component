@@ -9,7 +9,10 @@ TEMPLATE = lib
 lang_bn-avro.path = "$$UBUNTU_KEYBOARD_LIB_DIR/bn-avro/"
 lang_bn-avro.files = *.qml *.js
 
-INSTALLS += lang_bn-avro
+lang_bn-avro_keys.path = "$$UBUNTU_KEYBOARD_LIB_DIR/bn-avro/keys"
+lang_bn-avro_keys.files = keys/*.qml keys/*.js
+
+INSTALLS += lang_bn-avro lang_bn-avro_keys
 
 # for QtCreator
 OTHER_FILES += \
