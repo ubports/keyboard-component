@@ -26,7 +26,7 @@ ActionKey {
     action: "backspace";
 
     property string preedit: maliit_input_method.preedit
-    property string avrotmp: maliit_input_method.avrotmp
+    property string avrotmp: avrokey.avrotmp
     property string m_preedit: ""
     property string syllable_preedit: ""
     property string last_preedit: ""

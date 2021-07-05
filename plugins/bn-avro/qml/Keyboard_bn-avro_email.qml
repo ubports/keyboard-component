@@ -33,31 +33,31 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            HCharKey { label: "q"; shifted: "Q"; extended: ["1"]; extendedShifted: ["1"]; leftSide: true; }
-            HCharKey { label: "w"; shifted: "W"; extended: ["2"]; extendedShifted: ["2"] }
-            HCharKey { label: "e"; shifted: "E"; extended: ["3"]; extendedShifted: ["3"] }
-            HCharKey { label: "r"; shifted: "R"; extended: ["4"]; extendedShifted: ["4"] }
-            HCharKey { label: "t"; shifted: "T"; extended: ["5"]; extendedShifted: ["5"] }
-            HCharKey { label: "y"; shifted: "Y"; extended: ["6"]; extendedShifted: ["6"] }
-            HCharKey { label: "u"; shifted: "U"; extended: ["7"]; extendedShifted: ["7"] }
-            HCharKey { label: "i"; shifted: "I"; extended: ["8"]; extendedShifted: ["8"] }
-            HCharKey { label: "o"; shifted: "O"; extended: ["9"]; extendedShifted: ["9"] }
-            HCharKey { label: "p"; shifted: "P"; extended: ["0"]; extendedShifted: ["0"]; rightSide: true; }
+            ACharKey { label: "q"; shifted: "Q"; extended: ["1"]; extendedShifted: ["1"]; leftSide: true; }
+            ACharKey { label: "w"; shifted: "W"; extended: ["2"]; extendedShifted: ["2"] }
+            ACharKey { label: "e"; shifted: "E"; extended: ["3"]; extendedShifted: ["3"] }
+            ACharKey { label: "r"; shifted: "R"; extended: ["4"]; extendedShifted: ["4"] }
+            ACharKey { label: "t"; shifted: "T"; extended: ["5"]; extendedShifted: ["5"] }
+            ACharKey { label: "y"; shifted: "Y"; extended: ["6"]; extendedShifted: ["6"] }
+            ACharKey { label: "u"; shifted: "U"; extended: ["7"]; extendedShifted: ["7"] }
+            ACharKey { label: "i"; shifted: "I"; extended: ["8"]; extendedShifted: ["8"] }
+            ACharKey { label: "o"; shifted: "O"; extended: ["9"]; extendedShifted: ["9"] }
+            ACharKey { label: "p"; shifted: "P"; extended: ["0"]; extendedShifted: ["0"]; rightSide: true; }
         }
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            HCharKey { label: "a"; shifted: "A"; leftSide: true; }
-            HCharKey { label: "s"; shifted: "S"; }
-            HCharKey { label: "d"; shifted: "D"; }
-            HCharKey { label: "f"; shifted: "F"; }
-            HCharKey { label: "g"; shifted: "G"; }
-            HCharKey { label: "h"; shifted: "H"; }
-            HCharKey { label: "j"; shifted: "J"; }
-            HCharKey { label: "k"; shifted: "K"; }
-            HCharKey { label: "l"; shifted: "L"; rightSide: true; }
+            ACharKey { label: "a"; shifted: "A"; leftSide: true; }
+            ACharKey { label: "s"; shifted: "S"; }
+            ACharKey { label: "d"; shifted: "D"; }
+            ACharKey { label: "f"; shifted: "F"; }
+            ACharKey { label: "g"; shifted: "G"; }
+            ACharKey { label: "h"; shifted: "H"; }
+            ACharKey { label: "j"; shifted: "J"; }
+            ACharKey { label: "k"; shifted: "K"; }
+            ACharKey { label: "l"; shifted: "L"; rightSide: true; }
         }
 
         Row {
@@ -65,14 +65,14 @@ KeyPad {
             spacing: 0
 
             ShiftKey {}
-            HCharKey { label: "z"; shifted: "Z"; }
-            HCharKey { label: "x"; shifted: "X"; }
-            HCharKey { label: "c"; shifted: "C"; }
-            HCharKey { label: "v"; shifted: "V"; }
-            HCharKey { label: "b"; shifted: "B"; }
-            HCharKey { label: "n"; shifted: "N"; }
-            HCharKey { label: "m"; shifted: "M"; }
-            HBackspaceKey {}
+            ACharKey { label: "z"; shifted: "Z"; }
+            ACharKey { label: "x"; shifted: "X"; }
+            ACharKey { label: "c"; shifted: "C"; }
+            ACharKey { label: "v"; shifted: "V"; }
+            ACharKey { label: "b"; shifted: "B"; }
+            ACharKey { label: "n"; shifted: "N"; }
+            ACharKey { label: "m"; shifted: "M"; }
+            ABackspaceKey {}
         }
 
         Item {

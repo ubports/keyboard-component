@@ -30,7 +30,7 @@ CharKey {
     preeditHandler: handler
 
     Item {
-        id: handler
+        id: avrokey
 //        propertry var global_tmp : "" 
 
         function onKeyReleased(keyString, action) {
