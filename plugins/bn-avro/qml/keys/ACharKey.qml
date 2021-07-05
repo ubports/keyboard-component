@@ -30,8 +30,8 @@ CharKey {
     preeditHandler: handler
 
     Item {
-        id: avrokey
-        propertry var avrotmp: "" 
+        id: handler
+        property var avrotmp: "" 
 
         function onKeyReleased(keyString, action) {
             // get previous avrotmp string
