@@ -27,11 +27,7 @@ ActionKey {
 
     property string preedit: maliit_input_method.preedit
     property string avrotmp: fullScreenItem.avrotmp
-    property string m_preedit: ""
-    property string syllable_preedit: ""
-    property string last_preedit: ""
     property bool isPreedit: preedit != ""
-    property bool isAvrotmp: avrotmp != ""
 
     overridePressArea: true;
 
