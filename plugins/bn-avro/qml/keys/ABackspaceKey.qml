@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Canonical Ltd.
+ * Copyright 2021 Abdullah AL Shohag
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,7 +26,7 @@ ActionKey {
     action: "backspace";
 
     property string preedit: maliit_input_method.preedit
-    property string avrotmp: avrokey.avrotmp
+    property string avrotmp: fullScreenItem.avrotmp
     property string m_preedit: ""
     property string syllable_preedit: ""
     property string last_preedit: ""
@@ -36,49 +36,23 @@ ActionKey {
     overridePressArea: true;
 
     onReleased: {
-          if (true) {
-              maliit_input_method.avrotmp = avrotmp.substring(0,avrotmp.length - 1);
-              maliit_input_method.preedit = Parser.OmicronLab.Avro.Phonetic.parse(maliit_input_method.avrotmp);
-           }
-//        if (isPreedit) {
-//            if (avrotmp.length > 0){ /* at least 2 length */
-//                syllable_preedit = avrotmp.substring(0,avrotmp.length - 1);
-//                last_preedit = avrotmp[avrotmp.length - 1]; /* last jamo or syllable */
-//
-//                m_preedit = Parser.erase_jamo(last_preedit);
-//                if (m_preedit != ""){ /* exsit jamo */
-//                    maliit_input_method.preedit = Parser.OmicronLab.Avro.Phonetic.parse(syllable_preedit + m_preedit);
-//                } else {
-//                    maliit_input_method.preedit = Parser.OmicronLab.Avro.Phonetic.parse(syllable_preedit);
-//                }
-//            } else {
-//                  if (true){ /* preedit is one syllable */
-//                    m_preedit = Parser.erase_jamo(preedit);
-//                    maliit_input_method.preedit = Parser.OmicronLab.Avro.Phonetic.parse(m_preedit);
-//                  } else { /* it is only jamo like "ㄱ" or "ㅏ" */
-//                     event_handler.onKeyReleased("", action);
-//                  }
-//            }
-//        } else {
+          if (isPreedit) {
+              fullScreenItem.avrotmp = avrotmp.substring(0, avrotmp.length - 1);
+              maliit_input_method.preedit = Parser.OmicronLab.Avro.Phonetic.parse(fullScreenItem.avrotmp);
+        } else {
              event_handler.onKeyReleased("", action);
-//        }
-//    }
-//
+        }
+    }
+
     onPressed: {
-         maliit_input_method.avrotmp = avrotmp.substring(0,avrotmp.length - 1)
-         maliit_input_method.preedit = Parser.OmicronLab.Avro.Phonetic.parse(maliit_input_method.avrotmp)
-//
-//        if (maliit_input_method.useAudioFeedback)
-//            audioFeedback.play();
-//
-//        if (maliit_input_method.useHapticFeedback)
-//            pressEffect.start();
-//
-//        if (!isPreedit) {
-//            event_handler.onKeyPressed("", action);
-//        } //else {
-//            if (preedit.length == 1 && !Parser.is_syllable(preedit)) /* fixed erase action repeat */
-//                event_handler.onKeyPressed("", action);
+        if (maliit_input_method.useAudioFeedback)
+            audioFeedback.play();
+
+        if (maliit_input_method.useHapticFeedback)
+            pressEffect.start();
+
+        if (!isPreedit) {
+            event_handler.onKeyPressed("", action);
         }
     }
 

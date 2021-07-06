@@ -19,7 +19,7 @@
     Copyright (C) OmicronLab (http://www.omicronlab.com). All Rights Reserved.
 
 
-    Contributor(s): ______________________________________.
+    Contributor(s): Abdullah AL Shohag (Implementation in maliit for Ubuntu Touch)
 
     *****************************************************************************
     =============================================================================

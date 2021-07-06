@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Canonical Ltd.
+ * Copyright 2021 Abdullah AL Shohag
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,17 +36,17 @@ CharKey {
         function onKeyReleased(keyString, action) {
             // get previous avrotmp string
             if (maliit_input_method.preedit) {
-                if (maliit_input_method.avrotmp) {
-                     var prevtmp = maliit_input_method.avrotmp
+                if (fullScreenItem.avrotmp) {
+                     var prevtmp = fullScreenItem.avrotmp
                 } else {
                      var prevtmp = "";
                 }
             } else {
-                maliit_input_method.avrotmp = ""
+                fullScreenItem.avrotmp = ""
                 var prevtmp = "";
             }
             var englishtext = prevtmp + keyString;
-            maliit_input_method.avrotmp = englishtext;
+            fullScreenItem.avrotmp = englishtext;
             avrotmp = englishtext; 
 
             if (Database.db[englishtext]) {

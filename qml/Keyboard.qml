@@ -52,6 +52,9 @@ Item {
     property var timerSwipe: swipeTimer
     property var theme: Theme.defaultTheme
 
+    // new variable for containing english characters for bengali avro keyboard
+    property string avrotmp: ""
+
     property variant input_method: maliit_input_method
     property variant event_handler: maliit_event_handler
 
