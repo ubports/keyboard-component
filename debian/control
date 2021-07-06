@@ -165,8 +165,8 @@ Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends},
-Description: Ubuntu on-screen keyboard data files - Bengali
- Data files for the Ubuntu virtual keyboard - Bengali
+Description: Ubuntu on-screen keyboard data files - Bengali National Layout
+ Data files for the Ubuntu virtual keyboard - Bengali National Layout
 
 Package: ubuntu-keyboard-bengali-avro
 Architecture: any
@@ -175,6 +175,14 @@ Depends: ubuntu-keyboard (= ${binary:Version}),
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Bengali Avro (Phonetic Keyboard)
  Data files for the Ubuntu virtual keyboard - Bengali Avro (Phonetic Keyboard)
+
+Package: ubuntu-keyboard-bengali-probhat
+Architecture: any
+Depends: ubuntu-keyboard (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends},
+Description: Ubuntu on-screen keyboard data files - Bengali Probhat Layout
+ Data files for the Ubuntu virtual keyboard - Bengali Probhat Layout
 
 Package: ubuntu-keyboard-bosnian
 Architecture: any

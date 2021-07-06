@@ -8,6 +8,7 @@ SUBDIRS = \
     bg \
     bn \
     bn-avro \
+    bn-probhat \
     bs \
     ca \
     cs \
