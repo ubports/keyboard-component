@@ -163,6 +163,7 @@ Description: Ubuntu on-screen keyboard data files - Belarusian
 Package: ubuntu-keyboard-bengali
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
+         fonts-beng,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Bengali National Layout
@@ -171,6 +172,7 @@ Description: Ubuntu on-screen keyboard data files - Bengali National Layout
 Package: ubuntu-keyboard-bengali-avro
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
+         fonts-beng,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Bengali Avro (Phonetic Keyboard)
@@ -179,6 +181,7 @@ Description: Ubuntu on-screen keyboard data files - Bengali Avro (Phonetic Keybo
 Package: ubuntu-keyboard-bengali-probhat
 Architecture: any
 Depends: ubuntu-keyboard (= ${binary:Version}),
+         fonts-beng,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Ubuntu on-screen keyboard data files - Bengali Probhat Layout
