@@ -17,12 +17,13 @@
 
 import QtQuick 2.4
 import keys 1.0
+import "keys/"
 
 KeyPad {
     anchors.fill: parent
 
     content: c1
-    symbols: "languages/Keyboard_symbols.qml"
+    symbols: "lib/bn/Keyboard_symbols.qml"
 
     Column {
         id: c1

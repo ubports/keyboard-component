@@ -17,33 +17,18 @@
 
 import QtQuick 2.4
 import keys 1.0
+import "keys/"
 
 KeyPad {
     anchors.fill: parent
 
     content: c1
-    symbols: "languages/Keyboard_symbols.qml"
+    symbols: "lib/bn/Keyboard_symbols.qml"
 
     Column {
         id: c1
         anchors.fill: parent
         spacing: 0
-
-        Row {
-            anchors.horizontalCenter: parent.horizontalCenter;
-            spacing: 0
-
-            CharKey { label: "১"; shifted: "১"; }
-            CharKey { label: "২"; shifted: "২"; }
-            CharKey { label: "৩";  shifted: "৩"; }
-            CharKey { label: "৪";  shifted: "৪"; }
-            CharKey { label: "৫";  shifted: "৫"; }
-            CharKey { label: "৬";  shifted: "৬"; }
-            CharKey { label: "৭";  shifted: "৭"; }
-            CharKey { label: "৮";  shifted: "৮"; }
-            CharKey { label: "৯";  shifted: "৯"; }
-            CharKey { label: "০";  shifted: "০"; }
-        }
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
