@@ -144,6 +144,8 @@ public:
     double opacity() const;
     const QString theme() const;
 
+    const QString avrotmp() const;
+
     QObject* actionKeyOverride() const;
 
     QString surroundingLeft();
