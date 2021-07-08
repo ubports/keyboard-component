@@ -68,6 +68,8 @@ class InputMethod
     Q_PROPERTY(QString surroundingLeft READ surroundingLeft)
     Q_PROPERTY(QString surroundingRight READ surroundingRight)
 
+    Q_PROPERTY(QString avrotmp READ avrotmp)
+
     Q_ENUMS(TextContentType)
 
 public:
