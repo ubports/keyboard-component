@@ -683,13 +683,6 @@ const QString InputMethod::theme() const
     return d->m_settings.theme();
 }
 
-const QString InputMethod::avrotmp() const
-{
-    Q_D(InputMethod);
-    d->avrotmp = d->editor.text()->avrotmp();
-    return d->avrotmp;
-}
-
 void InputMethod::replacePreedit(const QString &preedit)
 {
     Q_D(InputMethod);

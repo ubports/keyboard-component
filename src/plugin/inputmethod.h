@@ -68,8 +68,6 @@ class InputMethod
     Q_PROPERTY(QString surroundingLeft READ surroundingLeft)
     Q_PROPERTY(QString surroundingRight READ surroundingRight)
 
-    Q_PROPERTY(QString avrotmp READ avrotmp)
-
     Q_ENUMS(TextContentType)
 
 public:
@@ -143,8 +141,6 @@ public:
     void setCursorPosition(const int pos);
     double opacity() const;
     const QString theme() const;
-
-    const QString avrotmp() const;
 
     QObject* actionKeyOverride() const;
 
